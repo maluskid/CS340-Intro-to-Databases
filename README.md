@@ -1,4 +1,4 @@
-#CS340 Shared Repository
+# CS340 Shared Repository
 ### Group 53: Dominic and Denyse
 
 The command `git clone https://github.com/maluskid/CS340-Intro-to-Databases.git`
@@ -8,3 +8,6 @@ interesting hurdle to cross. I'll look into setting permissions so you don't nee
 to make merge requests to merge your code into the repository. It's possible you
 could simply make a fork of this repository to have your own working one and I could
 do the same, and we can merge when we need to into the group repository.
+
+If you're adding files to this folder that you don't want to upload to the repository, add
+their name to the `.gitignore` file.
