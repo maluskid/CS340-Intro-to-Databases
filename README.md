@@ -1,5 +1,5 @@
 # CS340 Shared Repository
-### Group 53: Dominic and Denyse
+### Group 53: Dominic and Denyse 'Film Fiends'
 
 The command `git clone https://github.com/maluskid/CS340-Intro-to-Databases.git`
 will initialize a git repository in your PWD that mirrors this one. I have yet
