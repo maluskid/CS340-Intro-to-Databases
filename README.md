@@ -12,8 +12,9 @@ do the same, and we can merge when we need to into the group repository.
 I'm going to be working from the branch `dominic`. I like to keep a lot of my school files
 in a Github Repository because I often work from both my desktop and laptop and that allows
 me to bounce around quickly and easily. You can make your own branch with `git branch <branch_name>`
-and then swap over to it from the `main` branch with `git checkout <branch_name`. I'll link the
-[Git documentation](https://git-scm.com/docs) too.
+and then swap over to it from the `main` branch with `git checkout <branch_name>`. I'll link the
+[Git documentation](https://git-scm.com/docs) too. The command `git log` can be helpful for viewing
+the current status of different branches and commit history etc.
 
 If you're adding files to this folder that you don't want to upload to the repository, add
 their name to the `.gitignore` file.
