@@ -2,10 +2,10 @@
   "name": "activity-2",
   "version": "1.0.0",
   "description": "Learning to connect to OSU database",
-  "main": "app.js",
+  "main": "app.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon exercises_controller.mjs"
+    "start": "nodemon app.mjs"
   },
   "author": "Dominic Maluski",
   "license": "ISC",
@@ -13,6 +13,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.22"
   }
 }

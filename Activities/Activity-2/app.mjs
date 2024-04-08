@@ -1,16 +1,22 @@
+// Citation for app.mjs:
+// Date: 04/07/2024
+// Adapted from /OR/ Based on
+// code provided in Activity-2 assignment page by professor
+// https://canvas.oregonstate.edu/courses/1958399/assignments/9589645
+
 import 'dotenv/config';
 import express from 'express';
-import db from './db-connector';
+import db from './db-connector.mjs';
 
 const PORT = process.env.PORT;
 const app = express();
 
 app.get('/', async (req, res) => {
   // Define our queries
-  query1 = 'DROP TABLE IF EXISTS diagnostic;';
-  query2 = 'CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);';
-  query3 = 'INSERT INTO diagnostic (text) VALUES ("MySQL is working for myONID!")'; //replace with your ONID
-  query4 = 'SELECT * FROM diagnostic;';
+  const query1 = 'DROP TABLE IF EXISTS diagnostic;';
+  const query2 = 'CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);';
+  const query3 = 'INSERT INTO diagnostic (text) VALUES ("MySQL is working for maluskid!")';
+  const query4 = 'SELECT * FROM diagnostic;';
 
   // Execute every query in an asynchronous manner, we want each query to finish before the next one starts
 
