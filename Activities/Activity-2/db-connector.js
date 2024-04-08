@@ -4,9 +4,9 @@
 // code provided in Activity-2 assignment page by professor
 // https://canvas.oregonstate.edu/courses/1958399/assignments/9589645
 
-import mysql from 'mysql';
+const mysql =require('mysql');
 
-const db = mysql.createPool({
+const pool = mysql.createPool({
   connectionLimit: 10,
   host: 'classmysql.engr.oregonstate.edu',
   user: 'cs340_maluskid',
@@ -14,4 +14,4 @@ const db = mysql.createPool({
   database: 'cs340_maluskid'
 })
 
-export default db;
+module.exports.pool = pool;

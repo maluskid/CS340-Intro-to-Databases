@@ -4,11 +4,10 @@
 // code provided in Activity-2 assignment page by professor
 // https://canvas.oregonstate.edu/courses/1958399/assignments/9589645
 
-import 'dotenv/config';
-import express from 'express';
-import db from './db-connector.mjs';
+const express = require( 'express');
+const db = require('./db-connector');
 
-const PORT = process.env.PORT;
+const PORT = 9111;
 const app = express();
 
 app.get('/', async (req, res) => {
@@ -21,13 +20,13 @@ app.get('/', async (req, res) => {
   // Execute every query in an asynchronous manner, we want each query to finish before the next one starts
 
   // DROP TABLE...
-  db.query(query1, (err, results, fields) => {
+  db.pool.query(query1, (err, results, fields) => {
     // CREATE TABLE...
-    db.query(query2, (err, results, fields) => {
+    db.pool.query(query2, (err, results, fields) => {
       // INSERT INTO...
-      db.query(query3, (err, results, fields) => {
+      db.pool.query(query3, (err, results, fields) => {
         // SELECT *...
-        db.query(query4, (err, results, fields) => {
+        db.pool.query(query4, (err, results, fields) => {
           // Send the results to the browser
           let base = "<h1>MySQL Results:</h1>"
           res.send(base + JSON.stringify(results));
