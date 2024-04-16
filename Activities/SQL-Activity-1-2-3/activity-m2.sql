@@ -4,39 +4,25 @@
 -- code provided in Activity-1 Creating A Customer Object Table page by professor
 -- https://canvas.oregonstate.edu/courses/1958399/pages/activity-1-creating-a-customer-object-table?module_item_id=24181817
 
--- If we just want to create the table
-CREATE TABLE TableName (
-    ColumnName DataType Constraints,
-    ...
+use cs340_maluskid
+
+CREATE OR REPLACE TABLE Customers (
+    CustomerID int NOT NULL AUTO_INCREMENT,
+    CustomerName varchar(50),
+    AddressLine1 varchar(50),
+    AddressLine2 varchar(50),
+    City varchar(50),
+    State varchar(50),
+    PostalCode varchar(50),
+    YTDPurchases decimal(19,2)
 );
 
--- If we want to create the table if it doesn't exist, or replace an existing
--- table with the same name
-CREATE OR REPLACE TABLE TableName (
-    ColumnName DataType Constraints,
-    ...
-);
+SHOW TABLES;
+DESCRIBE Customers;
 
--- If we want to create a table with Column1 as the Primary Key
-CREATE TABLE TableName (
-    Column1 int NOT NULL AUTO_INCREMENT,
-    Column2 varchar(255),
-    Column3 varchar(30),
-    PRIMARY KEY (Column1)
-);
+INSERT INTO Customers (CustomerName, AddressLine1, City, State, PostalCode)
+VALUES ('Bike World', '600025 Bollinger Canyon Road', 'San Ramon', 'California', '94583'),
+('Metro Sports', '482505 Warm Springs Blvd.', 'Fremont', 'California', '94536'),
+('Mud Skidz Bike Wrld', '400222 Gnarly Ln.', 'Santa Cruz', 'California', '97777');
 
--- Example Query
-
--- Creates a table Colors (or makes a new one if it already exists, deleting the old one)
--- Creates 6 columns, colorID, colorName, colorHex, red, green and blue.
--- Sets the primary key to be the colorID
-CREATE OR REPLACE TABLE Colors (
-    colorID int NOT NULL AUTO_INCREMENT,
-    colorName varchar(255),
-    colorHex varchar(255),
-    red int,
-    green int,
-    blue int,
-    PRIMARY KEY (colorID)
-);
-
+SELECT * FROM Customers;
