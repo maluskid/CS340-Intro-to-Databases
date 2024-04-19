@@ -4,8 +4,6 @@
 -- code provided in Activity-1 Creating A Customer Object Table page by professor
 -- https://canvas.oregonstate.edu/courses/1958399/pages/activity-1-creating-a-customer-object-table?module_item_id=24181817
 
-use cs340_maluskid
-
 CREATE OR REPLACE TABLE Customers (
     CustomerID int NOT NULL AUTO_INCREMENT,
     CustomerName varchar(50),
@@ -14,7 +12,8 @@ CREATE OR REPLACE TABLE Customers (
     City varchar(50),
     State varchar(50),
     PostalCode varchar(50),
-    YTDPurchases decimal(19,2)
+    YTDPurchases decimal(19,2),
+    PRIMARY KEY (CustomerID)
 );
 
 SHOW TABLES;
@@ -26,3 +25,31 @@ VALUES ('Bike World', '600025 Bollinger Canyon Road', 'San Ramon', 'California',
 ('Mud Skidz Bike Wrld', '400222 Gnarly Ln.', 'Santa Cruz', 'California', '97777');
 
 SELECT * FROM Customers;
+SELECT CustomerID, CustomerName FROM Customers WHERE PostalCode = '94536';
+
+CREATE OR REPLACE TABLE TermsCode (
+    TermsCodeID varchar(50) NOT NULL,
+    Description varchar(50),
+    PRIMARY KEY (TermsCodeID)
+);
+
+INSERT INTO TermsCode(TermsCodeID, Description)
+VALUES ('NET30', 'Payment due in 30 days.'),
+('NET15', 'Payment due in 15 days.'),
+('210NET30', '2% discount in 10 days Net 30');
+
+CREATE OR REPLACE TABLE Invoices (
+    InvoiceID int NOT NULL AUTO_INCREMENT,
+    CustomerID int,
+    InvoiceDate datetime,
+    TermsCodeID varchar(50),
+    TotalDue decimal(19,2),
+    PRIMARY KEY (InvoiceID),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (TermsCodeID) REFERENCES TermsCode(TermsCodeID)
+);
+
+INSERT INTO Invoices(CustomerID, InvoiceDate, TotalDue, TermsCodeID)
+VALUES (2, 20140207, 2388.98, 'NET30'),
+(1, 20140202, 2443.35, '210NET30'),
+(1, 20140209, 8752.32, 'NET30');
