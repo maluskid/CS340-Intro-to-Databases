@@ -18,4 +18,5 @@ the current status of different branches and commit history etc.
 
 Docker setup of mariadb with command `docker run --detach --name mydb --env MARIADB_USER=maluskid --env 
 MARIADB_PASSWORD=9069 --env MARIADB_DATABASE=cs340_maluskid --env MARIADB_ROOT_PASSWORD=password  mariadb:latest`
-Run `docker exec -it mydb bash` and then connect to mariadb to use database.
+Run `docker exec -it mydb bash` and then connect to mariadb to use database. `docker cp <local file> <container>:<path_to_dest>`
+will copy local files to the container.
