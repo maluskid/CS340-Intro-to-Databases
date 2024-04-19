@@ -16,7 +16,6 @@ and then swap over to it from the `main` branch with `git checkout <branch_name>
 [Git documentation](https://git-scm.com/docs) too. The command `git log` can be helpful for viewing
 the current status of different branches and commit history etc.
 
-Docker setup of mariadb was done with command `docker run --detach --name mydb --env MARIADB_USER=maluski --env 
+Docker setup of mariadb with command `docker run --detach --name mydb --env MARIADB_USER=maluskid --env 
 MARIADB_PASSWORD=9069 --env MARIADB_DATABASE=cs340_maluskid --env MARIADB_ROOT_PASSWORD=password  mariadb:latest`
-Note username was typod as 'maluski' instead of 'maluskid'. Run `docker exec -it mydb bash` and then connect
-to mariadb to use database.
+Run `docker exec -it mydb bash` and then connect to mariadb to use database.
