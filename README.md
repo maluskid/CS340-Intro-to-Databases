@@ -16,5 +16,7 @@ and then swap over to it from the `main` branch with `git checkout <branch_name>
 [Git documentation](https://git-scm.com/docs) too. The command `git log` can be helpful for viewing
 the current status of different branches and commit history etc.
 
-If you're adding files to this folder that you don't want to upload to the repository, add
-their name to the `.gitignore` file.
+Docker setup of mariadb was done with command `docker run --detach --name mydb --env MARIADB_USER=maluski --env 
+MARIADB_PASSWORD=9069 --env MARIADB_DATABASE=cs340_maluskid --env MARIADB_ROOT_PASSWORD=password  mariadb:latest`
+Note username was typod as 'maluski' instead of 'maluskid'. Run `docker exec -it mydb bash` and then connect
+to mariadb to use database.
