@@ -14,3 +14,5 @@
 -- Delete all people whose age is NULL. Then, list all such people whose age is NOT NULL.
 
 -- Write your queries BELOW this line
+
+DELETE FROM bsg_people WHERE age IS NULL;

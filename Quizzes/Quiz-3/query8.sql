@@ -9,5 +9,14 @@
 
 -- Write your queries BELOW this line
 
+DROP TABLE IF EXISTS bsg_spaceship;
 
+CREATE TABLE bsg_spaceship(
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  separate_saucer_section boolean DEFAULT false,
+  length int NOT NULL,
+  PRIMARY KEY(id)
+);
 
+DESCRIBE bsg_spaceship;

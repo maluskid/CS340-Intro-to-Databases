@@ -15,3 +15,9 @@
 -- 'William' to 62 and then print all rows with all the columns which match the
 -- same criteria, in a separate query. 
 
+UPDATE bsg_people
+SET age = age + 1
+WHERE fname = 'William' AND lname = 'Adama';
+
+SELECT * FROM bsg_people
+WHERE fname = 'William' AND lname = 'Adama';
