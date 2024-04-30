@@ -16,5 +16,6 @@
 
 -- Write your query BELOW this line.
 
-INSERT INTO bsg_planets (name, population, language, capital)
-VALUES ('Mars', 2, 'Binary', 'Olympus Mons');
+INSERT INTO bsg_planets (name, population, language, capital) VALUES ('Mars', 2, 'Binary', 'Olympus Mons');
+
+SELECT * FROM bsg_planets WHERE name = 'Mars' AND language = 'Binary';

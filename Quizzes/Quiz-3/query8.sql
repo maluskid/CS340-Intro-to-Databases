@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS bsg_spaceship;
 CREATE TABLE bsg_spaceship(
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
-  separate_saucer_section boolean DEFAULT false,
+  separate_saucer_section boolean NOT NULL DEFAULT false,
   length int NOT NULL,
   PRIMARY KEY(id)
 );
