@@ -4,7 +4,7 @@
 // code provided in Activity-2 assignment page by professor
 // https://canvas.oregonstate.edu/courses/1958399/assignments/9589645
 
-const express = require( 'express');
+const express = require('express');
 const db = require('./db-connector');
 
 const PORT = 9111;
