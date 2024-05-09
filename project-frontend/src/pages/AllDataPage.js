@@ -5,7 +5,7 @@ export default function PlayersPage() {
 
   // Placeholder for GET request to database
   return (
-    <div>
+    <div className="AllData">
       <p>TODO: Display all data in database</p>
     </div >
   );

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import HomePage from './pages/HomePage';
 import PlayersPage from './pages/PlayersPage';
 import TeamsPage from './pages/TeamsPage';
