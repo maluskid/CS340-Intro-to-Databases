@@ -26,6 +26,17 @@
   font-size: calc(10px + 2vmin);
 }
 
+.App-Page {
+  background-color: #282828;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #fbf1c7;
+}
+
 ul {
   list-style-image: url(./NBA_logo.png);
 }

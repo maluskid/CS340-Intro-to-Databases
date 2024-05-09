@@ -5,6 +5,7 @@ export default function GamesPage() {
 
   // placeholder for GET request to view games table from database
   const gamesTable = [{
+    tableName: "Games",
     gameID: "Game ID",
     gameDate: "Game Date",
     homeTeam: "FK homeTeam ID",
@@ -15,7 +16,7 @@ export default function GamesPage() {
     postSeason: true
   }]
   return (
-    <div>
+    <div className="App-Page">
       <DataTable currentTable={gamesTable} />
     </div >
   );

@@ -5,6 +5,7 @@ export default function PlayersPage() {
 
   // Placeholder for GET request to database
   const playersTable = [{
+    tableName: "Players",
     playerID: "Player ID",
     playerName: "Player Name",
     teamID: "Team ID",
@@ -13,7 +14,7 @@ export default function PlayersPage() {
     weight: "200 lbs"
   }]
   return (
-    <div>
+    <div className="App-Page">
       <DataTable currentTable={playersTable} />
     </div >
   );
