@@ -4,35 +4,47 @@
 --  e.g. ':teamNameInput' is a placeholder variable for the variable 'teamName'
 
 -- Insert Queries-------------------------------------------------------------
--- Insert into Teams
+-- Add new team
 insert into Teams (teamName, coach, currentRecord) 
   values (:teamNameInput, :coachInput, :currentRecordInput);
 
--- Insert into Players
+-- Add new players
 insert into Players (teamID, playerName, jerseyNumber, height, weight)
   values (:teamIDInput, :playerNameInput, :jerseyNumberInput, :heightInput, :weightInput);
 
--- Insert into Games
+-- Add new games
 insert into Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore) 
   values (:gameDateInput, :homeTeamInput, :awayTeamInput, :homeTeamScoreInput, :awayTeamScoreInput);
 
--- Insert into Games_Has_Players
+-- Associate a player with a game
 insert into Games_Has_Players (gameID, playerID)
-  values (:gameIDInput, :playerIDInput);
+  values (:gameIDFromDropdownInput, :playerIDFromDropdownInput);
 
--- Insert into Users
+-- Add new user
 insert into Users (userName, favoritePlayer, favoriteTeam)
   values (:userName, :favoritePlayer, :favoriteTeamInput);
 
--- Insert into Ratings
+-- Post new rating
 insert into Ratings (userID, gameID, rating)
-  values (:userIDInput, :gameIDInput, :ratingInput);
+  values (:userIDInput, :gameIDFromDropdownInput, :ratingInput);
+
 
 -- Select Queries--------------------------------------------------------------
--- Drop-down functionality for Games to be used for creating ratings
+-- Get all game data to populate a dropdown for associating a player with a game
+select Games.gameID, Games.gameDate, TeamsH.teamName as homeTeamName, TeamsA.teamName as awayTeamName 
+from Games
+join Teams TeamsH on Games.homeTeam = TeamsH.teamID
+join Teams TeamsA on Games.awayTeam = TeamsA.teamID;
 
--- Get general information about a game (fulfills select M:M)
- 
+-- Get all player data to populate a dropdown for associating a player with a game
+select playerID, playerName from Players;
+
+-- Get players associated with specific game
+ select Players.playerName
+ from Players
+ inner join Games_Has_Players on Players.playerID = Games_Has_Players.playerID
+ inner join Games on Games_Has_Players.gameID = Games.gameID
+ where gameID = :gameIDFromDropdownInput;
 
 -- Get all ratings from specific user
 select Users.userName, Ratings.rating, Games.gameDate, Games.homeTeam, Games.awayTeam, Games.homeTeamScore, Games.awayTeamScore 
@@ -48,13 +60,21 @@ inner join Ratings on Users.userID = Ratings.userID
 inner join Games on Ratings.gameID = Games.gameID
 where Games.gameID = :Games.gameIDInput;
 
+
 -- Delete Queries--------------------------------------------------------------
 -- Delete a rating
--- Delete a player from a game (fulfills delete M:M)
+delete from Ratings where userID = :userIDInput and :gameIDFromDropdownInput;
+
+-- Disasocciate a player from a game (M-to-M relationship deletion)
+delete from Games_Has_Players where playerID = :playerIDFromDropdownInput and gameID = :gameIDFromDropdownInput;
 
 
 -- Update Queries--------------------------------------------------------------
--- Update user's favorite player (set FK value to null)
--- Update user's favorite team (set FK value to null)
--- Update player's team
--- Edit player in a game (fulfills update M:M)
+-- Update user's favorite player to NULL (set FK value to null)
+update Users set favoritePlayer = NULL where userName = :userNameInput;
+
+-- Update user's favorite team to NULL (set FK value to null)
+update Users set favoriteTeam = NULL where userName = :userNameInput;
+
+-- Edit player in a game (M-to-M relationship update)
+update Games_Has_Players set gameID = :gameIDFromDropdownInput and playerID = :playerIDFromDropdownInput; 
