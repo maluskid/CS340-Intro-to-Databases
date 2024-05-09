@@ -3,6 +3,7 @@
 --  Placeholder variables are preceeded with a ':' and followed by 'Input'
 --  e.g. ':teamNameInput' is a placeholder variable for the variable 'teamName'
 
+
 -- Insert Queries-------------------------------------------------------------
 -- Add new team
 insert into Teams (teamName, coach, currentRecord) 
@@ -39,6 +40,12 @@ join Teams TeamsA on Games.awayTeam = TeamsA.teamID;
 -- Get all player data to populate a dropdown for associating a player with a game
 select playerID, playerName from Players;
 
+-- Get list of players on a team
+select Players.playerName, Players.jerseyNumber
+from Players
+inner join Teams on Players.teamID = Teams.teamID
+where Teams.teamName = :teamNameInput;
+
 -- Get players associated with specific game
  select Players.playerName
  from Players
@@ -62,8 +69,8 @@ where Games.gameID = :Games.gameIDInput;
 
 
 -- Delete Queries--------------------------------------------------------------
--- Delete a rating
-delete from Ratings where userID = :userIDInput and :gameIDFromDropdownInput;
+-- Delete a rating (M-to-M relationship delete)
+delete from Ratings where userName = :userNameInput and :gameIDFromDropdownInput;
 
 -- Disasocciate a player from a game (M-to-M relationship deletion)
 delete from Games_Has_Players where playerID = :playerIDFromDropdownInput and gameID = :gameIDFromDropdownInput;
