@@ -1,5 +1,7 @@
 database_login
 Activities/Activity-2/node_modules/*
+project-frontend/node_modules/*
+project-backend/node_modules/*
 Draft-ERD/*
 MariaDB-Docker-Setup.html
 MariaDB-Docker-Setup_files/*
