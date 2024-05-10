@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DataTable from "../components/DataTable";
 
 export default function TeamsPage() {
@@ -8,7 +8,7 @@ export default function TeamsPage() {
   const [coach, setCoach] = useState(undefined);
 
   async function createNew() {
-    const newItem = { homeTeam, awayTeam };
+    const newItem = { teamName, coach };
     // send POST with newItem 
   }
 

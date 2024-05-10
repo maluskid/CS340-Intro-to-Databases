@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DataTable from "../components/DataTable";
 
 export default function PlayersPage() {
@@ -19,7 +19,7 @@ export default function PlayersPage() {
   }]
 
   async function createNew() {
-    const newItem = { homeTeam, awayTeam };
+    const newItem = { playerName, jerseyNumber };
     // send POST with newItem 
   }
 
@@ -36,7 +36,7 @@ export default function PlayersPage() {
         type="number"
         placeholder={0}
         value={jerseyNumber}
-        onChange={e => setAwayTeam(e.target.value)} />
+        onChange={e => setJerseyNumber(e.target.value)} />
       <button onClick={createNew}>Insert</button>
 
     </div >

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DataTable from "../components/DataTable";
 
+
 export default function GamesPage() {
 
   // placeholder for data entry for new game

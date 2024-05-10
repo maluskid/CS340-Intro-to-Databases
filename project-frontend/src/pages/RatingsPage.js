@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DataTable from "../components/DataTable";
 
 export default function RatingsPage() {
@@ -16,7 +16,7 @@ export default function RatingsPage() {
   }];
 
   async function createNew() {
-    const newItem = { homeTeam, awayTeam };
+    const newItem = { rating };
     // send POST with newItem 
   }
 

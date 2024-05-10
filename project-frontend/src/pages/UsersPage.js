@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DataTable from "../components/DataTable";
 
 export default function PlayersPage() {
@@ -8,7 +8,7 @@ export default function PlayersPage() {
   const [favoriteTeam, setFavoriteTeam] = useState(undefined);
 
   async function createNew() {
-    const newItem = { homeTeam, awayTeam };
+    const newItem = { userName, favoriteTeam };
     // send POST with newItem 
   }
 
