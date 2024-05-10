@@ -40,6 +40,25 @@ join Teams TeamsA on Games.awayTeam = TeamsA.teamID;
 -- Get all player data to populate a dropdown for associating a player with a game
 select playerID, playerName from Players;
 
+-- Get team data
+select teamID, teamName, coach, currentRecord from Teams;
+
+-- Get game Data
+select gameID, gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason from Games;
+
+-- Get player data
+select playerID, playerName, teamID, jerseyNumber, height, weight from Players;
+
+-- Get Games_Has_Players data
+select gameID, playerID from Games_Has_Players;
+
+-- Get user data
+select userID, userName, favoritePlayer, favoriteTeam from Users;
+
+-- Get ratings data
+select userID, gameID, rating from Ratings;
+
+-- Extra views
 -- Get list of players on a team
 select Players.playerName, Players.jerseyNumber
 from Players
