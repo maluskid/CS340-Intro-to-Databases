@@ -8,16 +8,12 @@ export default function DataTable({ currentTable }) {
       <p>Displayed here is all table data for {currentTable[0].tableName}</p>
       <table id="data">
         <thead>
-          <tr>
-            <DataTableHeader />
-            {/* {table.map((category, i) => <DataTableHeader category={category} key={i} />)} */}
-          </tr>
+          <DataTableHeader />
+          {/* {table.map((category, i) => <DataTableHeader category={category} key={i} />)} */}
         </thead>
         <tbody>
-          <tr>
-            <DataTableRow />
-            {/*{table.map((data, i) => <DataTableRow data={data} key={i} />)}*/}
-          </tr>
+          <DataTableRow />
+          {/*{table.map((data, i) => <DataTableRow data={data} key={i} />)}*/}
         </tbody>
       </table>
     </div>

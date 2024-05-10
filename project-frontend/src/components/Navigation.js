@@ -1,42 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavLink from './NavLink';
+import HomePage from '../pages/HomePage';
+import PlayersPage from '../pages/PlayersPage';
+import TeamsPage from '../pages/TeamsPage';
+import GamesPage from '../pages/GamesPage';
+import UsersPage from '../pages/UsersPage';
+import RatingsPage from '../pages/RatingsPage';
+import GamesPlayersPage from '../pages/GamesPlayersPage';
+import AllDataPage from '../pages/AllDataPage';
+import SelectPage from '../pages/SelectPage.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function Navigation() {
-  function homePageCheck() {
-    return (undefined);
-  }
+function Navigation({ navList, setNavList }) {
+
   return (
-    <nav className="App-Navigation">
+    <Router>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/players-page">Players</Link>
-        </li>
-        <li>
-          <Link to="/teams-page">Teams</Link>
-        </li>
-        <li>
-          <Link to="/games-page">Games</Link>
-        </li>
-        <li>
-          <Link to="/users-page">Users</Link>
-        </li>
-        <li>
-          <Link to="/ratings-page">Ratings</Link>
-        </li>
-        <li>
-          <Link to="/games-players-page">Intersection Table</Link>
-        </li>
-        <li>
-          <Link to="/all-data-page">All Data</Link>
-        </li>
-        <li>
-          <Link to="/select-page">Search</Link>
-        </li>
+        {navList.map((info, i) => <NavLink
+          info={info}
+          setNavList={setNavList}
+          key={i} />)}
       </ul>
-    </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/players-page" element={<PlayersPage />} />
+        <Route path="/teams-page" element={<TeamsPage />} />
+        <Route path="/games-page" element={<GamesPage />} />
+        <Route path="/users-page" element={<UsersPage />} />
+        <Route path="/ratings-page" element={<RatingsPage />} />
+        <Route path="/games-players-page" element={<GamesPlayersPage />} />
+        <Route path="/all-data-page" element={<AllDataPage />} />
+        <Route path="/select-page" element={<SelectPage />} />
+      </Routes>
+    </Router>
   );
 }
 
