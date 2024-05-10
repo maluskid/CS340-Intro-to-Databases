@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Ratings</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Ratings</h1>
+
+[ <a href="teams.html">Teams</a> | <a href="players.html">Players</a> | <a href="games.html">Games</a>  | <a href="games-players.html">Games Has Players</a> | <a href="users.html">Users</a> | <a href="ratings.html">Ratings</a>  ]
+<div id="browse" style="display: block">
+<p><strong>Browse Ratings</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>userID</th>
+    <th>gameID</th>
+    <th>rating</th>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >2</td>
+    <td >10</td>
+
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>2</td>
+    <td>1</td>
+    <td>6</td>
+
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>3</td>
+    <td>3</td>
+    <td>2</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addPlanet">
+        <legend><strong>Add Rating</strong></legend>
+          <fieldset class="fields">
+            <label> Username </label> <input type="text" name="name">
+            <label> Game </label> <input type="text" name="population">
+            <label> Rating </label> <input type="text" name="population">
+          </fieldset>
+          <input class="btn" type="submit" id="addPlanet" value="Add Rating">
+          <input class="btn" type="button" value="cancel">  
+	</form> 
+  <!-- add new planet -->
+</div>
+<!-- insert -->
+
+<!-- <p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updatePlanet">
+      <legend><strong>Update Planet</strong></legend>
+          <fieldset class="fields">
+          <label>ID:</label> 1
+            <label> Name </label> <input type="text" value="Gemenon" name="name">
+            <label> Population </label> <input type="text"  name="population" value="2800000000">
+            <label> Language </label> <input type="text" name="language" value="Old Gemenese">
+            <label> Capital </label> <input type="text" name="language" value="Oranu">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSavePlanet" value="Save Update Planet">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div> -->
+<!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deletePlanet">
+      <legend><strong>Delete Rating</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>User ID:</label> 1
+            <label> Game ID: </label> 2
+            <label> Rating: </label> 10
+
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePlanet" value="Delete Rating">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>
