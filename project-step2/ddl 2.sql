@@ -1,5 +1,4 @@
--- Create Tables --------------------------------------------------------
--- Teams Table
+-- Create tables
 create or replace table Teams (
   teamID tinyint(2) auto_increment unique primary key not null,
   teamName varchar(100) not null,
@@ -7,7 +6,6 @@ create or replace table Teams (
   currentRecord varchar(5)
 );
 
--- Games Table
 create or replace table Games (
   gameID int(12) auto_increment unique primary key not null,
   gameDate date not null,
@@ -16,14 +14,12 @@ create or replace table Games (
   homeTeamScore int(3) not null,
   awayTeamScore int(3) not null,
   overTime tinyint(1),
-  postseason boolean,
-  foreign key (homeTeam) references Teams (teamID) ON DELETE CASCADE,
-  foreign key (awayTeam) references Teams (teamID) ON DELETE CASCADE,
-  -- homeTeam must be different from awayTeam
+  postSeason boolean,
+  foreign key (homeTeam) references Teams (teamID),
+  foreign key (awayTeam) references Teams (teamID),
   constraint different_teams CHECK (homeTeam != awayTeam)
 );
 
--- Players Table
 create or replace table Players (
   playerID int(12) auto_increment unique primary key not null,
   playerName varchar(100) not null,
@@ -31,10 +27,9 @@ create or replace table Players (
   jerseyNumber tinyint(2),
   height varchar(5),
   weight smallint(3),
-  foreign key (teamID) references Teams (teamID) ON DELETE CASCADE
+  foreign key (teamID) references Teams (teamID)
 );
 
--- Games_Has_Players Table (intersection table)
 create or replace table Games_Has_Players (
   gameID int(12),
   playerID int(12),
@@ -43,17 +38,15 @@ create or replace table Games_Has_Players (
   foreign key (playerID) references Players(playerID) ON DELETE CASCADE
 );
 
--- Users Table
 create or replace table Users (
   userID int(12) auto_increment unique primary key not null,
   userName varchar(20) unique not null,
   favoritePlayer int(12),
   favoriteTeam tinyint(2),
-  foreign key (favoritePlayer) references Players (playerID) ON DELETE SET NULL,
-  foreign key (favoriteTeam) references Teams (teamID) ON DELETE SET NULL
+  foreign key (favoritePlayer) references Players (playerID),
+  foreign key (favoriteTeam) references Teams (teamID)
 );
 
--- Ratings Table
 create or replace table Ratings (
   userID int(12) not null,
   gameID int(12) not null,
@@ -63,9 +56,7 @@ create or replace table Ratings (
   foreign key (gameID) references Games (gameID) ON DELETE CASCADE
 );
 
--- Insert Data ----------------------------------------------------------
-
--- Teams Data
+-- Insert data
 insert into Teams ( 
   teamName, 
   coach, 
@@ -155,7 +146,6 @@ values
 --   131
 -- );
 
--- Games Data
 insert into Games (
   gameDate,
   homeTeam, 
@@ -201,7 +191,6 @@ values
   (select playerID from Players where playerName = "LaMelo Ball")
 );
 
--- Users Data
 -- User with favorite player and team
 insert into Users (
   userName,
@@ -214,10 +203,10 @@ values
   (select playerID from Players where playerName = "Victor Wembanyama"),
   (select teamID from Teams where teamName = "San Antonio Spurs")
 );
+
 -- Users without favorite players or teams
 insert into Users (userName) values ("RedVelvet"), ("goat");
 
--- Ratings Data
 insert into Ratings (
   userID,
   gameID,

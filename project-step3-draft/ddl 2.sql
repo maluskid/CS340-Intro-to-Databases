@@ -16,9 +16,9 @@ create or replace table Games (
   homeTeamScore int(3) not null,
   awayTeamScore int(3) not null,
   overTime tinyint(1),
-  postseason boolean,
-  foreign key (homeTeam) references Teams (teamID) ON DELETE CASCADE,
-  foreign key (awayTeam) references Teams (teamID) ON DELETE CASCADE,
+  postSeason boolean,
+  foreign key (homeTeam) references Teams (teamID),
+  foreign key (awayTeam) references Teams (teamID),
   -- homeTeam must be different from awayTeam
   constraint different_teams CHECK (homeTeam != awayTeam)
 );
@@ -31,7 +31,7 @@ create or replace table Players (
   jerseyNumber tinyint(2),
   height varchar(5),
   weight smallint(3),
-  foreign key (teamID) references Teams (teamID) ON DELETE CASCADE
+  foreign key (teamID) references Teams (teamID)
 );
 
 -- Games_Has_Players Table (intersection table)
@@ -49,8 +49,8 @@ create or replace table Users (
   userName varchar(20) unique not null,
   favoritePlayer int(12),
   favoriteTeam tinyint(2),
-  foreign key (favoritePlayer) references Players (playerID) ON DELETE SET NULL,
-  foreign key (favoriteTeam) references Teams (teamID) ON DELETE SET NULL
+  foreign key (favoritePlayer) references Players (playerID),
+  foreign key (favoriteTeam) references Teams (teamID)
 );
 
 -- Ratings Table
