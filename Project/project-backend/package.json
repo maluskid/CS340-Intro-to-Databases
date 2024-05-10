@@ -1,14 +1,16 @@
 {
   "name": "project-backend",
   "version": "1.0.0",
-  "main": "react-server.js",
+  "main": "frontend-server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./frontend-server.js"
   },
   "author": "Dominic",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "path": "^0.12.7"
   }
 }
