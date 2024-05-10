@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function NavLink({ info, setNavList }) {
 
   function checkPath() {
-    if (window.location.pathname === '/') {
+    if (info.path === '/') {
       setNavList([
         { path: "/", title: "Home" },
         { path: "/players-page", title: "Players" },
@@ -21,9 +21,9 @@ export default function NavLink({ info, setNavList }) {
         { path: "/", title: "Home" }
       ]);
     }
-    useNavigate(info.path);
   }
+
   return (
-    <li><Link onClick={checkPath()}>{info.title}</Link></li>
+    <li><Link to={info.path} onClick={() => checkPath}>{info.title}</Link></li>
   );
 }
