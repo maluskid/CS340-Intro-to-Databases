@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Navigation() {
+  function homePageCheck() {
+    return (undefined);
+  }
   return (
     <nav className="App-Navigation">
       <ul>
@@ -28,6 +31,9 @@ function Navigation() {
         </li>
         <li>
           <Link to="/all-data-page">All Data</Link>
+        </li>
+        <li>
+          <Link to="/select-page">Search</Link>
         </li>
       </ul>
     </nav>
