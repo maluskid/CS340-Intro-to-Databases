@@ -66,11 +66,11 @@ inner join Teams on Players.teamID = Teams.teamID
 where Teams.teamName = :teamNameInput;
 
 -- Get players associated with specific game
- select Players.playerName
- from Players
- inner join Games_Has_Players on Players.playerID = Games_Has_Players.playerID
- inner join Games on Games_Has_Players.gameID = Games.gameID
- where gameID = :gameIDFromDropdownInput;
+select Players.playerName
+from Players
+inner join Games_Has_Players on Players.playerID = Games_Has_Players.playerID
+inner join Games on Games_Has_Players.gameID = Games.gameID
+where gameID = :gameIDFromDropdownInput;
 
 -- Get all ratings from specific user
 select Users.userName, Ratings.rating, Games.gameDate, Games.homeTeam, Games.awayTeam, Games.homeTeamScore, Games.awayTeamScore 
@@ -88,11 +88,23 @@ where Games.gameID = :Games.gameIDInput;
 
 
 -- Delete Queries--------------------------------------------------------------
--- Delete a rating (M-to-M relationship delete)
-delete from Ratings where userName = :userNameInput and :gameIDFromDropdownInput;
+-- Delete a player
+delete from Players where playerID = :playerIDInput;
+
+-- Delete a team
+delete from Teams where teamID = :teamIDInput;
+
+-- Delete a game
+delete from Games where gameID = :gameIDInput;
 
 -- Disasocciate a player from a game (M-to-M relationship deletion)
 delete from Games_Has_Players where playerID = :playerIDFromDropdownInput and gameID = :gameIDFromDropdownInput;
+
+-- Delete a user
+delete from Users where userID = :userIDInput;
+
+-- Delete a rating
+delete from Ratings where userID = :userIDInput and gameID = :gameIDInput;
 
 
 -- Update Queries--------------------------------------------------------------
