@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function DataTableHeader({ category }) {
   return (
-    <tr>
+    <th>
       A category for data
-    </tr>
+    </th>
   )
 }

@@ -37,6 +37,24 @@
   color: #fbf1c7;
 }
 
+table {
+  border: 2px solid;
+  padding: 10px;
+  border-color: #d79921;
+}
+
+th {
+  padding: 5px;
+  height: 60px;
+  border-color: #d79921;
+}
+
+td {
+  border: 1px solid;
+  border-color: #d79921;
+  padding: 5px;
+}
+
 ul {
   list-style-image: url(./NBA_logo.png);
 }
