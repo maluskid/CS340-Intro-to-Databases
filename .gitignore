@@ -1,1 +1,8 @@
-test
+Activities/Activity-2/node_modules/*
+database_login
+Draft-ERD/*
+Project/project-backend/node_modules/*
+Project/project-frontend/node_modules/*
+Project/project-backend/node_modules/
+Project/project-frontend/node_modules/
+Project/project-frontend/npm-audit.log
