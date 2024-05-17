@@ -8,7 +8,7 @@ import UsersPage from '../pages/UsersPage';
 import RatingsPage from '../pages/RatingsPage';
 import GamesPlayersPage from '../pages/GamesPlayersPage';
 import AllDataPage from '../pages/AllDataPage';
-import SelectPage from '../pages/SelectPage.js';
+import SelectPage from '../pages/SelectPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function Navigation({ navList, setNavList }) {
