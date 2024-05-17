@@ -17,7 +17,13 @@ app.use(express.json());
 
 
 // API Routes for backend CRUD:
-// app.use("/api/people", require("./routes/peopleRoutes"));
+app.use("/api/teams", require("./routes/teamsRoutes"));
+app.use("/api/players", require("./routes/playersRoutes"));
+app.use("/api/games", require("./routes/gamesRoutes"));
+app.use("/api/gamesHasPlayers", require("./routes/gamesHasPlayersRoutes"));
+app.use("/api/users", require("./routes/usersRoutes"));
+app.use("/api/ratings", require("./routes/ratingsRoutes"));
+
 
 app.get('/', (req, res) => {
   res.send('Is this working???')
