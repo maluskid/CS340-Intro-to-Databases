@@ -44,8 +44,8 @@ const PlayersTable = () => {
             </tr>
           </thead>
           <tbody>
-            {players.map((players) => (
-              <TableRow key={players.id} players={players} fetchPlayers={fetchPlayers} />
+            {players.map((player) => (
+              <TableRow key={player.id} player={player} fetchPlayers={fetchPlayers} />
             ))}
           </tbody>
         </table>

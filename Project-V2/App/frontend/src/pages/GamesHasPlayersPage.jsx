@@ -1,8 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import GamesHasPlayersTable from "../components/GamesHasPlayers/GamesHasPlayersTable";
 import CreateGameHasPlayer from "../components/GamesHasPlayers/CreateGameHasPlayer";
-// import PeopleTable from "../components/bsg_people/PersonTable";
-// import UpdatePerson from "../components/bsg_people/UpdatePerson";
+import UpdateGameHasPlayer from "../components/GamesHasPlayers/UpdateGameHasPlayer";
 
 function GamesHasPlayersPage() {
   return (
@@ -21,7 +20,7 @@ function GamesHasPlayersPage() {
       <Routes>
         <Route path="/" element={<GamesHasPlayersTable />} />
         <Route path="/add" element={<CreateGameHasPlayer />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        <Route path="/edit/:id" element={<UpdateGameHasPlayer />} />
       </Routes>
     </div>
   );

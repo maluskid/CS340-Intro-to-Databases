@@ -4,7 +4,7 @@ import { BiEditAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ players, fetchPlayers }) => {
+const TableRow = ({ player, fetchPlayers }) => {
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
   // Redirect to edit person page
@@ -31,13 +31,13 @@ const TableRow = ({ players, fetchPlayers }) => {
   };
 
   return (
-      <tr key={players.playerID}>
-      <td>{players.playerID}</td> 
-      <td>{players.playerName}</td>  
-      <td>{players.teamID}</td>
-      <td>{players.jerseyNumber}</td>
-      <td>{players.height}</td>
-      <td>{players.weight}</td>
+      <tr key={player.playerID}>
+      <td>{player.playerID}</td> 
+      <td>{player.playerName}</td>  
+      <td>{player.teamID}</td>
+      <td>{player.jerseyNumber}</td>
+      <td>{player.height}</td>
+      <td>{player.weight}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
       </td>

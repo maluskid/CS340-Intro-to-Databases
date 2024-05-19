@@ -41,8 +41,8 @@ const RatingsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {ratings.map((ratings) => (
-              <TableRow key={ratings.userID} ratings={ratings} fetchRatings={fetchRatings} />
+            {ratings.map((rating) => (
+              <TableRow key={rating.userID} rating={rating} fetchRatings={fetchRatings} />
             ))}
           </tbody>
         </table>

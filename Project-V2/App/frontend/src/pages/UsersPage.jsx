@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import UsersTable from "../components/Users/UsersTable";
 import CreateUser from "../components/Users/CreateUser";
+import UpdateUser from "../components/Users/UpdateUser";
 // import PeopleTable from "../components/bsg_people/PersonTable";
 // import UpdatePerson from "../components/bsg_people/UpdatePerson";
 
@@ -21,7 +22,7 @@ function UsersPage() {
       <Routes>
         <Route path="/" element={<UsersTable />} />
         <Route path="/add" element={<CreateUser />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        <Route path="/edit/:id" element={<UpdateUser />} />
       </Routes>
     </div>
   );

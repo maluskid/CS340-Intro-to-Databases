@@ -4,7 +4,7 @@ import { BiEditAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ ratings, fetchRatings }) => {
+const TableRow = ({ rating, fetchRatings }) => {
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
   // Redirect to edit person page
@@ -31,10 +31,10 @@ const TableRow = ({ ratings, fetchRatings }) => {
   };
 
   return (
-    <tr key={ratings.userID}>
+    <tr key={rating.userID}>
       {/* <td>{ratings.ratingID}</td> */}
-      <td>{ratings.gameID}</td>
-      <td>{ratings.userID}</td>
+      <td>{rating.gameID}</td>
+      <td>{rating.userID}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
       </td>

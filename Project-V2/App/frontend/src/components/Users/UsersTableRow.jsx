@@ -4,14 +4,14 @@ import { BiEditAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ users, fetchUsers }) => {
+const TableRow = ({ user, fetchUsers }) => {
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
   // Redirect to edit person page
   const handleEdit = () => {
     // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
-    // navigate("/people/edit/" + person.id, { state: { person } });
+    navigate("/users/edit/" + user.id, { state: { user } });
   };
 
   // DELETE 
@@ -31,17 +31,17 @@ const TableRow = ({ users, fetchUsers }) => {
   };
 
   return (
-      <tr key={users.userID}>
-      <td>{users.userID}</td>  
-      <td>{users.userName}</td>
-      <td>{users.favoritePlayer}</td>
-      <td>{users.favoriteCoach}</td>
-      <td>
-        <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
-      </td>
-      <td>
-        <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
-      </td>
+      <tr key={user.userID}>
+        <td>{user.userID}</td>  
+        <td>{user.userName}</td>
+        <td>{user.favoritePlayer}</td>
+        <td>{user.favoriteTeam}</td>
+        <td>
+          <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
+        </td>
+        <td>
+          <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
+        </td>
     </tr>
   );
 };

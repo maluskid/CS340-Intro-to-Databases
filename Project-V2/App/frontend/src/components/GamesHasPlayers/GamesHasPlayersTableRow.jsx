@@ -4,14 +4,14 @@ import { BiEditAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const TableRow = ({ gamesHasPlayers, fetchGamesHasPlayers }) => {
+const TableRow = ({ gameHasPlayer, fetchGamesHasPlayers }) => {
   // Hook that allows us to navigate programmatically
   const navigate = useNavigate();
   // Redirect to edit person page
   const handleEdit = () => {
     // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
-    // navigate("/people/edit/" + person.id, { state: { person } });
+    navigate("/gamesHasPlayers/edit/" + gameHasPlayer.id, { state: { gameHasPlayer } });
   };
 
   // DELETE 
@@ -32,15 +32,15 @@ const TableRow = ({ gamesHasPlayers, fetchGamesHasPlayers }) => {
 
   return (
     // Give games has players a PK that is not a composite of 2 FKs
-      <tr key={gamesHasPlayers.gameID}> 
-      <td>{gamesHasPlayers.gameID}</td>  
-      <td>{gamesHasPlayers.playerID}</td>
-      <td>
-        <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
-      </td>
-      <td>
-        <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
-      </td>
+      <tr key={gameHasPlayer.gameID}> 
+        <td>{gameHasPlayer.gameID}</td>  
+        <td>{gameHasPlayer.playerID}</td>
+        <td>
+          <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
+        </td>
+        <td>
+          <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
+        </td>
     </tr>
   );
 };
