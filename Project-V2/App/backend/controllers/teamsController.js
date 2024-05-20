@@ -16,13 +16,29 @@ const getTeams = async (req, res) => {
     // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
-    console.error("Error fetching people from the database:", error);
-    res.status(500).json({ error: "Error fetching people" });
+    console.error("Error fetching teams from the database:", error);
+    res.status(500).json({ error: "Error fetching teams" });
   }
 };
 
+// Use for dropdown
+const getTeamOptions = async (req, res) => {
+  res.status(200)
+  try {
+    const query = "SELECT teamID, teamName FROM Teams";
+    const [rows] = await db.query(query)
+    res.status(200).json(rows);
+    console.log("Team Options successful")
+  } catch (error) {
+    console.error("Error fetching teams from the database:", error);
+    res.status(500).json({ error: "Error fetching team options" });
+  }
+};
+
+
 module.exports = {
-  getTeams
+  getTeams,
+  getTeamOptions
   // getPersonByID,
   // createPerson,
   // updatePerson,

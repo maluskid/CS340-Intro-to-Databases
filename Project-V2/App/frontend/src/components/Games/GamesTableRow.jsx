@@ -31,9 +31,9 @@ const TableRow = ({ game, fetchGames }) => {
   };
 
   return (
-      <tr key={game.gameID}>
+    <tr key={game.gameID}>
       <td>{game.gameID}</td>  
-      <td>{game.gameDate}</td>  
+      <td>{game.gameDate.slice(0, 10)}</td>  
       <td>{game.homeTeam}</td>
       <td>{game.awayTeam}</td>
       <td>{game.homeTeamScore}</td>

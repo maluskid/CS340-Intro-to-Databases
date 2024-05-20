@@ -72,7 +72,7 @@ function CreatePlayer() {
           defaultValue={formData.team}
           onChange={handleInputChange}
         />
-        <label htmlFor="jerseyNumber">Current Record</label>
+        <label htmlFor="jerseyNumber">Jersey Number</label>
         <input
           type="number"
           name="jerseyNumber"

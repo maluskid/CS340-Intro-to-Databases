@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,7 +8,8 @@ function CreateTeam() {
   const [formData, setFormData] = useState({
     teamName: "",
     coach: "",
-    currentRecord: "",
+    wins: "",
+    losses: "",
   });
   
   const handleSubmit = async (e) => {
@@ -72,11 +73,18 @@ function CreateTeam() {
           defaultValue={formData.coach}
           onChange={handleInputChange}
         />
-        <label htmlFor="currentRecord">Current Record</label>
+        <label htmlFor="wins">Wins</label>
         <input
-          type="text"
-          name="currentRecord"
-          value={formData.currentRecord}
+          type="number"
+          name="wins"
+          value={formData.wins}
+          onChange={handleInputChange}
+        />
+        <label htmlFor="losses">Losses</label>
+        <input
+          type="number"
+          name="losses"
+          value={formData.losses}
           onChange={handleInputChange}
         />
         <button type="submit">Create Team</button>

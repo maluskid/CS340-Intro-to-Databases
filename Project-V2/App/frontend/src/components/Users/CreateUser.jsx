@@ -1,16 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Dropdown from "../dropdown/Dropdown";
 
 function CreateUser() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     userName: "",
-    coach: "",
-    currentRecord: "",
+    favoritePlayer: "",
+    favoriteTeam: "",
   });
   
+  const [teamOptions, setTeamOptions] = useState([]);
+  const [playerOptions, setPlayerOptions] = useState([]);
+
+  const fetchTeamOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
+      const response = await axios.get(URL);
+      setTeamOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  const fetchPlayerOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "players/options";
+      const response = await axios.get(URL);
+      setPlayerOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTeamOptions();
+    fetchPlayerOptions();
+  }, []);
+
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();
@@ -47,11 +78,11 @@ function CreateUser() {
   };
 
   const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -66,16 +97,20 @@ function CreateUser() {
           onChange={handleInputChange}
         />
         <label htmlFor="favoritePlayer">Favorite Player</label>
-        <input
-          type="text"
+        <Dropdown
           name="favoritePlayer"
-          defaultValue={formData.favoritePlayer}
+          options={playerOptions}
+          optionID="playerID"
+          optionName="playerName"
+          value={formData.favoritePlayer}
           onChange={handleInputChange}
         />
         <label htmlFor="favoriteTeam">Favorite Team</label>
-        <input
-          type="text"
-          name="currentRecord"
+        <Dropdown
+          name="favoriteTeam"
+          options={teamOptions}
+          optionID="teamID"
+          optionName="teamName"
           value={formData.favoriteTeam}
           onChange={handleInputChange}
         />

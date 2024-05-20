@@ -1,15 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Dropdown from "../dropdown/Dropdown";
 
 function CreateGameHasPlayer() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    gamehasplayerName: "",
-    coach: "",
-    currentRecord: "",
+    gameID: "",
+    playerID: "",
   });
+
+  const [playerOptions, setPlayerOptions] = useState([]);
+  const [gameOptions, setGameOptions] = useState([]);
+
+  const fetchPlayerOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "players/options";
+      const response = await axios.get(URL);
+      setPlayerOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  const fetchGameOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "games/options";
+      const response = await axios.get(URL);
+      
+      const gameOptions = response.data.map(game => ({
+        gameID: game.gameID,
+        gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
+      }));
+
+      setGameOptions(gameOptions);
+    } catch (error) {
+      alert("Error fetching game options from the server.");
+      console.error("Error fetching game options:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlayerOptions();
+    fetchGameOptions();
+  }, []);
   
   const handleSubmit = async (e) => {
     // Prevent page reload
@@ -40,18 +76,17 @@ function CreateGameHasPlayer() {
 
   const resetFormFields = () => {
     setFormData({
-      gamehasplayerName: "",
-      coach: "",
-      currentRecord: "",
+      gameID: "",
+      playerID: "",
     });
   };
 
   const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -59,19 +94,35 @@ function CreateGameHasPlayer() {
       <h2>Associate a Player with a Game</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="playerID">Player Name</label>
-        <input
+        <Dropdown
+          name="playerID"
+          options={playerOptions}
+          optionID="playerID"
+          optionName="playerName"
+          value={formData.playerID}
+          onChange={handleInputChange}
+        />
+        {/* <input
           type="text"
           name="playerID"
           defaultValue={formData.playerID}
           onChange={handleInputChange}
-        />
+        /> */}
         <label htmlFor="gameID">Game</label>
-        <input
+        <Dropdown
+          name="gameID"
+          options={gameOptions}
+          optionID="gameID"
+          optionName="gameName"
+          value={formData.gameID}
+          onChange={handleInputChange}
+        />
+        {/* <input
           type="text"
           name="gameID"
           defaultValue={formData.gameID}
           onChange={handleInputChange}
-        />
+        /> */}
         <button type="submit">Associate Player with Game</button>
       </form>
     </>

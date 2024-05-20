@@ -31,11 +31,12 @@ const TableRow = ({ team, fetchTeams }) => {
   };
 
   return (
-      <tr key={team.teamID}>
+    <tr key={team.teamID}>
       <td>{team.teamID}</td>  
       <td>{team.teamName}</td>
       <td>{team.coach}</td>
-      <td>{team.currentRecord}</td>
+      <td>{team.wins}</td>
+      <td>{team.losses}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
       </td>

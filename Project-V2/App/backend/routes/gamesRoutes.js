@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   getGames,
+  getGameOptions,
   // getPersonByID,
   // createPerson,
   // updatePerson,
@@ -9,6 +10,7 @@ const {
 } = require("../controllers/gamesController");
 
 router.get("/", getGames);
+router.get("/options", getGameOptions);
 // router.get("/:id", getPersonByID);
 // router.post("/", createPerson);
 // router.put("/:id", updatePerson);

@@ -8,7 +8,8 @@ create or replace table Teams (
   teamID tinyint(2) auto_increment unique primary key not null,
   teamName varchar(100) not null,
   coach varchar(100),
-  currentRecord varchar(5)
+  wins int(3),
+  losses int(3)
 );
 
 -- Games Table
@@ -40,9 +41,9 @@ create or replace table Players (
 
 -- Games_Has_Players Table (intersection table)
 create or replace table Games_Has_Players (
+  gameHasPlayerID int(12) auto_increment unique primary key not null,
   gameID int(12),
   playerID int(12),
-  primary key (gameID, playerID),
   foreign key (gameID) references Games(gameID) ON DELETE CASCADE,
   foreign key (playerID) references Players(playerID) ON DELETE CASCADE
 );
@@ -59,9 +60,9 @@ create or replace table Users (
 
 -- Ratings Table
 create or replace table Ratings (
+  ratingID int(12) auto_increment unique primary key not null,
   userID int(12) not null,
   gameID int(12) not null,
-  primary key (userID, gameID),
   rating tinyint(1) not null,
   foreign key (userID) references Users (userID) ON DELETE CASCADE,
   foreign key (gameID) references Games (gameID) ON DELETE CASCADE
@@ -73,23 +74,27 @@ create or replace table Ratings (
 insert into Teams ( 
   teamName, 
   coach, 
-  currentRecord
+  wins,
+  losses
 )
 values 
 (
   "Washington Wizards",
   "Brian Keefe",
-  "15-67"
+  15,
+  67
 ),
 (
   "San Antonio Spurs",
   "Gregg Popovich",
-  "22-60"
+  22,
+  60
 ),
 (
   "Charlotte Hornets",
   "Steve Clifford",
-  "21-61"
+  21,
+  61
 );
 
 insert into Players (

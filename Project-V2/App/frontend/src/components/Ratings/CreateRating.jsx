@@ -1,15 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Dropdown from "../dropdown/Dropdown";
 
 function CreateRating() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    ratingName: "",
-    coach: "",
-    currentRecord: "",
+    userID: "",
+    gameID: "",
+    rating: "",
   });
+
+  const [userOptions, setUserOptions] = useState([]);
+  const [gameOptions, setGameOptions] = useState([]);
+
+  const fetchUserOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "users/options";
+      const response = await axios.get(URL);
+      setUserOptions(response.data);
+    } catch (error) {
+      alert("Error fetching user options from the server.");
+      console.error("Error fetching user options:", error);
+    }
+  };
+
+  const fetchGameOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "games/options";
+      const response = await axios.get(URL);
+      
+      const gameOptions = response.data.map(game => ({
+        gameID: game.gameID,
+        gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
+      }));
+
+      setGameOptions(gameOptions);
+    } catch (error) {
+      alert("Error fetching game options from the server.");
+      console.error("Error fetching game options:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserOptions();
+    fetchGameOptions();
+  }, []);
   
   const handleSubmit = async (e) => {
     // Prevent page reload
@@ -42,15 +79,16 @@ function CreateRating() {
     setFormData({
       userID: "",
       gameID: "",
+      rating: "",
     });
   };
 
   const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -58,17 +96,21 @@ function CreateRating() {
       <h2>Create Rating</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="userID">Username</label>
-        <input
-          type="text"
+        <Dropdown
           name="userID"
-          defaultValue={formData.userID}
+          options={userOptions}
+          optionID="userID"
+          optionName="userName"
+          value={formData.userID}
           onChange={handleInputChange}
         />
         <label htmlFor="gameID">Game</label>
-        <input
-          type="text"
-          name="coacgameIDh"
-          defaultValue={formData.gameID}
+        <Dropdown
+          name="gameID"
+          options={gameOptions}
+          optionID="gameID"
+          optionName="gameName"
+          value={formData.gameID}
           onChange={handleInputChange}
         />
         <label htmlFor="rating">Rating</label>

@@ -1,15 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Dropdown from "../dropdown/Dropdown";
 
 function CreateGame() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    gameName: "",
-    coach: "",
-    currentRecord: "",
+    gameDate: "",
+    homeTeam: "",
+    awayTeam: "",
+    homeTeamScore: "",
+    awayTeamScore: "",
+    overTime: false,
+    postSeason: false,
   });
+
+  const [teamOptions, setTeamOptions] = useState([]);
+
+  const fetchTeamOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
+      const response = await axios.get(URL);
+      setTeamOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTeamOptions();
+  }, []);
   
   const handleSubmit = async (e) => {
     // Prevent page reload
@@ -40,18 +62,22 @@ function CreateGame() {
 
   const resetFormFields = () => {
     setFormData({
-      gameName: "",
-      coach: "",
-      currentRecord: "",
+      gameDate: "",
+      homeTeam: "",
+      awayTeam: "",
+      homeTeamScore: "",
+      awayTeamScore: "",
+      overTime: false,
+      postSeason: false,
     });
   };
 
   const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   };
 
   return (
@@ -66,16 +92,20 @@ function CreateGame() {
           onChange={handleInputChange}
         />
         <label htmlFor="homeTeam">Home Team</label>
-        <input
-          type="text"
+        <Dropdown
           name="homeTeam"
-          defaultValue={formData.homeTeam}
+          options={teamOptions}
+          optionID="teamID"
+          optionName="teamName"
+          value={formData.homeTeam}
           onChange={handleInputChange}
         />
         <label htmlFor="awayTeam">Away Team</label>
-        <input
-          type="text"
+        <Dropdown
           name="awayTeam"
+          options={teamOptions}
+          optionID="teamID"
+          optionName="teamName"
           value={formData.awayTeam}
           onChange={handleInputChange}
         />
@@ -83,28 +113,28 @@ function CreateGame() {
         <input
           type="number"
           name="homeTeamScore"
-          value={formData.homeTeamScore}
+          defaultValue={formData.homeTeamScore}
           onChange={handleInputChange}
         />
         <label htmlFor="awayTeamScore">Away Team Score</label>
         <input
           type="number"
           name="awayTeamScore"
-          value={formData.awayTeamScore}
+          defaultValue={formData.awayTeamScore}
           onChange={handleInputChange}
         />
         <label htmlFor="overTime">Overtime</label>
         <input
           type="checkbox"
           name="overTime"
-          value={formData.overTime}
+          checked={formData.overTime}
           onChange={handleInputChange}
         />
         <label htmlFor="postSeason">Post Season</label>
         <input
           type="checkbox"
-          name="overTime"
-          value={formData.postSeason}
+          name="postSeason"
+          checked={formData.postSeason}
           onChange={handleInputChange}
         />
         <button type="submit">Create Game</button>

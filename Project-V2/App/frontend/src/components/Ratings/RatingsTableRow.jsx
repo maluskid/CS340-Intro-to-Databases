@@ -31,8 +31,9 @@ const TableRow = ({ rating, fetchRatings }) => {
   };
 
   return (
-    <tr key={rating.userID}>
+    <tr key={rating.ratingID}>
       {/* <td>{ratings.ratingID}</td> */}
+      <td>{rating.ratingID}</td>
       <td>{rating.gameID}</td>
       <td>{rating.userID}</td>
       <td>

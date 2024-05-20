@@ -21,8 +21,23 @@ const getPlayers = async (req, res) => {
   }
 };
 
+// Use for dropdown
+const getPlayerOptions = async (req, res) => {
+  res.status(200)
+  try {
+    const query = "SELECT playerID, playerName FROM Players";
+    const [rows] = await db.query(query)
+    res.status(200).json(rows);
+    console.log("Player Options successful")
+  } catch (error) {
+    console.error("Error fetching player options from the database:", error);
+    res.status(500).json({ error: "Error fetching player options" });
+  }
+};
+
 module.exports = {
-  getPlayers
+  getPlayers,
+  getPlayerOptions,
   // getPersonByID,
   // createPerson,
   // updatePerson,

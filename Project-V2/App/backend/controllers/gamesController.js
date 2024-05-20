@@ -21,8 +21,23 @@ const getGames = async (req, res) => {
   }
 };
 
+const getGameOptions = async (req, res) => {
+  res.status(200)
+  try {
+    const query = "select Games.gameID, Games.gameDate, TeamsH.teamName as homeTeamName, TeamsA.teamName as awayTeamName from Games join Teams TeamsH on Games.homeTeam = TeamsH.teamID join Teams TeamsA on Games.awayTeam = TeamsA.teamID";
+    const [rows] = await db.query(query);
+    res.status(200).json(rows);
+    console.log("Game Options successful")
+
+  } catch (error) {
+    console.error("Error fetching game options from the database:", error);
+    res.status(500).json({ error: "Error fetching game options" });
+  }
+};
+
 module.exports = {
-  getGames
+  getGames,
+  getGameOptions,
   // getPersonByID,
   // createPerson,
   // updatePerson,

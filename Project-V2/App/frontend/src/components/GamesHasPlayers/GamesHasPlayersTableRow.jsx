@@ -11,7 +11,7 @@ const TableRow = ({ gameHasPlayer, fetchGamesHasPlayers }) => {
   const handleEdit = () => {
     // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
-    navigate("/gamesHasPlayers/edit/" + gameHasPlayer.id, { state: { gameHasPlayer } });
+    navigate("/gamesHasPlayers/edit/" + gameHasPlayer.gameHasPlayerID, { state: { gameHasPlayer } });
   };
 
   // DELETE 
@@ -32,7 +32,8 @@ const TableRow = ({ gameHasPlayer, fetchGamesHasPlayers }) => {
 
   return (
     // Give games has players a PK that is not a composite of 2 FKs
-      <tr key={gameHasPlayer.gameID}> 
+      <tr key={gameHasPlayer.gameHasPlayerID}> 
+        <td>{gameHasPlayer.gameHasPlayerID}</td>  
         <td>{gameHasPlayer.gameID}</td>  
         <td>{gameHasPlayer.playerID}</td>
         <td>
