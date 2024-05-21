@@ -4,7 +4,7 @@
 }
 
 html {
-  background-color: #ffffff;
+  background-color: #c4ced4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,12 +14,15 @@ html {
 
 html li {
   list-style-type: none;
+  justify-content: center;
+  padding: 8px;
+  display: inline-block;
 }
 
 nav {
-  padding: 0;
-  list-style-type: none;
-  justify-content: center;
+  position: absolute;
+  left: 360px;
+  right: 400px;
 }
 
 table {
@@ -27,18 +30,18 @@ table {
   justify-content: center;
   border: 2px solid;
   padding: 10px;
-  border-color: #c4ced4;
+  border-color: #1d428a;
 }
 
 th {
   padding: 5px;
   height: 60px;
-  border-color: #c4ced4;
+  border-color: #c8102e;
 }
 
 td {
   border: 1px solid;
-  border-color: #c4ced4;
+  border-color: #c8102e;
   padding: 5px;
 }
 
