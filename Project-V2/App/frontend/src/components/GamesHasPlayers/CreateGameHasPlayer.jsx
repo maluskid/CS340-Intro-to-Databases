@@ -29,7 +29,7 @@ function CreateGameHasPlayer() {
     try {
       const URL = import.meta.env.VITE_API_URL + "games/options";
       const response = await axios.get(URL);
-      
+
       const gameOptions = response.data.map(game => ({
         gameID: game.gameID,
         gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
@@ -46,7 +46,7 @@ function CreateGameHasPlayer() {
     fetchPlayerOptions();
     fetchGameOptions();
   }, []);
-  
+
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();

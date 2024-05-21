@@ -22,6 +22,8 @@ nav {
 }
 
 table {
+  align-items: center;
+  justify-content: center;
   border: 2px solid;
   padding: 10px;
   border-color: #c4ced4;

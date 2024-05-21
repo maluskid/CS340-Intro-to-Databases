@@ -11,31 +11,30 @@ function CreateTeam() {
     wins: "",
     losses: "",
   });
-  
+
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();
     // // Create a new team object from the formData
-    // const newTeam = {
-    //   fname: formData.fname,
-    //   lname: formData.lname,
-    //   homeworld: formData.homeworld,
-    //   age: formData.age,
-    // };
+    const newTeam = {
+      teamNname: formData.teamName,
+      coach: formData.coach,
+      wins: formData.wins,
+      losses: formData.losses,
+    };
 
-    // try {
-    //   const URL = import.meta.env.VITE_API_URL + "people";
-    //   const response = await axios.post(URL, newTeam);
-    //   if (response.status === 201) {
-    //     navigate("/people");
-    //   } else {
-    //     alert("Error creating team");
-    //   }
-    // } catch (error) {
-    //   alert("Error creating team");
-    //   console.error("Error creating team:", error);
-    // }
-    // Reset the form fields
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams";
+      const response = await axios.post(URL, newTeam);
+      if (response.status === 201) {
+        navigate("/teams");
+      } else {
+        alert("Error creating team");
+      }
+    } catch (error) {
+      alert("Error creating team");
+      console.error("Error creating team:", error);
+    }
     resetFormFields();
   };
 
@@ -48,11 +47,11 @@ function CreateTeam() {
   };
 
   const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
