@@ -1,10 +1,49 @@
+.App-Page {
+  font-size: calc(1px + 1vmin);
+  color: #000000;
+}
+
 html {
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: #002b5c;
 }
 
 html li {
   list-style-type: none;
 }
+
+nav {
+  list-style-type: none;
+  justify-content: center;
+}
+
+table {
+  border: 2px solid;
+  padding: 10px;
+  border-color: #c4ced4;
+}
+
+th {
+  padding: 5px;
+  height: 60px;
+  border-color: #c4ced4;
+}
+
+td {
+  border: 1px solid;
+  border-color: #c4ced4;
+  padding: 5px;
+}
+
+a {
+  color: #006bb6;
+}
+
+a:visited {
+  color: #ed174c;
+}
+

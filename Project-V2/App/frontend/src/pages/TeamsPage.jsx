@@ -6,7 +6,7 @@ import CreateTeam from "../components/Teams/CreateTeam";
 
 function TeamsPage() {
   return (
-    <div>
+    <div className="App-Page">
       <h1>Teams Page</h1>
       <nav>
         <ul>

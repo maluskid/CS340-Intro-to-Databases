@@ -5,7 +5,7 @@ import UpdatePerson from "../components/bsg_people/UpdatePerson";
 
 function PeoplePage() {
   return (
-    <div>
+    <div className="App-Page">
       <h1>BSG People Page</h1>
       <nav>
         <ul>

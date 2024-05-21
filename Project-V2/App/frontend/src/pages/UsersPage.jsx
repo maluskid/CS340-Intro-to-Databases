@@ -7,7 +7,7 @@ import UpdateUser from "../components/Users/UpdateUser";
 
 function UsersPage() {
   return (
-    <div>
+    <div className="App-Page">
       <h1>Users Page</h1>
       <nav>
         <ul>

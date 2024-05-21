@@ -6,7 +6,7 @@ import CreatePlayer from "../components/Players/CreatePlayer";
 
 function PlayersPage() {
   return (
-    <div>
+    <div className="App-Page">
       <h1>Players Page</h1>
       <nav>
         <ul>

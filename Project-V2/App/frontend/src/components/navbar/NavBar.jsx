@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import { MdLocalConvenienceStore } from "react-icons/md";
+import { SiNba } from "react-icons/si";
 
 const Navbar = () => {
   return (
     <header>
       <div>
-        <Link to="/">
-          <MdLocalConvenienceStore size={80} />
-        </Link>
+        <SiNba size={160} />
       </div>
       <h1>Film Fiends NBA Database</h1>
       <nav>

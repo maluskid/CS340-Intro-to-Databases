@@ -6,7 +6,7 @@ import CreateRating from "../components/Ratings/CreateRating";
 
 function RatingsPage() {
   return (
-    <div>
+    <div className="App-Page">
       <h1>Ratings Page</h1>
       <nav>
         <ul>
