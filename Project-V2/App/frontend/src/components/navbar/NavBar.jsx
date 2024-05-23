@@ -6,12 +6,12 @@ const Navbar = () => {
     <header>
       <div>
         <Link to="/">
-          <MdLocalConvenienceStore size={80} />
+          {/* <MdLocalConvenienceStore size={80} /> */}
         </Link>
       </div>
       <h1>Film Fiends NBA Database</h1>
       <nav>
-        <ul>
+        <ul className="navBar">
           <li>
             <Link to="/">Home</Link>
           </li>

@@ -43,7 +43,7 @@ const UsersTable = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <TableRow key={user.id} user={user} fetchUsers={fetchUsers} />
+              <TableRow key={user.userID} user={user} fetchUsers={fetchUsers} />
             ))}
           </tbody>
         </table>

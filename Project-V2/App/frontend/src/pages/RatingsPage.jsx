@@ -7,7 +7,7 @@ import CreateRating from "../components/Ratings/CreateRating";
 function RatingsPage() {
   return (
     <div>
-      <h1>Ratings Page</h1>
+      <h2>Ratings Page</h2>
       <nav>
         <ul>
           <li>

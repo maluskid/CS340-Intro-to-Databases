@@ -30,8 +30,6 @@ app.get('/', (req, res) => {
 });
 
 
-
-
 // Add your Connect DB Activitiy Code Below:
 // ...
 

@@ -42,7 +42,7 @@ const GamesHasPlayersTable = () => {
           </thead>
           <tbody>
             {gamesHasPlayers.map((gameHasPlayer) => (
-              <TableRow key={gameHasPlayer.gameHasPlayerid} gameHasPlayer={gameHasPlayer} fetchGamesHasPlayers={fetchGamesHasPlayers} />
+              <TableRow key={gameHasPlayer.gameHasPlayerID} gameHasPlayer={gameHasPlayer} fetchGamesHasPlayers={fetchGamesHasPlayers} />
             ))}
           </tbody>
         </table>

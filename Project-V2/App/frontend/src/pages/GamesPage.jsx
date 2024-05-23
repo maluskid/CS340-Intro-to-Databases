@@ -7,7 +7,7 @@ import CreateGame from "../components/Games/CreateGame";
 function GamesPage() {
   return (
     <div>
-      <h1>Games Page</h1>
+      <h2>Games Page</h2>
       <nav>
         <ul>
           <li>

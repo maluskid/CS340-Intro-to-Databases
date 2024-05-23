@@ -6,7 +6,7 @@ import UpdateGameHasPlayer from "../components/GamesHasPlayers/UpdateGameHasPlay
 function GamesHasPlayersPage() {
   return (
     <div>
-      <h1>GamesHasPlayers Page</h1>
+      <h2>GamesHasPlayers Page</h2>
       <nav>
         <ul>
           <li>

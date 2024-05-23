@@ -2,13 +2,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import UsersTable from "../components/Users/UsersTable";
 import CreateUser from "../components/Users/CreateUser";
 import UpdateUser from "../components/Users/UpdateUser";
-// import PeopleTable from "../components/bsg_people/PersonTable";
-// import UpdatePerson from "../components/bsg_people/UpdatePerson";
 
 function UsersPage() {
   return (
     <div>
-      <h1>Users Page</h1>
+      <h2>Users Page</h2>
       <nav>
         <ul>
           <li>

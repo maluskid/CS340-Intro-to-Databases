@@ -102,12 +102,6 @@ function CreateGameHasPlayer() {
           value={formData.playerID}
           onChange={handleInputChange}
         />
-        {/* <input
-          type="text"
-          name="playerID"
-          defaultValue={formData.playerID}
-          onChange={handleInputChange}
-        /> */}
         <label htmlFor="gameID">Game</label>
         <Dropdown
           name="gameID"
@@ -117,12 +111,6 @@ function CreateGameHasPlayer() {
           value={formData.gameID}
           onChange={handleInputChange}
         />
-        {/* <input
-          type="text"
-          name="gameID"
-          defaultValue={formData.gameID}
-          onChange={handleInputChange}
-        /> */}
         <button type="submit">Associate Player with Game</button>
       </form>
     </>
