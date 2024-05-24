@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import Dropdown from "../dropdown/Dropdown";
 
 const UpdateUser = () => {
-  const { id } = useParams();
+  const { userID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const prevUser = location.state.user;
@@ -71,7 +71,7 @@ const UpdateUser = () => {
     // // Check if formData is equal to prevUser
     // if (isUpdate()){
     //   try {
-    //     const URL = import.meta.env.VITE_API_URL + "users/" + id;
+    //     const URL = import.meta.env.VITE_API_URL + "users/" + userID;
     //     const response = await axios.put(URL, formData);
     //     if (response.status !== 200) {
     //       alert("Error updating user");

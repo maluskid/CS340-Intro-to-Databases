@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import Dropdown from "../dropdown/Dropdown";
 
 const UpdateGameHasPlayer = () => {
-  const { id } = useParams();
+  const { gameHasPlayerID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const prevGameHasPlayer = location.state.gameHasPlayer;

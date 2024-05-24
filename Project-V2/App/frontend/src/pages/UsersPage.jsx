@@ -20,7 +20,7 @@ function UsersPage() {
       <Routes>
         <Route path="/" element={<UsersTable />} />
         <Route path="/add" element={<CreateUser />} />
-        <Route path="/edit/:id" element={<UpdateUser />} />
+        <Route path="/edit/:userID" element={<UpdateUser />} />
       </Routes>
     </div>
   );

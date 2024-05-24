@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import TeamsTable from "../components/Teams/TeamsTable";
 import CreateTeam from "../components/Teams/CreateTeam";
-// import UpdatePerson from "../components/bsg_people/UpdatePerson";
+import UpdateTeam from "../components/Teams/UpdateTeam";
 
 function TeamsPage() {
   return (
@@ -20,7 +20,7 @@ function TeamsPage() {
       <Routes>
         <Route path="/" element={<TeamsTable />} />
         <Route path="/add" element={<CreateTeam />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        <Route path="/edit/:teamID" element={<UpdateTeam />} />
       </Routes>
     </div>
   );
