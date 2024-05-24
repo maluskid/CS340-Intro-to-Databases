@@ -8,8 +8,8 @@ function CreateTeam() {
   const [formData, setFormData] = useState({
     teamName: "",
     coach: "",
-    wins: "",
-    losses: "",
+    wins: 0,
+    losses: 0,
   });
 
   const handleSubmit = async (e) => {
@@ -42,7 +42,8 @@ function CreateTeam() {
     setFormData({
       teamName: "",
       coach: "",
-      currentRecord: "",
+      wins: 0,
+      losses: 0
     });
   };
 
