@@ -41,7 +41,7 @@ const UpdateTeam = () => {
     event.preventDefault();
     if (isUpdate()) {
       try {
-        const URL = import.meta.env.VITE_API_URL + "teams/" + teamID;
+        const URL = import.meta.env.VITE_API_URL + "teams/" + teamID + "?id=" teamID;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
           alert("Error updating team");

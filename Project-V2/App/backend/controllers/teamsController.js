@@ -53,6 +53,7 @@ const getTeamByID = async (req, res) => {
   res.status(200)
   try {
     const teamID = req.params.id;
+    await db.query("SELECT * FROM Teams WHERE teamID = ?", [teamID])
     const [result] = await db.query(query, [teamID]);
     if (result.length === 0) {
       return res.status(404).json({ error: "Team not found" });
@@ -72,12 +73,13 @@ const updateTeam = async (req, res) => {
     const [data] = await db.query("SELECT * FROM Teams WHERE teamID = ?", [teamID]);
     const oldTeam = data[0];
     if (!lodash.isEqual(updatedTeam, oldTeam)) {
-      const query = "UPDATE Teams SET teamName=?, coach=?, wins=?, losses=? WHERE teamID=?";
+      const query = "UPDATE Teams SET teamName = ?, coach = ?, wins = ?, losses = ? WHERE teamID= ?";
       await db.query(query, [
         updatedTeam.teamName,
         updatedTeam.coach,
         updatedTeam.wins,
-        updatedTeam.losses
+        updatedTeam.losses,
+        teamID
       ]);
       return res.json({ message: "Team update successful." });
     }
