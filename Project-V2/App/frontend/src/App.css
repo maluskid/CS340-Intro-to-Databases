@@ -54,4 +54,10 @@ a {
 a:visited {
   color: #ed174c;
 }
+header {
+  margin-top: calc(2px + 4vmin);
+}
 
+p {
+  margin-top: calc(2px+4vim);
+}
