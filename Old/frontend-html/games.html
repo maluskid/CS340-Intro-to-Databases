@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Games</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Games</h1>
+
+[ <a href="teams.html">Teams</a> | <a href="players.html">Players</a> | <a href="games.html">Games</a>  | <a href="games-players.html">Games Has Players</a> | <a href="users.html">Users</a> | <a href="ratings.html">Ratings</a>  ]
+<div id="browse" style="display: block">
+<p><strong>Browse Games</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>gameID</th>
+    <th>gameDate</th>
+    <th>homeTeam</th>
+    <th>awayTeam</th>
+    <th>homeTeamScore</th>
+    <th>awayTeamScore</th>
+    <th>overTime</th>
+    <th>postseason</th>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >2024-01-20</td>
+    <td align="right" >1</td>
+    <td>2</td>
+    <td>127</td>
+    <td>131</td>
+    <td>NULL</td>
+    <td>NULL</td>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>2</td>
+    <td>2024-01-29</td>
+    <td align="right" >2</td>
+    <td>1</td>
+    <td>118</td>
+    <td>113</td>
+    <td>NULL</td>
+    <td>NULL</td>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>3</td>
+    <td>2024-01-19</td>
+    <td align="right" >3</td>
+    <td>2</td>
+    <td>124</td>
+    <td>120</td>
+    <td>NULL</td>
+    <td>NULL</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addPlanet">
+        <legend><strong>Add Game</strong></legend>
+          <fieldset class="fields">
+            <label> Date </label> <input type="text" name="name">
+            <label> Home Team </label> <input type="text" name="population">
+            <label> Away Team </label> <input type="text" name="language">
+            <label> Home Team Score </label> <input type="text" name="language">
+            <label> Away Team Score </label> <input type="text" name="language">
+            <label> Overtime </label> <input type="text" name="language">
+            <label> Postseason </label> <input type="text" name="language">
+          </fieldset>
+          <input class="btn" type="submit" id="addPlanet" value="Add Game">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new planet-->
+</div><!-- insert -->
+
+<!-- <p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updatePlanet">
+      <legend><strong>Update Planet</strong></legend>
+          <fieldset class="fields">
+          <label>ID:</label> 1
+            <label> Name </label> <input type="text" value="Gemenon" name="name">
+            <label> Population </label> <input type="text"  name="population" value="2800000000">
+            <label> Language </label> <input type="text" name="language" value="Old Gemenese">
+            <label> Capital </label> <input type="text" name="language" value="Oranu">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSavePlanet" value="Save Update Planet">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div> -->
+<!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deletePlanet">
+      <legend><strong>Delete Game</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> Date: </label> 2024-01-20
+            <label> Home Team: Washington Wizards</label> 2024-01-20
+            <label> Away Team: </label> San Antonio Spurs
+
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePlanet" value="Delete Game">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Teams</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Teams</h1>
+
+[ <a href="teams.html">Teams</a> | <a href="players.html">Players</a> | <a href="games.html">Games</a>  | <a href="games-players.html">Games Has Players</a> | <a href="users.html">Users</a> | <a href="ratings.html">Ratings</a>  ]
+<div id="browse" style="display: block">
+<p><strong>Browse Teams</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>teamID</th>
+    <th>teamName</th>
+    <th>coach</th>
+    <th>currentRecord</th>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >Washington Wizards</td>
+    <td align="right" >Brian Keefe</td>
+    <td>15-67</td>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >2</td>
+    <td>San Antonio Spurs</td>
+    <td align="right" >Gregg Popovich</td>
+    <td >22-60</td>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>3</td>
+    <td>Charlotte Hornets</td>
+    <td align="right" >Steve Clifford</td>
+    <td>21-61</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addPlanet">
+        <legend><strong>Add Team</strong></legend>
+          <fieldset class="fields">
+            <label> Name </label> <input type="text" name="name">
+            <label> Coach </label> <input type="text" name="population">
+            <label> Current Record </label> <input type="text" name="language">
+          </fieldset>
+          <input class="btn" type="submit" id="addPlanet" value="Add Team">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new planet-->
+</div>
+<!-- insert -->
+
+<!-- <p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updatePlanet">
+      <legend><strong>Update Planet</strong></legend>
+          <fieldset class="fields">
+          <label>ID:</label> 1
+            <label> Name </label> <input type="text" value="Gemenon" name="name">
+            <label> Population </label> <input type="text"  name="population" value="2800000000">
+            <label> Language </label> <input type="text" name="language" value="Old Gemenese">
+            <label> Capital </label> <input type="text" name="language" value="Oranu">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSavePlanet" value="Save Update Planet">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div> -->
+<!-- update -->
+
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deletePlanet">
+      <legend><strong>Delete Team</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> Name: </label> Washington Wizards
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePlanet" value="Delete Team">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div>
+<!-- delete -->
+
+</body>
+</html>

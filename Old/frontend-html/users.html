@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Users</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Users</h1>
+
+[ <a href="teams.html">Teams</a> | <a href="players.html">Players</a> | <a href="games.html">Games</a>  | <a href="games-players.html">Games Has Players</a> | <a href="users.html">Users</a> | <a href="ratings.html">Ratings</a>  ]
+<div id="browse" style="display: block">
+<p><strong>Browse Users</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>userID</th>
+    <th>userName</th>
+    <th>favoritePlayer</th>
+    <th>favoriteTeam</th>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >3</td>
+    <td >3</td>
+    <td >3</td>
+
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>2</td>
+    <td>2</td>
+    <td>2</td>
+    <td>2</td>
+
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td><a href="#">Delete</a></td>
+    <td>3</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addPlanet">
+        <legend><strong>Add User</strong></legend>
+          <fieldset class="fields">
+            <label> Username </label> <input type="text" name="name">
+            <label> Favorite Player </label> <input type="text" name="name">
+            <label> Favorite Team </label> <input type="text" name="name">
+	</form> <!--add new planet-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updatePlanet">
+      <legend><strong>Update User</strong></legend>
+          <fieldset class="fields">
+            <label> Favorite Player: </label> <input type="text" value="" name="name">
+            <label> Favorite Team: </label> <input type="text"  name="population" value="">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSavePlanet" value="Save Update User">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div>
+<!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deletePlanet">
+      <legend><strong>Delete User</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>Username:</label> Slenderman
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePlanet" value="Delete User">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

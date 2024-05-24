@@ -1,7 +1,12 @@
-database_login
 Activities/Activity-2/node_modules/*
-project-frontend/node_modules/*
-project-backend/node_modules/*
+database_login
 Draft-ERD/*
-MariaDB-Docker-Setup.html
-MariaDB-Docker-Setup_files/*
+Project/project-backend/node_modules/*
+Project/project-frontend/node_modules/*
+Project/project-backend/node_modules/
+Project/project-frontend/node_modules/
+Project/project-frontend/npm-audit.log
+Project/project-frontend/build
+
+Project/ts-tryout
+Project/base
