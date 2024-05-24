@@ -1,10 +1,15 @@
+-- Disable foreign key checks temporarily
+SET
+    foreign_key_checks = 0;
+
 -- Create Tables --------------------------------------------------------
 -- Teams Table
 create or replace table Teams (
   teamID tinyint(2) auto_increment unique primary key not null,
   teamName varchar(100) not null,
   coach varchar(100),
-  currentRecord varchar(5)
+  wins int(3),
+  losses int(3)
 );
 
 -- Games Table
@@ -16,9 +21,9 @@ create or replace table Games (
   homeTeamScore int(3) not null,
   awayTeamScore int(3) not null,
   overTime tinyint(1),
-  postSeason boolean,
-  foreign key (homeTeam) references Teams (teamID),
-  foreign key (awayTeam) references Teams (teamID),
+  postseason boolean,
+  foreign key (homeTeam) references Teams (teamID) ON DELETE CASCADE,
+  foreign key (awayTeam) references Teams (teamID) ON DELETE CASCADE,
   -- homeTeam must be different from awayTeam
   constraint different_teams CHECK (homeTeam != awayTeam)
 );
@@ -31,14 +36,14 @@ create or replace table Players (
   jerseyNumber tinyint(2),
   height varchar(5),
   weight smallint(3),
-  foreign key (teamID) references Teams (teamID)
+  foreign key (teamID) references Teams (teamID) ON DELETE CASCADE
 );
 
 -- Games_Has_Players Table (intersection table)
 create or replace table Games_Has_Players (
+  gameHasPlayerID int(12) auto_increment unique primary key not null,
   gameID int(12),
   playerID int(12),
-  primary key (gameID, playerID),
   foreign key (gameID) references Games(gameID) ON DELETE CASCADE,
   foreign key (playerID) references Players(playerID) ON DELETE CASCADE
 );
@@ -49,15 +54,15 @@ create or replace table Users (
   userName varchar(20) unique not null,
   favoritePlayer int(12),
   favoriteTeam tinyint(2),
-  foreign key (favoritePlayer) references Players (playerID),
-  foreign key (favoriteTeam) references Teams (teamID)
+  foreign key (favoritePlayer) references Players (playerID) ON DELETE SET NULL,
+  foreign key (favoriteTeam) references Teams (teamID) ON DELETE SET NULL
 );
 
 -- Ratings Table
 create or replace table Ratings (
+  ratingID int(12) auto_increment unique primary key not null,
   userID int(12) not null,
   gameID int(12) not null,
-  primary key (userID, gameID),
   rating tinyint(1) not null,
   foreign key (userID) references Users (userID) ON DELETE CASCADE,
   foreign key (gameID) references Games (gameID) ON DELETE CASCADE
@@ -69,23 +74,27 @@ create or replace table Ratings (
 insert into Teams ( 
   teamName, 
   coach, 
-  currentRecord
+  wins,
+  losses
 )
 values 
 (
   "Washington Wizards",
   "Brian Keefe",
-  "15-67"
+  15,
+  67
 ),
 (
   "San Antonio Spurs",
   "Gregg Popovich",
-  "22-60"
+  22,
+  60
 ),
 (
   "Charlotte Hornets",
   "Steve Clifford",
-  "21-61"
+  21,
+  61
 );
 
 insert into Players (
@@ -239,3 +248,7 @@ values
   (select gameID from Games where gameDate = "2024-01-19" and homeTeam = (select teamID from Teams where teamName = "Charlotte Hornets")),
   2
 );
+
+-- Re-enable foreign key checks
+SET
+    foreign_key_checks = 1;
