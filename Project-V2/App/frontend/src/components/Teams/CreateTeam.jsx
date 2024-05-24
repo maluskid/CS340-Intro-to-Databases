@@ -53,7 +53,7 @@ function CreateTeam() {
   };
 
   return (
-    <>
+    <div>
       <h2>Create Team</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="teamName">Team Name</label>
@@ -86,7 +86,7 @@ function CreateTeam() {
         />
         <button type="submit">Create Team</button>
       </form>
-    </>
+    </div>
   );
 }
 

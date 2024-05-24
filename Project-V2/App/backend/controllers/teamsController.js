@@ -66,13 +66,13 @@ const getTeamByID = async (req, res) => {
 }
 
 const updateTeam = async (req, res) => {
-  const teamID = req.params.id;
+  const teamID = req.params.teamID;
   const updatedTeam = req.body;
   try {
-    const [data] = await db.query("SELECT * FROM Teams WHERE id = ?", [teamID]);
+    const [data] = await db.query("SELECT * FROM Teams WHERE teamID = ?", [teamID]);
     const oldTeam = data[0];
     if (!lodash.isEqual(updatedTeam, oldTeam)) {
-      const query = "UPDATE Teams SET teamName=?, coach=?, wins=?, losses=? WHERE id=?";
+      const query = "UPDATE Teams SET teamName=?, coach=?, wins=?, losses=? WHERE teamID=?";
       await db.query(query, [
         updatedTeam.teamName,
         updatedTeam.coach,
@@ -84,7 +84,7 @@ const updateTeam = async (req, res) => {
     res.json(({ message: "Update object identical to database object, no update." }))
   } catch (error) {
     console.error("Error updating team in database:", error);
-    res.status(500).json({ error: `Error updating team with id ${teamID}` });
+    res.status(500).json({ error: `Error updating team with teamID ${teamID}` });
   }
 }
 
@@ -94,14 +94,14 @@ const deleteTeam = async (req, res) => {
 
   try {
     const [exists] = await db.query(
-      "SELECT 1 FROM Teams WHERE id = ?",
+      "SELECT 1 FROM Teams WHERE teamID = ?",
       [teamID]
     );
     if (exists.length === 0) {
       return res.status(404).send("Team not found");
     }
-    await db.query("DELETE FROM Teams WHERE id = ?", [teamID]);
-    res.status(204).json({ message: `Team with id ${teamID} deleted` })
+    await db.query("DELETE FROM Teams WHERE teamID = ?", [teamID]);
+    res.status(204).json({ message: `Team with teamID ${teamID} deleted` })
   } catch (error) {
     console.error("Error deleting team from the database:", error);
     res.status(500).json({ error: error.message });
