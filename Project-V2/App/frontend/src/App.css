@@ -9,8 +9,6 @@ html {
   display: flex;
   justify-content: center;
   text-align: center;
-  align-items: center;
-  color: black;
 }
 
 html li {
@@ -22,7 +20,7 @@ html li {
 
 nav {
   margin-top: calc(1px + 2vmin);
-  /* position: absolute; */
+  position: absolute;
   left: 360px;
   right: 400px;
 }
@@ -59,12 +57,17 @@ a:visited {
 
 header {
   margin: calc(1px + 4vmin);
+  color: #002b5c;
 }
 
 h2 {
   margin: calc(1px + 4vmin);
+  text-align: center;
+  position: relative;
 }
 
 p {
   margin-top: calc(2px + 6vmin);
+  text-align: center;
+  position: relative;
 }
