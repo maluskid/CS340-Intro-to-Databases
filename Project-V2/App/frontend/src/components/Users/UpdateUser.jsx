@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Dropdown from "../dropdown/Dropdown";
 
 const UpdateUser = () => {
   const { id } = useParams();
@@ -13,6 +14,36 @@ const UpdateUser = () => {
     favoritePlayer: prevUser.favoritePlayer || '',
     favoriteTeam: prevUser.favoriteTeam || '',
   });
+
+  const [teamOptions, setTeamOptions] = useState([]);
+  const [playerOptions, setPlayerOptions] = useState([]);
+
+  const fetchTeamOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
+      const response = await axios.get(URL);
+      setTeamOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  const fetchPlayerOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "players/options";
+      const response = await axios.get(URL);
+      setPlayerOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTeamOptions();
+    fetchPlayerOptions();
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -79,22 +110,25 @@ const UpdateUser = () => {
         </div>
         <div>
           <label>Favorite Player:</label>
-          <input
-            type="text"
-            name="favoritePlayer"
-            onChange={handleInputChange}
-            defaultValue={prevUser.favoritePlayer}
-          />
+          <Dropdown
+          name="favoritePlayer"
+          options={playerOptions}
+          optionID="playerID"
+          optionName="playerName"
+          value={formData.favoritePlayer}
+          onChange={handleInputChange}
+        />
         </div>
         <div>
           <label>Favorite Team:</label>
-          <input
-            type="text"
-            name="favoriteTeam"
-            onChange={handleInputChange}
-            required
-            defaultValue={prevUser.favoriteTeam}
-          />
+          <Dropdown
+          name="favoriteTeam"
+          options={teamOptions}
+          optionID="teamID"
+          optionName="teamName"
+          value={formData.favoriteTeam}
+          onChange={handleInputChange}
+        />
         </div>
         <button type="button" onClick={() => navigate("/users")}>
           Cancel
