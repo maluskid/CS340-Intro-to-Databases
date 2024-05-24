@@ -1,27 +1,16 @@
-<<<<<<< HEAD
 .App-Page {
   font-size: calc(1px + 1.4vmin);
   color: #000000;
-=======
- .App-Page {
-  font-size: calc(1px + 1.4vmin);
-  color: #000000;
   max-width: 85%;
->>>>>>> denyse
 }
 
 html {
   background-color: #c4ced4;
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
   text-align: center;
-  color: #002b5c;
-=======
   align-items: center;
-  text-align: center;
   color: black;
->>>>>>> denyse
 }
 
 html li {
