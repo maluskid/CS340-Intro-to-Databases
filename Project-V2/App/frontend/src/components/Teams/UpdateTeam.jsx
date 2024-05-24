@@ -11,9 +11,9 @@ const UpdateTeam = () => {
 
   const [formData, setFormData] = useState({
     teamName: prevTeam.teamName || '',
-    coach: prevTeam.coach || '',
-    wins: prevTeam.wins || '',
-    losses: prevTeam.losses || '',
+    coach: prevTeam.lname || '',
+    wins: prevTeam.homeworld || 0,
+    losses: prevTeam.age || 0,
   });
 
   const handleInputChange = (event) => {
@@ -24,13 +24,12 @@ const UpdateTeam = () => {
     }));
   };
 
-  function isUpdate(){
-    // Check if formData is equal to prevTeam
+  function isUpdate() {
     if (JSON.stringify(formData) === JSON.stringify({
       teamName: prevTeam.teamName || '',
       coach: prevTeam.coach || '',
-      wins: prevTeam.wins || '',
-      losses: prevTeam.losses || '',
+      wins: prevTeam.wins || 0,
+      losses: prevTeam.losses || 0,
     })) {
       alert("No changes made.");
       return false;
@@ -39,10 +38,8 @@ const UpdateTeam = () => {
   }
 
   const handleSubmit = async (event) => {
-    // Stop default form behavior which is to reload the page
     event.preventDefault();
-    // Check if formData is equal to prevTeam
-    if (isUpdate()){
+    if (isUpdate()) {
       try {
         const URL = import.meta.env.VITE_API_URL + "teams/" + teamID;
         const response = await axios.put(URL, formData);
@@ -50,7 +47,6 @@ const UpdateTeam = () => {
           alert("Error updating team");
         } else {
           alert(response.data.message);
-          // Redirect to people page
           navigate("/teams");
         }
       } catch (err) {
@@ -112,4 +108,3 @@ const UpdateTeam = () => {
 };
 
 export default UpdateTeam;
-
