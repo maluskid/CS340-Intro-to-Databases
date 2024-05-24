@@ -1,36 +1,32 @@
-.App-Page {
-  font-size: calc(1px + 1.4vmin);
-  color: #000000;
-  max-width: 85%;
-}
-
 html {
+  max-width: 85%;
   background-color: #c4ced4;
   display: flex;
   justify-content: center;
   text-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-size: calc(1px * 1vmin);
 }
 
 html li {
   list-style-type: none;
-  justify-content: center;
-  padding: calc(1px + 1vmin);
   display: inline-block;
+  padding: calc(1px + 1vmin);
 }
 
 nav {
   margin-top: calc(1px + 2vmin);
-  position: absolute;
-  left: 360px;
-  right: 400px;
+  left: 50%;
+  right: 50%;
 }
 
 table {
-  align-items: center;
   position: relative;
-  justify-content: center;
   border: 2px solid;
-  margin-top: calc(2px + 6vmin);
+  margin-top: calc(2px + 4vmin);
   padding: calc(1px + .5vmin);
   border-color: #1d428a;
 }
@@ -56,18 +52,26 @@ a:visited {
 }
 
 header {
-  margin: calc(1px + 4vmin);
+  margin: calc(1px + 2vmin);
   color: #002b5c;
 }
 
 h2 {
-  margin: calc(1px + 4vmin);
-  text-align: center;
+  margin: calc(1px + 1vmin);
   position: relative;
+  padding: 0;
 }
 
 p {
-  margin-top: calc(2px + 6vmin);
-  text-align: center;
+  margin-top: calc(2px + 4vmin);
   position: relative;
+}
+
+form {
+  position: relative;
+  top: calc(2px + 4vmin);
+}
+
+ul {
+  padding-left: -1%;
 }
