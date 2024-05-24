@@ -44,7 +44,7 @@ const TeamsTable = () => {
           </thead>
           <tbody>
             {teams.map((team) => (
-              <TableRow key={team.id} team={team} fetchTeams={fetchTeams} />
+              <TableRow key={team.teamID} team={team} fetchTeams={fetchTeams} />
             ))}
           </tbody>
         </table>

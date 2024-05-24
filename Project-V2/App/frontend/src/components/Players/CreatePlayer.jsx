@@ -1,16 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Dropdown from "../dropdown/Dropdown";
 
 function CreatePlayer() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     playerName: "",
-    coach: "",
-    currentRecord: "",
+    teamID: "",
+    jerseyNumber: "",
+    height: "",
+    weight: "",
   });
   
+  const [teamOptions, setTeamOptions] = useState([]);
+
+  const fetchTeamOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
+      const response = await axios.get(URL);
+      setTeamOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchTeamOptions();
+  }, []);
+
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();
@@ -41,17 +61,19 @@ function CreatePlayer() {
   const resetFormFields = () => {
     setFormData({
       playerName: "",
-      coach: "",
-      currentRecord: "",
+      teamID: "",
+      jerseyNumber: "",
+      height: "",
+      weight: "",
     });
   };
 
   const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -65,13 +87,21 @@ function CreatePlayer() {
           defaultValue={formData.playerName}
           onChange={handleInputChange}
         />
-        <label htmlFor="team">Coach</label>
-        <input
-          type="text"
-          name="team"
-          defaultValue={formData.team}
+        <label htmlFor="teamID">Team</label>
+        <Dropdown
+          name="teamID"
+          options={teamOptions}
+          optionID="teamID"
+          optionName="teamName"
+          value={formData.teamID}
           onChange={handleInputChange}
         />
+        {/* <input
+          type="text"
+          name="teamID"
+          defaultValue={formData.teamID}
+          onChange={handleInputChange}
+        /> */}
         <label htmlFor="jerseyNumber">Jersey Number</label>
         <input
           type="number"
