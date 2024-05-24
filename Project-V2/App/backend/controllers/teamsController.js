@@ -9,11 +9,8 @@ const lodash = require("lodash");
 const getTeams = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "Teams" table
     const query = "SELECT * FROM Teams";
-    // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
-    // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error fetching teams from the database:", error);
@@ -45,7 +42,7 @@ const createTeam = async (req, res) => {
       wins,
       losses
     ]);
-    res.status(201).json(rows);
+    res.status(201).json(response);
   } catch (error) {
     console.error(`Error adding team ${teamName} to database:`, error);
     res.status(500).json({ error: "Error creating Team." });
@@ -56,12 +53,12 @@ const getTeamByID = async (req, res) => {
   res.status(200)
   try {
     const teamID = req.params.id;
-    const query = "SELECT teamID, teamName, coach, wins, losses FROM Teams where teamID = ?";
     const [result] = await db.query(query, [teamID]);
     if (result.length === 0) {
       return res.status(404).json({ error: "Team not found" });
     }
-    res.json(result[0])
+    const team = result[0]
+    res.json(team)
   } catch (error) {
     console.error("Error fetching team from the database:", error);
     res.status(500).json({ error: "Error fetching team" });
@@ -109,9 +106,7 @@ const deleteTeam = async (req, res) => {
     console.error("Error deleting team from the database:", error);
     res.status(500).json({ error: error.message });
   }
-};
-
-
+}
 
 module.exports = {
   getTeams,

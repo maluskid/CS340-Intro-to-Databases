@@ -8,21 +8,18 @@ function CreateTeam() {
   const [formData, setFormData] = useState({
     teamName: "",
     coach: "",
-    wins: "",
-    losses: "",
+    wins: 0,
+    losses: 0,
   });
 
   const handleSubmit = async (e) => {
-    // Prevent page reload
     e.preventDefault();
-    // // Create a new team object from the formData
     const newTeam = {
-      teamNname: formData.teamName,
+      teamName: formData.teamName,
       coach: formData.coach,
       wins: formData.wins,
       losses: formData.losses,
     };
-
     try {
       const URL = import.meta.env.VITE_API_URL + "teams";
       const response = await axios.post(URL, newTeam);
@@ -42,7 +39,8 @@ function CreateTeam() {
     setFormData({
       teamName: "",
       coach: "",
-      currentRecord: "",
+      wins: 0,
+      losses: 0,
     });
   };
 
@@ -62,14 +60,14 @@ function CreateTeam() {
         <input
           type="text"
           name="teamName"
-          defaultValue={formData.teamName}
+          value={formData.teamName}
           onChange={handleInputChange}
         />
         <label htmlFor="coach">Coach</label>
         <input
           type="text"
           name="coach"
-          defaultValue={formData.coach}
+          value={formData.coach}
           onChange={handleInputChange}
         />
         <label htmlFor="wins">Wins</label>
