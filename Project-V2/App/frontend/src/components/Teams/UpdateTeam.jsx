@@ -4,7 +4,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 const UpdateTeam = () => {
-  const { id } = useParams();
+  const { teamID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const prevTeam = location.state.team;
@@ -41,7 +41,7 @@ const UpdateTeam = () => {
     event.preventDefault();
     if (isUpdate()) {
       try {
-        const URL = import.meta.env.VITE_API_URL + "teams/" + id;
+        const URL = import.meta.env.VITE_API_URL + "teams/" + teamID + "?id=" teamID;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
           alert("Error updating team");
@@ -66,39 +66,39 @@ const UpdateTeam = () => {
             name="teamName"
             onChange={handleInputChange}
             required
-            defaultValue={prevPerson.fname}
+            defaultValue={prevTeam.teamName}
           />
         </div>
         <div>
-          <label>Last Name:</label>
+          <label>Coach:</label>
           <input
             type="text"
-            name="lname"
+            name="coach"
             onChange={handleInputChange}
             required
-            defaultValue={prevPerson.lname}
+            defaultValue={prevTeam.coach}
           />
         </div>
         <div>
-          <label>Homeworld:</label>
+          <label>Wins:</label>
           <input
             type="number"
-            name="homeworld"
+            name="wins"
             onChange={handleInputChange}
-            defaultValue={prevPerson.homeworld}
+            defaultValue={prevTeam.wins}
           />
         </div>
         <div>
-          <label>Age:</label>
+          <label>Losses:</label>
           <input
             type="number"
-            name="age"
+            name="losses"
             onChange={handleInputChange}
             required
-            defaultValue={prevPerson.age}
+            defaultValue={prevTeam.losses}
           />
         </div>
-        <button type="button" onClick={() => navigate("/people")}>
+        <button type="button" onClick={() => navigate("/teams")}>
           Cancel
         </button>
         <button type="submit">Update</button>
@@ -107,5 +107,4 @@ const UpdateTeam = () => {
   );
 };
 
-export default UpdatePerson;
-
+export default UpdateTeam;
