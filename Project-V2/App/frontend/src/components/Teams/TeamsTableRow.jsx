@@ -9,24 +9,24 @@ const TableRow = ({ team, fetchTeams }) => {
   const navigate = useNavigate();
   // Redirect to edit person page
   const handleEdit = () => {
-    // We can access the id (and query the person) with useParams() in the UpdatePerson component
+    // We can access the id (and query the team) with useParams() in the UpdateTeam component
 
-    // navigate("/people/edit/" + person.id, { state: { person } });
+    navigate("/teams/edit/" + team.teamID, { state: { team } });
   };
 
   // DELETE 
   const deleteRow = async () => {
-  //   try {
-  //     const URL = import.meta.env.VITE_API_URL + "people/" + person.id;
-  //     const response = await axios.delete(URL);
-  //     // Ensure that the person was deleted successfully
-  //     if (response.status === 204) {
-  //       alert("Person deleted successfully");
-  //     }
-  //   } catch (err) {
-  //     alert(err.response.data.error || "Error deleting person");
-  //     console.log(err);
-  //   }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/" + team.teamID;
+      const response = await axios.delete(URL);
+      // Ensure that the team was deleted successfully
+      if (response.status === 204) {
+        alert("Team deleted successfully");
+      }
+    } catch (err) {
+      alert(err.response.data.error || "Error deleting team");
+      console.log(err);
+    }
     fetchTeams();
   };
 

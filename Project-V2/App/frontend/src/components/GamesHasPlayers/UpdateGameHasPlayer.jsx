@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Dropdown from "../dropdown/Dropdown";
 
 const UpdateGameHasPlayer = () => {
-  const { id } = useParams();
+  const { gameHasPlayerID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const prevGameHasPlayer = location.state.gameHasPlayer;
@@ -13,6 +14,42 @@ const UpdateGameHasPlayer = () => {
     gameID: prevGameHasPlayer.gameID || '',
     playerID: prevGameHasPlayer.playerID || '',
   });
+
+  const [playerOptions, setPlayerOptions] = useState([]);
+  const [gameOptions, setGameOptions] = useState([]);
+
+  const fetchPlayerOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "players/options";
+      const response = await axios.get(URL);
+      setPlayerOptions(response.data);
+    } catch (error) {
+      alert("Error fetching team options from the server.");
+      console.error("Error fetching team options:", error);
+    }
+  };
+
+  const fetchGameOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "games/options";
+      const response = await axios.get(URL);
+      
+      const gameOptions = response.data.map(game => ({
+        gameID: game.gameID,
+        gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
+      }));
+
+      setGameOptions(gameOptions);
+    } catch (error) {
+      alert("Error fetching game options from the server.");
+      console.error("Error fetching game options:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlayerOptions();
+    fetchGameOptions();
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -61,23 +98,25 @@ const UpdateGameHasPlayer = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Game:</label>
-          <input
-            type="number"
-            name="gameID"
-            onChange={handleInputChange}
-            required
-            defaultValue={prevGameHasPlayer.gameID}
-          />
+          <Dropdown
+          name="gameID"
+          options={gameOptions}
+          optionID="gameID"
+          optionName="gameName"
+          value={formData.gameID}
+          onChange={handleInputChange}
+        />
         </div>
         <div>
           <label>Player:</label>
-          <input
-            type="number"
-            name="playerID"
-            onChange={handleInputChange}
-            required
-            defaultValue={prevGameHasPlayer.playerID}
-          />
+          <Dropdown
+          name="playerID"
+          options={playerOptions}
+          optionID="playerID"
+          optionName="playerName"
+          value={formData.playerID}
+          onChange={handleInputChange}
+        />
         </div>
         <button type="button" onClick={() => navigate("/gamesHasPlayers")}>
           Cancel

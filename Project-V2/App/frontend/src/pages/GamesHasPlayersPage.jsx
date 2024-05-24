@@ -20,7 +20,7 @@ function GamesHasPlayersPage() {
       <Routes>
         <Route path="/" element={<GamesHasPlayersTable />} />
         <Route path="/add" element={<CreateGameHasPlayer />} />
-        <Route path="/edit/:id" element={<UpdateGameHasPlayer />} />
+        <Route path="/edit/:gameHasPlayerID" element={<UpdateGameHasPlayer />} />
       </Routes>
     </div>
   );

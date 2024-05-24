@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 .App-Page {
   font-size: calc(1px + 1.4vmin);
   color: #000000;
+=======
+ .App-Page {
+  font-size: calc(1px + 1.4vmin);
+  color: #000000;
+  max-width: 85%;
+>>>>>>> denyse
 }
 
 html {
   background-color: #c4ced4;
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
   text-align: center;
   color: #002b5c;
+=======
+  align-items: center;
+  text-align: center;
+  color: black;
+>>>>>>> denyse
 }
 
 html li {
@@ -19,8 +32,8 @@ html li {
 }
 
 nav {
-  position: absolute;
-  margin-top: calc(1px + 1vmin);
+  margin-top: calc(1px + 2vmin);
+  /* position: absolute; */
   left: 360px;
   right: 400px;
 }
@@ -55,3 +68,14 @@ a:visited {
   color: #ed174c;
 }
 
+header {
+  margin: calc(1px + 4vmin);
+}
+
+h2 {
+  margin: calc(1px + 4vmin);
+}
+
+p {
+  margin-top: calc(2px + 6vmin);
+}
