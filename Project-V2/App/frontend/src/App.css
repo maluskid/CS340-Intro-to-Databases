@@ -20,7 +20,7 @@ html li {
 
 nav {
   position: absolute;
-  margin-top: calc(1px + 1vmin);
+  margin-top: calc(1px + 2vmin);
   left: 360px;
   right: 400px;
 }
@@ -55,3 +55,14 @@ a:visited {
   color: #ed174c;
 }
 
+header {
+  margin: calc(1px + 4vmin);
+}
+
+h2 {
+  margin: calc(1px + 4vmin);
+}
+
+p {
+  margin-top: calc(2px + 6vmin);
+}
