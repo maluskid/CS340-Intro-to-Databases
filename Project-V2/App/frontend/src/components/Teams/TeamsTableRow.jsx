@@ -17,7 +17,7 @@ const TableRow = ({ team, fetchTeams }) => {
   // DELETE 
   const deleteRow = async () => {
     try {
-      const URL = import.meta.env.VITE_API_URL + "teams/" + team.teamID + "?id=" + team.teamID;
+      const URL = import.meta.env.VITE_API_URL + "teams/" + team.teamID;
       const response = await axios.delete(URL);
       // Ensure that the team was deleted successfully
       if (response.status === 204) {

@@ -11,9 +11,9 @@ const UpdateTeam = () => {
 
   const [formData, setFormData] = useState({
     teamName: prevTeam.teamName || '',
-    coach: prevTeam.lname || '',
-    wins: prevTeam.homeworld || 0,
-    losses: prevTeam.age || 0,
+    coach: prevTeam.coach || '',
+    wins: prevTeam.wins || '',
+    losses: prevTeam.losses || '',
   });
 
   const handleInputChange = (event) => {
@@ -28,8 +28,8 @@ const UpdateTeam = () => {
     if (JSON.stringify(formData) === JSON.stringify({
       teamName: prevTeam.teamName || '',
       coach: prevTeam.coach || '',
-      wins: prevTeam.wins || 0,
-      losses: prevTeam.losses || 0,
+      wins: prevTeam.wins || '',
+      losses: prevTeam.losses || '',
     })) {
       alert("No changes made.");
       return false;
@@ -41,7 +41,7 @@ const UpdateTeam = () => {
     event.preventDefault();
     if (isUpdate()) {
       try {
-        const URL = import.meta.env.VITE_API_URL + "teams/" + teamID + "?id=" teamID;
+        const URL = import.meta.env.VITE_API_URL + "teams/" + teamID;
         const response = await axios.put(URL, formData);
         if (response.status !== 200) {
           alert("Error updating team");
