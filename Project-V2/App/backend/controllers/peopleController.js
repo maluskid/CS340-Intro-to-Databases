@@ -64,6 +64,9 @@ const createPerson = async (req, res) => {
 
 const updatePerson = async (req, res) => {
   // Get the person ID
+  // make sure this variable name is equal to the parameter name set in
+  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
+  // then use req.params.resourceID to retrieve that parameter
   const personID = req.params.id;
   // Get the person object
   const newPerson = req.body;

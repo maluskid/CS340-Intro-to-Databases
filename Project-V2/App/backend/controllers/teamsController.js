@@ -52,7 +52,7 @@ const createTeam = async (req, res) => {
 const getTeamByID = async (req, res) => {
   res.status(200)
   try {
-    const teamID = req.params.id;
+    const teamID = req.params.teamID;
     await db.query("SELECT * FROM Teams WHERE teamID = ?", [teamID])
     const [result] = await db.query(query, [teamID]);
     if (result.length === 0) {
@@ -67,6 +67,9 @@ const getTeamByID = async (req, res) => {
 }
 
 const updateTeam = async (req, res) => {
+  // make sure this variable name is equal to the parameter name set in
+  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
+  // then use req.params.resourceID to retrieve that parameter
   const teamID = req.params.teamID;
   const updatedTeam = req.body;
   try {
@@ -91,8 +94,8 @@ const updateTeam = async (req, res) => {
 }
 
 const deleteTeam = async (req, res) => {
-  console.log("Deleting team with id:", req.params.id);
-  const teamID = req.params.id;
+  console.log("Deleting team with teamID:", req.params.teamID);
+  const teamID = req.params.teamID;
 
   try {
     const [exists] = await db.query(
