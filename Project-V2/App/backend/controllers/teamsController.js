@@ -78,10 +78,10 @@ const updateTeam = async (req, res) => {
     if (!lodash.isEqual(updatedTeam, oldTeam)) {
       const query = "UPDATE Teams SET teamName = ?, coach = ?, wins = ?, losses = ? WHERE teamID= ?";
       await db.query(query, [
-        updatedTeam.teamName,
-        updatedTeam.coach,
-        updatedTeam.wins,
-        updatedTeam.losses,
+        teamName = updatedTeam.teamName == '' ? oldTeam.teamName : updatedTeam.teamName,
+        coach = updatedTeam.coach == '' ? oldTeam.coach : updatedTeam.coach,
+        wins = updatedTeam.wins == '' ? oldTeam.wins : updatedTeam.wins,
+        lossess = updatedTeam.losses == '' ? oldTeam.losses : updatedTeam.losses,
         teamID
       ]);
       return res.json({ message: "Team update successful." });

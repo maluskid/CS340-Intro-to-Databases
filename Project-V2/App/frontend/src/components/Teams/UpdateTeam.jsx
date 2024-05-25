@@ -12,8 +12,8 @@ const UpdateTeam = () => {
   const [formData, setFormData] = useState({
     teamName: prevTeam.teamName || '',
     coach: prevTeam.coach || '',
-    wins: prevTeam.wins || 0,
-    losses: prevTeam.losses || 0,
+    wins: prevTeam.wins || '',
+    losses: prevTeam.losses || '',
   });
 
   const handleInputChange = (event) => {
@@ -28,8 +28,8 @@ const UpdateTeam = () => {
     if (JSON.stringify(formData) === JSON.stringify({
       teamName: prevTeam.teamName || '',
       coach: prevTeam.coach || '',
-      wins: prevTeam.wins || 0,
-      losses: prevTeam.losses || 0,
+      wins: prevTeam.wins || '',
+      losses: prevTeam.losses || '',
     })) {
       alert("No changes made.");
       return false;
