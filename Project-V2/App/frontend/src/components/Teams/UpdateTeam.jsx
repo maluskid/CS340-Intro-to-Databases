@@ -11,9 +11,9 @@ const UpdateTeam = () => {
 
   const [formData, setFormData] = useState({
     teamName: prevTeam.teamName || '',
-    coach: prevTeam.lname || '',
-    wins: prevTeam.homeworld || 0,
-    losses: prevTeam.age || 0,
+    coach: prevTeam.coach || '',
+    wins: prevTeam.wins || 0,
+    losses: prevTeam.losses || 0,
   });
 
   const handleInputChange = (event) => {
