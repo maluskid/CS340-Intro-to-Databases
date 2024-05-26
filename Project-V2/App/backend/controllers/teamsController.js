@@ -94,9 +94,8 @@ const updateTeam = async (req, res) => {
 }
 
 const deleteTeam = async (req, res) => {
-  console.log("Deleting team with teamID:", req.params.teamID);
   const teamID = req.params.teamID;
-
+  console.log("Deleting team with teamID:", teamID);
   try {
     const [exists] = await db.query(
       "SELECT 1 FROM Teams WHERE teamID = ?",
