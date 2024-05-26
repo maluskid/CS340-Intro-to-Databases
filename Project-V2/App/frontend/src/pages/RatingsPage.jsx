@@ -20,8 +20,8 @@ function RatingsPage() {
       </nav>
       <Routes>
         <Route path="/" element={<RatingsTable />} />
-        <Route path="/add" element={<CreateRating />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        {/* <Route path="/add" element={<CreateRating />} />
+        <Route path="/edit/:id" element={<UpdatePerson />} /> */}
       </Routes>
     </div>
   );

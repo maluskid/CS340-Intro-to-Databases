@@ -20,8 +20,9 @@ function GamesPage() {
       </nav>
       <Routes>
         <Route path="/" element={<GamesTable />} />
+        {/* 
         <Route path="/add" element={<CreateGame />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        <Route path="/edit/:id" element={<UpdatePerson />} /> */}
       </Routes>
     </div>
   );
