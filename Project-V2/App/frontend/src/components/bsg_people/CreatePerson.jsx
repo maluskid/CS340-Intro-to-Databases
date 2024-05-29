@@ -11,7 +11,7 @@ function CreatePerson() {
     homeworld: "",
     age: "",
   });
-  
+
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();

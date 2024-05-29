@@ -3,17 +3,17 @@ const router = express.Router();
 const {
   getGames,
   getGameOptions,
-  // getPersonByID,
-  // createPerson,
-  // updatePerson,
-  // deletePerson,
+  getGameByID,
+  createGame,
+  updateGame,
+  deleteGame,
 } = require("../controllers/gamesController");
 
 router.get("/", getGames);
 router.get("/options", getGameOptions);
-// router.get("/:id", getPersonByID);
-// router.post("/", createPerson);
-// router.put("/:id", updatePerson);
-// router.delete("/:id", deletePerson);
+router.get("/:id", getGameByID);
+router.post("/", createGame);
+router.put("/:id", updateGame);
+router.delete("/:id", deleteGame);
 
 module.exports = router;
