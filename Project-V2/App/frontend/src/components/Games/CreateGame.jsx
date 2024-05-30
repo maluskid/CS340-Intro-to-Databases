@@ -67,7 +67,7 @@ function CreateGame() {
       awayTeam: "",
       homeTeamScore: "",
       awayTeamScore: "",
-      overTime: null,
+      overTime: false,
       postSeason: false,
     });
   };

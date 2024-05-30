@@ -42,9 +42,7 @@ const createGame = async (req, res) => {
     const { gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason } = req.body;
     const query = "INSERT INTO Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    const overTimeValue = overTime === 0 ? null : overTime;
-    // const postSeasonValue = postSeason === 1 ? null : Boolean(postSeason) ;
-
+    // Need to add logic to overTime and postSeason ??
 
     const response = await db.query(query, [
       gameDate,
@@ -52,7 +50,7 @@ const createGame = async (req, res) => {
       awayTeam,
       homeTeamScore,
       awayTeamScore,
-      overTimeValue,
+      overTime,
       postSeason,
     ]);
     res.status(201).json(response);
@@ -92,11 +90,14 @@ const updateGame = async (req, res) => {
       const query = "UPDATE Games SET gameDate = ?, homeTeam = ?, awayTeam = ?, homeTeamScore = ?," +
         "awayTeamScore = ?, overTime = ?, postSeason = ? WHERE gameID = ?";
       await db.query(query, [
-        teamName = updatedTeam.teamName == '' ? oldTeam.teamName : updatedTeam.teamName,
-        coach = updatedTeam.coach == '' ? oldTeam.coach : updatedTeam.coach,
-        wins = updatedTeam.wins == '' ? oldTeam.wins : updatedTeam.wins,
-        lossess = updatedTeam.losses == '' ? oldTeam.losses : updatedTeam.losses,
-        teamID
+        gameDate = updatedGame.gameDate == '' ? oldGame.gameDate : updatedGame.gameDate,
+        homeTeam = updatedGame.homeTeam == '' ? oldGame.homeTeam : updatedGame.homeTeam,
+        awayTeam = updatedGame.awayTeam == '' ? oldGame.awayTeam : updatedGame.awayTeam,
+        homeTeamScore = updatedGame.homeTeamScore == '' ? oldGame.homeTeamScore : updatedGame.homeTeamScore,
+        awayTeamScore = updatedGame.awayTeamScore == '' ? oldGame.awayTeamScore : updatedGame.awayTeamScore,
+        overTime = updatedGame.overTime == '' ? oldGame.overTime : updatedGame.overTime,
+        postSeason = updatedGame.postSeason == '' ? oldGame.postSeason : updatedGame.overTime,
+        gameID
       ]);
       return res.json({ message: "Game update successful." });
     }
@@ -112,6 +113,6 @@ module.exports = {
   getGameOptions,
   getGameByID,
   createGame,
-  // updateGame,
+  updateGame,
   // deleteGame,
 };
