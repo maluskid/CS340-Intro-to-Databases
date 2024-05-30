@@ -6,7 +6,7 @@ const {
   getGameByID,
   createGame,
   updateGame,
-  // deleteGame,
+  deleteGame,
 } = require("../controllers/gamesController");
 
 router.get("/", getGames);
@@ -14,6 +14,6 @@ router.get("/options", getGameOptions);
 router.get("/:gameID", getGameByID);
 router.post("/", createGame);
 router.put("/:gameID", updateGame);
-// router.delete("/:gameID", deleteGame);
+router.delete("/:gameID", deleteGame);
 
 module.exports = router;

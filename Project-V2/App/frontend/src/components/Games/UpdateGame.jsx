@@ -36,8 +36,8 @@ const UpdateGame = () => {
 
   useEffect(() => {
     fetchTeamOptions();
-    console.log('prevGame.gameDate:', prevGame.gameDate);
-    console.log('formData.gameDate:', formData.gameDate);
+    // console.log('prevGame.gameDate:', prevGame.gameDate);
+    // console.log('formData.gameDate:', formData.gameDate);
   }, []);
 
   const handleInputChange = (event) => {

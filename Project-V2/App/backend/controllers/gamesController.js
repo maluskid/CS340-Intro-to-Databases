@@ -106,7 +106,26 @@ const updateGame = async (req, res) => {
     console.error("Error updating game in database:", error);
     res.status(500).json({ error: `Error updating game with gameID ${gameID}` });
   }
-}
+};
+
+const deleteGame = async (req, res) => {
+  const gameID = req.params.gameID;
+  console.log("Deleting game with gameID:", gameID);
+  try {
+    const [exists] = await db.query(
+      "SELECT 1 FROM Games WHERE gameID = ?",
+      [gameID]
+    );
+    if (exists.length === 0) {
+      return res.status(404).send("Game not found");
+    }
+    await db.query("DELETE FROM Games WHERE gameID = ?", [gameID]);
+    res.status(204).json({ message: `Game with gameID ${gameID} deleted` })
+  } catch (error) {
+    console.error("Error deleting game from the database:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getGames,
@@ -114,5 +133,5 @@ module.exports = {
   getGameByID,
   createGame,
   updateGame,
-  // deleteGame,
+  deleteGame,
 };
