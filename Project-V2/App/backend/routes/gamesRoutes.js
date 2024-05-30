@@ -5,15 +5,15 @@ const {
   getGameOptions,
   getGameByID,
   createGame,
-  updateGame,
-  deleteGame,
+  // updateGame,
+  // deleteGame,
 } = require("../controllers/gamesController");
 
 router.get("/", getGames);
 router.get("/options", getGameOptions);
-router.get("/:id", getGameByID);
+router.get("/:gameID", getGameByID);
 router.post("/", createGame);
-router.put("/:id", updateGame);
-router.delete("/:id", deleteGame);
+// router.put("/:gameID", updateGame);
+// router.delete("/:gameID", deleteGame);
 
 module.exports = router;

@@ -47,7 +47,7 @@ const createTeam = async (req, res) => {
     console.error(`Error adding team ${teamName} to database:`, error);
     res.status(500).json({ error: "Error creating Team." });
   }
-}
+};
 
 const getTeamByID = async (req, res) => {
   res.status(200)
@@ -64,7 +64,7 @@ const getTeamByID = async (req, res) => {
     console.error("Error fetching team from the database:", error);
     res.status(500).json({ error: "Error fetching team" });
   }
-}
+};
 
 const updateTeam = async (req, res) => {
   // make sure this variable name is equal to the parameter name set in
@@ -91,7 +91,7 @@ const updateTeam = async (req, res) => {
     console.error("Error updating team in database:", error);
     res.status(500).json({ error: `Error updating team with teamID ${teamID}` });
   }
-}
+};
 
 const deleteTeam = async (req, res) => {
   const teamID = req.params.teamID;
@@ -110,7 +110,7 @@ const deleteTeam = async (req, res) => {
     console.error("Error deleting team from the database:", error);
     res.status(500).json({ error: error.message });
   }
-}
+};
 
 module.exports = {
   getTeams,

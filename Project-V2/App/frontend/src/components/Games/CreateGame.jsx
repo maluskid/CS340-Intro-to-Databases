@@ -16,13 +16,13 @@ function CreateGame() {
     postSeason: false,
   });
 
-  const [gameOptions, setGameOptions] = useState([]);
+  const [teamOptions, setTeamOptions] = useState([]);
 
-  const fetchGameOptions = async () => {
+  const fetchTeamOptions = async () => {
     try {
-      const URL = import.meta.env.VITE_API_URL + "games/options";
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
       const response = await axios.get(URL);
-      setGameOptions(response.data);
+      setTeamOptions(response.data);
     } catch (error) {
       alert("Error fetching team options from the server.");
       console.error("Error fetching team options:", error);
@@ -30,7 +30,7 @@ function CreateGame() {
   };
 
   useEffect(() => {
-    fetchGameOptions();
+    fetchTeamOptions();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -67,7 +67,7 @@ function CreateGame() {
       awayTeam: "",
       homeTeamScore: "",
       awayTeamScore: "",
-      overTime: false,
+      overTime: null,
       postSeason: false,
     });
   };
@@ -94,9 +94,9 @@ function CreateGame() {
         <label htmlFor="homeTeam">Home Team</label>
         <Dropdown
           name="homeTeam"
-          options={gameOptions}
-          optionID="homeTeam"
-          optionName="homeTeam"
+          options={teamOptions}
+          optionID="teamID"
+          optionName="teamName"
           value={formData.homeTeam}
           onChange={handleInputChange}
         />
@@ -125,7 +125,7 @@ function CreateGame() {
         />
         <label htmlFor="overTime">Overtime</label>
         <input
-          type="checkbox"
+          type="number"
           name="overTime"
           checked={formData.overTime}
           onChange={handleInputChange}

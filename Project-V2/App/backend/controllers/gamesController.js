@@ -9,7 +9,7 @@ const lodash = require("lodash");
 const getGames = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "Teams" table
+    // Select all rows from the "Games" table
     const query = "SELECT * FROM Games";
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
@@ -37,6 +37,31 @@ const getGameOptions = async (req, res) => {
   }
 };
 
+const createGame = async (req, res) => {
+  try {
+    const { gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason } = req.body;
+    const query = "INSERT INTO Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    const overTimeValue = overTime === 0 ? null : overTime;
+    // const postSeasonValue = postSeason === 1 ? null : Boolean(postSeason) ;
+
+
+    const response = await db.query(query, [
+      gameDate,
+      homeTeam,
+      awayTeam,
+      homeTeamScore,
+      awayTeamScore,
+      overTimeValue,
+      postSeason,
+    ]);
+    res.status(201).json(response);
+  } catch (error) {
+    console.error(`Error adding game to database:`, error);
+    res.status(500).json({ error: "Error creating Game." });
+  }
+};
+
 const getGameByID = async (req, res) => {
   res.status(200)
   try {
@@ -54,15 +79,15 @@ const getGameByID = async (req, res) => {
   }
 }
 
-const updateTeam = async (req, res) => {
+const updateGame = async (req, res) => {
   // make sure this variable name is equal to the parameter name set in
   // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
   // then use req.params.resourceID to retrieve that parameter
-  const teamID = req.params.teamID;
-  const updatedTeam = req.body;
+  const gameID = req.params.gameID;
+  const updatedGame = req.body;
   try {
-    const [data] = await db.query("SELECT * FROM Teams WHERE teamID = ?", [teamID]);
-    const oldTeam = data[0];
+    const [data] = await db.query("SELECT * FROM Games WHERE gameID = ?", [gameID]);
+    const oldGame = data[0];
     if (!lodash.isEqual(updatedGame, oldGame)) {
       const query = "UPDATE Games SET gameDate = ?, homeTeam = ?, awayTeam = ?, homeTeamScore = ?," +
         "awayTeamScore = ?, overTime = ?, postSeason = ? WHERE gameID = ?";
@@ -87,6 +112,6 @@ module.exports = {
   getGameOptions,
   getGameByID,
   createGame,
-  updateGame,
-  deleteGame,
+  // updateGame,
+  // deleteGame,
 };
