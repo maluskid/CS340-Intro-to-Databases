@@ -19,8 +19,8 @@ function UsersPage() {
       </nav>
       <Routes>
         <Route path="/" element={<UsersTable />} />
-        {/* <Route path="/add" element={<CreateUser />} />
-        <Route path="/edit/:userID" element={<UpdateUser />} /> */}
+        <Route path="/add" element={<CreateUser />} />
+        <Route path="/edit/:userID" element={<UpdateUser />} />
       </Routes>
     </div>
   );

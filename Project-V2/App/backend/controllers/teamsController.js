@@ -18,6 +18,23 @@ const getTeams = async (req, res) => {
   }
 };
 
+const getTeamByID = async (req, res) => {
+  res.status(200)
+  try {
+    const teamID = req.params.teamID;
+    const query = "SELECT * FROM Teams WHERE teamID = ?";
+    const [result] = await db.query(query, [teamID]);
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Team not found" });
+    }
+    const team = result[0]
+    res.json(team)
+  } catch (error) {
+    console.error("Error fetching team from the database:", error);
+    res.status(500).json({ error: "Error fetching team" });
+  }
+};
+
 // Use for dropdown
 const getTeamOptions = async (req, res) => {
   res.status(200)
@@ -45,26 +62,10 @@ const createTeam = async (req, res) => {
     res.status(201).json(response);
   } catch (error) {
     console.error(`Error adding team ${teamName} to database:`, error);
-    res.status(500).json({ error: "Error creating Team." });
+    res.status(500).json({ error: "Error creating team." });
   }
 };
 
-const getTeamByID = async (req, res) => {
-  res.status(200)
-  try {
-    const teamID = req.params.teamID;
-    const query = "SELECT * FROM Teams WHERE teamID = ?";
-    const [result] = await db.query(query, [teamID]);
-    if (result.length === 0) {
-      return res.status(404).json({ error: "Team not found" });
-    }
-    const team = result[0]
-    res.json(team)
-  } catch (error) {
-    console.error("Error fetching team from the database:", error);
-    res.status(500).json({ error: "Error fetching team" });
-  }
-};
 
 const updateTeam = async (req, res) => {
   // make sure this variable name is equal to the parameter name set in

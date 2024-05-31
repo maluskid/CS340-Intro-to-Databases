@@ -21,6 +21,24 @@ const getGames = async (req, res) => {
   }
 };
 
+const getGameByID = async (req, res) => {
+  res.status(200)
+  try {
+    const gameID = req.params.gameID;
+    const query = "SELECT * FROM Games WHERE gameID = ?";
+    const [result] = await db.query(query, [gameID]);
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Game not found" });
+    }
+    const game = result[0]
+    res.json(game)
+  } catch (error) {
+    console.error("Error fetching game from the database:", error);
+    res.status(500).json({ error: "Error fetching game" });
+  }
+};
+
+
 const getGameOptions = async (req, res) => {
   res.status(200)
   try {
@@ -56,26 +74,9 @@ const createGame = async (req, res) => {
     res.status(201).json(response);
   } catch (error) {
     console.error(`Error adding game to database:`, error);
-    res.status(500).json({ error: "Error creating Game." });
+    res.status(500).json({ error: "Error creating game." });
   }
 };
-
-const getGameByID = async (req, res) => {
-  res.status(200)
-  try {
-    const gameID = req.params.gameID;
-    const query = "SELECT * FROM Games WHERE gameID = ?";
-    const [result] = await db.query(query, [gameID]);
-    if (result.length === 0) {
-      return res.status(404).json({ error: "Game not found" });
-    }
-    const game = result[0]
-    res.json(game)
-  } catch (error) {
-    console.error("Error fetching game from the database:", error);
-    res.status(500).json({ error: "Error fetching game" });
-  }
-}
 
 const updateGame = async (req, res) => {
   // make sure this variable name is equal to the parameter name set in

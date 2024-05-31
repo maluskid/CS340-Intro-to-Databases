@@ -16,8 +16,8 @@ const getUsers = async (req, res) => {
     // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
-    console.error("Error fetching people from the database:", error);
-    res.status(500).json({ error: "Error fetching people" });
+    console.error("Error fetching user from the database:", error);
+    res.status(500).json({ error: "Error fetching user" });
   }
 };
 
@@ -35,11 +35,50 @@ const getUserOptions = async (req, res) => {
   }
 };
 
+const getUserByID = async (req, res) => {
+  res.status(200)
+  try {
+    const userID = req.params.userID;
+    const query = "SELECT * FROM Users WHERE userID = ?";
+    const [result] = await db.query(query, [userID]);
+    if (result.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const user = result[0]
+    res.json(user)
+  } catch (error) {
+    console.error("Error fetching user from the database:", error);
+    res.status(500).json({ error: "Error fetching user" });
+  }
+};
+
+const createUser = async (req, res) => {
+  try {
+    const { userName, favoritePlayer, favoriteTeam } = req.body;
+    
+    const favoritePlayerValue = favoritePlayer || null;
+    const favoriteTeamValue = favoriteTeam || null;
+
+    const query = "INSERT INTO Users (userName, favoritePlayer, favoriteTeam) VALUES (?, ?, ?)";
+    const response = await db.query(query, [
+      userName,
+      favoritePlayerValue,
+      favoriteTeamValue
+    ]);
+    res.status(201).json(response);
+  } catch (error) {
+    console.error(`Error adding user to database:`, error);
+    res.status(500).json({ error: "Error creating user." });
+  }
+};
+
+
+
 module.exports = {
   getUsers,
   getUserOptions,
-  // getPersonByID,
-  // createPerson,
-  // updatePerson,
-  // deletePerson,
+  getUserByID,
+  createUser,
+  // updateUser,
+  // deleteUser,
 };
