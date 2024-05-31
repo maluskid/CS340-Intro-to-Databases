@@ -80,10 +80,29 @@ const updateRating = async (req, res) => {
   }
 };
 
+const deleteRating = async (req, res) => {
+  const ratingID = req.params.ratingID;
+  console.log("Deleting rating with ratingID:", ratingID);
+  try {
+    const [exists] = await db.query(
+      "SELECT 1 FROM Ratings WHERE ratingID = ?",
+      [ratingID]
+    );
+    if (exists.length === 0) {
+      return res.status(404).send("Rating not found");
+    }
+    await db.query("DELETE FROM Ratings WHERE ratingID = ?", [ratingID]);
+    res.status(204).json({ message: `Rating with ratingID ${ratingID} deleted` })
+  } catch (error) {
+    console.error("Error deleting rating from the database:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getRatings,
   getRatingByID,
   createRating,
   updateRating,
-  // deleteRating,
+  deleteRating,
 };
