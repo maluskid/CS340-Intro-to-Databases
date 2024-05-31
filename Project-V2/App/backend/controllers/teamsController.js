@@ -53,7 +53,7 @@ const getTeamByID = async (req, res) => {
   res.status(200)
   try {
     const teamID = req.params.teamID;
-    await db.query("SELECT * FROM Teams WHERE teamID = ?", [teamID])
+    const query = "SELECT * FROM Teams WHERE teamID = ?";
     const [result] = await db.query(query, [teamID]);
     if (result.length === 0) {
       return res.status(404).json({ error: "Team not found" });

@@ -2,16 +2,16 @@ const express = require("express");
 const router = express.Router();
 const {
   getRatings,
-  // getPersonByID,
-  // createPerson,
-  // updatePerson,
-  // deletePerson,
+  getRatingByID,
+  createRating,
+  // updateRating,
+  // deleteRating,
 } = require("../controllers/ratingsController");
 
 router.get("/", getRatings);
-// router.get("/:id", getPersonByID);
-// router.post("/", createPerson);
-// router.put("/:id", updatePerson);
-// router.delete("/:id", deletePerson);
+router.get("/:ratingID", getRatingByID);
+router.post("/", createRating);
+// router.put("/:ratingID", updateRating);
+// router.delete("/:ratingID", deleteRating);
 
 module.exports = router;

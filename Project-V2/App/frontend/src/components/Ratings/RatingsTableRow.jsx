@@ -36,6 +36,7 @@ const TableRow = ({ rating, fetchRatings }) => {
       <td>{rating.ratingID}</td>
       <td>{rating.gameID}</td>
       <td>{rating.userID}</td>
+      <td>{rating.rating}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
       </td>

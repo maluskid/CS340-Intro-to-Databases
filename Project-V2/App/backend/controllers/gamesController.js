@@ -64,7 +64,7 @@ const getGameByID = async (req, res) => {
   res.status(200)
   try {
     const gameID = req.params.gameID;
-    await db.query("SELECT * FROM Games WHERE gameID = ?", [gameID])
+    const query = "SELECT * FROM Games WHERE gameID = ?";
     const [result] = await db.query(query, [gameID]);
     if (result.length === 0) {
       return res.status(404).json({ error: "Game not found" });

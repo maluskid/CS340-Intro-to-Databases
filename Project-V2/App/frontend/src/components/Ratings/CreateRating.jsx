@@ -51,26 +51,25 @@ function CreateRating() {
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();
-    // // Create a new rating object from the formData
-    // const newRating = {
-    //   fname: formData.fname,
-    //   lname: formData.lname,
-    //   homeworld: formData.homeworld,
-    //   age: formData.age,
-    // };
+    // Create a new rating object from the formData
+    const newRating = {
+      userID: formData.userID,
+      gameID: formData.gameID,
+      rating: formData.rating
+    };
 
-    // try {
-    //   const URL = import.meta.env.VITE_API_URL + "people";
-    //   const response = await axios.post(URL, newRating);
-    //   if (response.status === 201) {
-    //     navigate("/people");
-    //   } else {
-    //     alert("Error creating rating");
-    //   }
-    // } catch (error) {
-    //   alert("Error creating rating");
-    //   console.error("Error creating rating:", error);
-    // }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "ratings";
+      const response = await axios.post(URL, newRating);
+      if (response.status === 201) {
+        navigate("/ratings");
+      } else {
+        alert("Error creating rating");
+      }
+    } catch (error) {
+      alert("Error creating rating");
+      console.error("Error creating rating:", error);
+    }
     // Reset the form fields
     resetFormFields();
   };

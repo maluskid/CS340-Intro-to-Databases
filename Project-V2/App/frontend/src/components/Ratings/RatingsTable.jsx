@@ -37,6 +37,7 @@ const RatingsTable = () => {
               <th>Rating ID</th>
               <th>User ID</th>
               <th>Game ID</th>
+              <th>Rating</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
