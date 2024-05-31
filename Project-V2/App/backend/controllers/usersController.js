@@ -98,6 +98,24 @@ const updateUser = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  const userID = req.params.userID;
+  console.log("Deleting user with userID:", userID);
+  try {
+    const [exists] = await db.query(
+      "SELECT 1 FROM Users WHERE userID = ?",
+      [userID]
+    );
+    if (exists.length === 0) {
+      return res.status(404).send("User not found");
+    }
+    await db.query("DELETE FROM Users WHERE userID = ?", [userID]);
+    res.status(204).json({ message: `User with userID ${userID} deleted` })
+  } catch (error) {
+    console.error("Error deleting user from the database:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
 
 
 module.exports = {
@@ -106,5 +124,5 @@ module.exports = {
   getUserByID,
   createUser,
   updateUser,
-  // deleteUser,
+  deleteUser,
 };

@@ -15,17 +15,17 @@ const TableRow = ({ user, fetchUsers }) => {
 
   // DELETE 
   const deleteRow = async () => {
-  //   try {
-  //     const URL = import.meta.env.VITE_API_URL + "people/" + person.id;
-  //     const response = await axios.delete(URL);
-  //     // Ensure that the person was deleted successfully
-  //     if (response.status === 204) {
-  //       alert("Person deleted successfully");
-  //     }
-  //   } catch (err) {
-  //     alert(err.response.data.error || "Error deleting person");
-  //     console.log(err);
-  //   }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "users/" + user.userID;
+      const response = await axios.delete(URL);
+      // Ensure that the person was deleted successfully
+      if (response.status === 204) {
+        alert("User deleted successfully");
+      }
+    } catch (err) {
+      alert(err.response.data.error || "Error deleting user");
+      console.log(err);
+    }
     fetchUsers();
   };
 
