@@ -54,10 +54,36 @@ const createRating = async (req, res) => {
   }
 };
 
+const updateRating = async (req, res) => {
+  // make sure this variable name is equal to the parameter name set in
+  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
+  // then use req.params.resourceID to retrieve that parameter
+  const ratingID = req.params.ratingID;
+  const updatedRating = req.body;
+  try {
+    const [data] = await db.query("SELECT * FROM Ratings WHERE ratingID = ?", [ratingID]);
+    const oldRating = data[0];
+    if (!lodash.isEqual(updatedRating, oldRating)) {
+      const query = "UPDATE Ratings SET userID = ?, gameID = ?, rating = ? WHERE ratingID= ?";
+      await db.query(query, [
+        userID = updatedRating.userID == '' ? oldRating.userID : updatedRating.userID,
+        gameID = updatedRating.gameID == '' ? oldRating.gameID : updatedRating.gameID,
+        rating = updatedRating.rating == '' ? oldRating.rating : updatedRating.rating,
+        ratingID
+      ]);
+      return res.json({ message: "Rating update successful." });
+    }
+    res.json(({ message: "Update object identical to database object, no update." }))
+  } catch (error) {
+    console.error("Error updating rating in database:", error);
+    res.status(500).json({ error: `Error updating rating with ratingID ${ratingID}` });
+  }
+};
+
 module.exports = {
   getRatings,
   getRatingByID,
   createRating,
-  // updateRating,
+  updateRating,
   // deleteRating,
 };
