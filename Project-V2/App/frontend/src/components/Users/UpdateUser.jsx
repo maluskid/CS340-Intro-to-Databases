@@ -11,6 +11,7 @@ const UpdateUser = () => {
   const prevUser = location.state.user;
 
   const [formData, setFormData] = useState({
+    userName: prevUser.userName || '',
     favoritePlayer: prevUser.favoritePlayer || '',
     favoriteTeam: prevUser.favoriteTeam || '',
   });
@@ -54,36 +55,37 @@ const UpdateUser = () => {
   };
 
   function isUpdate(){
-    // // Check if formData is equal to prevUser
-    // if (JSON.stringify(formData) === JSON.stringify({
-    //   favoritePlayer: prevUser.favoritePlayer || '',
-    //   favoriteTeam: prevUser.favoriteTeam || '',
-    // })) {
-    //   alert("No changes made.");
-    //   return false;
-    // }
-    // return true
+    // Check if formData is equal to prevUser
+    if (JSON.stringify(formData) === JSON.stringify({
+      userName: prevUser.userName || '',
+      favoritePlayer: prevUser.favoritePlayer || '',
+      favoriteTeam: prevUser.favoriteTeam || '',
+    })) {
+      alert("No changes made.");
+      return false;
+    }
+    return true
   }
 
   const handleSubmit = async (event) => {
-    // // Stop default form behavior which is to reload the page
-    // event.preventDefault();
-    // // Check if formData is equal to prevUser
-    // if (isUpdate()){
-    //   try {
-    //     const URL = import.meta.env.VITE_API_URL + "users/" + userID;
-    //     const response = await axios.put(URL, formData);
-    //     if (response.status !== 200) {
-    //       alert("Error updating user");
-    //     } else {
-    //       alert(response.data.message);
-    //       // Redirect to people page
-    //       navigate("/users");
-    //     }
-    //   } catch (err) {
-    //     console.log("Error updating user:", err);
-    //   }
-    // }
+    // Stop default form behavior which is to reload the page
+    event.preventDefault();
+    // Check if formData is equal to prevUser
+    if (isUpdate()){
+      try {
+        const URL = import.meta.env.VITE_API_URL + "users/" + userID;
+        const response = await axios.put(URL, formData);
+        if (response.status !== 200) {
+          alert("Error updating user");
+        } else {
+          alert(response.data.message);
+          // Redirect to people page
+          navigate("/users");
+        }
+      } catch (err) {
+        console.log("Error updating user:", err);
+      }
+    }
   };
 
   return (
@@ -104,8 +106,9 @@ const UpdateUser = () => {
           <input
             type="text"
             name="userName"
-            defaultValue={prevUser.userName}
-            readOnly
+            onChange={handleInputChange}
+            required
+            value={formData.userName}
           />
         </div>
         <div>

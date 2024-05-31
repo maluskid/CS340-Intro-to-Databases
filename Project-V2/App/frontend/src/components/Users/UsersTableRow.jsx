@@ -9,7 +9,6 @@ const TableRow = ({ user, fetchUsers }) => {
   const navigate = useNavigate();
   // Redirect to edit person page
   const handleEdit = () => {
-    // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
     navigate("/users/edit/" + user.userID, { state: { user } });
   };

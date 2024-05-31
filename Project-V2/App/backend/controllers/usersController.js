@@ -72,6 +72,32 @@ const createUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  // make sure this variable name is equal to the parameter name set in
+  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
+  // then use req.params.resourceID to retrieve that parameter
+  const userID = req.params.userID;
+  const updatedUser = req.body;
+  try {
+    const [data] = await db.query("SELECT * FROM Users WHERE userID = ?", [userID]);
+    const oldUser = data[0];
+    if (!lodash.isEqual(updatedUser, oldUser)) {
+      const query = "UPDATE Users SET userName = ?, favoritePlayer = ?, favoriteTeam = ? WHERE userID = ?";
+      await db.query(query, [
+        userName = updatedUser.userName == '' ? oldUser.userName : updatedUser.userName,
+        favoritePlayer = updatedUser.favoritePlayer == '' ? oldUser.favoritePlayer : updatedUser.favoritePlayer,
+        favoriteTeam = updatedUser.favoriteTeam == '' ? oldUser.favoriteTeam : updatedUser.favoriteTeam,
+        userID
+      ]);
+      return res.json({ message: "User update successful." });
+    }
+    res.json(({ message: "Update object identical to database object, no update." }))
+  } catch (error) {
+    console.error("Error updating user in database:", error);
+    res.status(500).json({ error: `Error updating user with userID ${userID}` });
+  }
+};
+
 
 
 module.exports = {
@@ -79,6 +105,6 @@ module.exports = {
   getUserOptions,
   getUserByID,
   createUser,
-  // updateUser,
+  updateUser,
   // deleteUser,
 };
