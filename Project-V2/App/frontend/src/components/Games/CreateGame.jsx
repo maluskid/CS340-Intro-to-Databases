@@ -32,31 +32,31 @@ function CreateGame() {
   useEffect(() => {
     fetchTeamOptions();
   }, []);
-  
-  const handleSubmit = async (e) => {
-    // Prevent page reload
-    e.preventDefault();
-    // // Create a new game object from the formData
-    // const newGame = {
-    //   fname: formData.fname,
-    //   lname: formData.lname,
-    //   homeworld: formData.homeworld,
-    //   age: formData.age,
-    // };
 
-    // try {
-    //   const URL = import.meta.env.VITE_API_URL + "people";
-    //   const response = await axios.post(URL, newGame);
-    //   if (response.status === 201) {
-    //     navigate("/people");
-    //   } else {
-    //     alert("Error creating game");
-    //   }
-    // } catch (error) {
-    //   alert("Error creating game");
-    //   console.error("Error creating game:", error);
-    // }
-    // Reset the form fields
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newGame = {
+      gameDate: formData.gameDate,
+      homeTeam: formData.homeTeam,
+      awayTeam: formData.awayTeam,
+      homeTeamScore: formData.homeTeamScore,
+      awayTeamScore: formData.awayTeamScore,
+      overTime: formData.overTime,
+      postSeason: formData.postSeason,
+    };
+
+    try {
+      const URL = import.meta.env.VITE_API_URL + "games";
+      const response = await axios.post(URL, newGame);
+      if (response.status === 201) {
+        navigate("/games");
+      } else {
+        alert("Error creating game");
+      }
+    } catch (error) {
+      alert("Error creating game");
+      console.error("Error creating game:", error);
+    }
     resetFormFields();
   };
 
@@ -81,7 +81,7 @@ function CreateGame() {
   };
 
   return (
-    <>
+    <div>
       <h2>Create Game</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="gameDate">Date</label>
@@ -125,7 +125,7 @@ function CreateGame() {
         />
         <label htmlFor="overTime">Overtime</label>
         <input
-          type="checkbox"
+          type="number"
           name="overTime"
           checked={formData.overTime}
           onChange={handleInputChange}
@@ -139,7 +139,7 @@ function CreateGame() {
         />
         <button type="submit">Create Game</button>
       </form>
-    </>
+    </div>
   );
 }
 

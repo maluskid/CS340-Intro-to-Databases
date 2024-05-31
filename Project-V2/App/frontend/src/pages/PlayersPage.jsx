@@ -20,8 +20,8 @@ function PlayersPage() {
       </nav>
       <Routes>
         <Route path="/" element={<PlayersTable />} />
-        <Route path="/add" element={<CreatePlayer />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        {/* <Route path="/add" element={<CreatePlayer />} />
+        <Route path="/edit/:id" element={<UpdatePerson />} /> */}
       </Routes>
     </div>
   );

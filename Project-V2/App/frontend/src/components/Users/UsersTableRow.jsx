@@ -9,24 +9,23 @@ const TableRow = ({ user, fetchUsers }) => {
   const navigate = useNavigate();
   // Redirect to edit person page
   const handleEdit = () => {
-    // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
     navigate("/users/edit/" + user.userID, { state: { user } });
   };
 
   // DELETE 
   const deleteRow = async () => {
-  //   try {
-  //     const URL = import.meta.env.VITE_API_URL + "people/" + person.id;
-  //     const response = await axios.delete(URL);
-  //     // Ensure that the person was deleted successfully
-  //     if (response.status === 204) {
-  //       alert("Person deleted successfully");
-  //     }
-  //   } catch (err) {
-  //     alert(err.response.data.error || "Error deleting person");
-  //     console.log(err);
-  //   }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "users/" + user.userID;
+      const response = await axios.delete(URL);
+      // Ensure that the person was deleted successfully
+      if (response.status === 204) {
+        alert("User deleted successfully");
+      }
+    } catch (err) {
+      alert(err.response.data.error || "Error deleting user");
+      console.log(err);
+    }
     fetchUsers();
   };
 

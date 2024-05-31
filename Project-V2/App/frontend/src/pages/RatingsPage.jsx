@@ -1,8 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import RatingsTable from "../components/Ratings/RatingsTable";
 import CreateRating from "../components/Ratings/CreateRating";
-// import PeopleTable from "../components/bsg_people/PersonTable";
-// import UpdatePerson from "../components/bsg_people/UpdatePerson";
+import UpdateRating from "../components/Ratings/UpdateRating";
 
 function RatingsPage() {
   return (
@@ -21,7 +20,7 @@ function RatingsPage() {
       <Routes>
         <Route path="/" element={<RatingsTable />} />
         <Route path="/add" element={<CreateRating />} />
-        {/* <Route path="/edit/:id" element={<UpdatePerson />} /> */}
+        <Route path="/edit/:ratingID" element={<UpdateRating />} />
       </Routes>
     </div>
   );

@@ -45,26 +45,25 @@ function CreateUser() {
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();
-    // // Create a new user object from the formData
-    // const newUser = {
-    //   fname: formData.fname,
-    //   lname: formData.lname,
-    //   homeworld: formData.homeworld,
-    //   age: formData.age,
-    // };
+    // Create a new user object from the formData
+    const newUser = {
+      userName: formData.userName,
+      favoritePlayer: formData.favoritePlayer,
+      favoriteTeam: formData.favoriteTeam,
+    };
 
-    // try {
-    //   const URL = import.meta.env.VITE_API_URL + "people";
-    //   const response = await axios.post(URL, newUser);
-    //   if (response.status === 201) {
-    //     navigate("/people");
-    //   } else {
-    //     alert("Error creating user");
-    //   }
-    // } catch (error) {
-    //   alert("Error creating user");
-    //   console.error("Error creating user:", error);
-    // }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "users";
+      const response = await axios.post(URL, newUser);
+      if (response.status === 201) {
+        navigate("/users");
+      } else {
+        alert("Error creating user");
+      }
+    } catch (error) {
+      alert("Error creating user");
+      console.error("Error creating user:", error);
+    }
     // Reset the form fields
     resetFormFields();
   };
@@ -72,8 +71,8 @@ function CreateUser() {
   const resetFormFields = () => {
     setFormData({
       userName: "",
-      coach: "",
-      currentRecord: "",
+      favoritePlayer: "",
+      favoriteTeam: "",
     });
   };
 
@@ -95,6 +94,7 @@ function CreateUser() {
           name="userName"
           defaultValue={formData.userName}
           onChange={handleInputChange}
+          required
         />
         <label htmlFor="favoritePlayer">Favorite Player</label>
         <Dropdown
