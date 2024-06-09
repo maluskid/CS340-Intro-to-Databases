@@ -78,10 +78,29 @@ const updateGameHasPlayer = async (req, res) => {
   }
 };
 
+const deleteGameHasPlayer = async (req, res) => {
+  const gameHasPlayerID = req.params.gameHasPlayerID;
+  console.log("Deleting GameHasPlayer with gameHasPlayerID:", gameHasPlayerID);
+  try {
+    const [exists] = await db.query(
+      "SELECT 1 FROM Games_Has_Players WHERE gameHasPlayerID = ?",
+      [gameHasPlayerID]
+    );
+    if (exists.length === 0) {
+      return res.status(404).send("GameHasPlayer not found");
+    }
+    await db.query("DELETE FROM Games_Has_Players WHERE gameHasPlayerID = ?", [gameHasPlayerID]);
+    res.status(204).json({ message: `GameHasPlayer with gameHasPlayerID ${gameHasPlayerID} deleted` })
+  } catch (error) {
+    console.error("Error deleting GameHasPlayer from the database:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getGamesHasPlayers,
   getGameHasPlayerByID,
   createGameHasPlayer,
   updateGameHasPlayer,
-  // deleteGameHasPlayer
+  deleteGameHasPlayer
 };

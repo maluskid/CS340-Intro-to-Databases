@@ -16,17 +16,17 @@ const TableRow = ({ gameHasPlayer, fetchGamesHasPlayers }) => {
 
   // DELETE 
   const deleteRow = async () => {
-  //   try {
-  //     const URL = import.meta.env.VITE_API_URL + "gamesHasPlayers/" + gameHasPlayer.gameHasPlayerID;
-  //     const response = await axios.delete(URL);
-  //     // Ensure that the person was deleted successfully
-  //     if (response.status === 204) {
-  //       alert("Person deleted successfully");
-  //     }
-  //   } catch (err) {
-  //     alert(err.response.data.error || "Error deleting person");
-  //     console.log(err);
-  //   }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "gamesHasPlayers/" + gameHasPlayer.gameHasPlayerID;
+      const response = await axios.delete(URL);
+      // Ensure that the person was deleted successfully
+      if (response.status === 204) {
+        alert("GameHasPlayer deleted successfully");
+      }
+    } catch (err) {
+      alert(err.response.data.error || "Error deleting GameHasPlayer");
+      console.log(err);
+    }
     fetchGamesHasPlayers();
   };
 
