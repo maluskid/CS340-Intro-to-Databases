@@ -98,6 +98,24 @@ const updatePlayer = async (req, res) => {
   }
 };
 
+const deletePlayer = async (req, res) => {
+  const playerID = req.params.playerID;
+  console.log("Deleting player with playerID:", playerID);
+  try {
+    const [exists] = await db.query(
+      "SELECT 1 FROM Players WHERE playerID = ?",
+      [playerID]
+    );
+    if (exists.length === 0) {
+      return res.status(404).send("Player not found");
+    }
+    await db.query("DELETE FROM Players WHERE playerID = ?", [playerID]);
+    res.status(204).json({ message: `Player with playerID ${playerID} deleted` })
+  } catch (error) {
+    console.error("Error deleting player from the database:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getPlayers,
@@ -105,5 +123,5 @@ module.exports = {
   getPlayerByID,
   createPlayer,
   updatePlayer,
-  // deletePlayer,
+  deletePlayer,
 };
