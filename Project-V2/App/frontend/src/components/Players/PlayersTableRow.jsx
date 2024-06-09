@@ -11,20 +11,20 @@ const TableRow = ({ player, fetchPlayers }) => {
   const handleEdit = () => {
     // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
-    // navigate("/people/edit/" + person.id, { state: { person } });
+    // navigate("/players/edit/" + player.playerID, { state: { player } });
   };
 
   // DELETE 
   const deleteRow = async () => {
   //   try {
-  //     const URL = import.meta.env.VITE_API_URL + "people/" + person.id;
+  //     const URL = import.meta.env.VITE_API_URL + "player/" + player.playerID;
   //     const response = await axios.delete(URL);
   //     // Ensure that the person was deleted successfully
   //     if (response.status === 204) {
-  //       alert("Person deleted successfully");
+  //       alert("Player deleted successfully");
   //     }
   //   } catch (err) {
-  //     alert(err.response.data.error || "Error deleting person");
+  //     alert(err.response.data.error || "Error deleting player");
   //     console.log(err);
   //   }
     fetchPlayers();

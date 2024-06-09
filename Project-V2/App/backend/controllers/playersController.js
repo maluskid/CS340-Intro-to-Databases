@@ -21,6 +21,23 @@ const getPlayers = async (req, res) => {
   }
 };
 
+const getPlayerByID = async (req, res) => {
+  res.status(200)
+  try {
+    const playerID = req.params.playerID;
+    const query = "SELECT * FROM Players WHERE playerID = ?";
+    const [result] = await db.query(query, [playerID]);
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Player not found" });
+    }
+    const player = result[0]
+    res.json(player)
+  } catch (error) {
+    console.error("Error fetching player from the database:", error);
+    res.status(500).json({ error: "Error fetching player" });
+  }
+};
+
 // Use for dropdown
 const getPlayerOptions = async (req, res) => {
   res.status(200)
@@ -35,11 +52,31 @@ const getPlayerOptions = async (req, res) => {
   }
 };
 
+const createPlayer = async (req, res) => {
+  try {
+    const { playerName, teamID, jerseyNumber, height, weight } = req.body;
+    const query = "INSERT INTO Players (playerName, teamID, jerseyNumber, height, weight) VALUES (?, ?, ?, ?, ?)";
+    const response = await db.query(query, [
+      playerName, 
+      teamID, 
+      jerseyNumber, 
+      height, 
+      weight
+    ]);
+    res.status(201).json(response);
+  } catch (error) {
+    console.error(`Error adding player ${playerName} to database:`, error);
+    res.status(500).json({ error: "Error creating team." });
+  }
+};
+
+
+
 module.exports = {
   getPlayers,
   getPlayerOptions,
-  // getPersonByID,
-  // createPerson,
-  // updatePerson,
-  // deletePerson,
+  getPlayerByID,
+  createPlayer,
+  // updatePlayer,
+  // deletePlayer,
 };

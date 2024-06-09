@@ -34,26 +34,28 @@ function CreatePlayer() {
   const handleSubmit = async (e) => {
     // Prevent page reload
     e.preventDefault();
-    // // Create a new player object from the formData
-    // const newPlayer = {
-    //   fname: formData.fname,
-    //   lname: formData.lname,
-    //   homeworld: formData.homeworld,
-    //   age: formData.age,
-    // };
+    // Create a new player object from the formData
+    const newPlayer = {
+      playerName: formData.playerName,
+      teamID: formData.teamID,
+      jerseyNumber: formData.jerseyNumber,
+      height: formData.height,
+      weight: formData.weight,
+    };
 
-    // try {
-    //   const URL = import.meta.env.VITE_API_URL + "people";
-    //   const response = await axios.post(URL, newPlayer);
-    //   if (response.status === 201) {
-    //     navigate("/people");
-    //   } else {
-    //     alert("Error creating player");
-    //   }
-    // } catch (error) {
-    //   alert("Error creating player");
-    //   console.error("Error creating player:", error);
-    // }
+    try {
+      const URL = import.meta.env.VITE_API_URL + "players";
+      const response = await axios.post(URL, newPlayer);
+      if (response.status === 201) {
+        navigate("/players");
+      } else {
+        alert("Error creating player");
+      }
+    } catch (error) {
+      alert("Error creating player");
+      console.error("Error creating player:", error);
+    }
+
     // Reset the form fields
     resetFormFields();
   };
@@ -96,12 +98,6 @@ function CreatePlayer() {
           value={formData.teamID}
           onChange={handleInputChange}
         />
-        {/* <input
-          type="text"
-          name="teamID"
-          defaultValue={formData.teamID}
-          onChange={handleInputChange}
-        /> */}
         <label htmlFor="jerseyNumber">Jersey Number</label>
         <input
           type="number"
@@ -111,7 +107,7 @@ function CreatePlayer() {
         />
         <label htmlFor="height">Height</label>
         <input 
-          type="number" 
+          type="text" 
           name="height" 
           value={formData.height} 
           onChange={handleInputChange} 
