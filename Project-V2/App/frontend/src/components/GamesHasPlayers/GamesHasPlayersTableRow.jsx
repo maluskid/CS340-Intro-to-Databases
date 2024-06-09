@@ -17,7 +17,7 @@ const TableRow = ({ gameHasPlayer, fetchGamesHasPlayers }) => {
   // DELETE 
   const deleteRow = async () => {
   //   try {
-  //     const URL = import.meta.env.VITE_API_URL + "people/" + person.id;
+  //     const URL = import.meta.env.VITE_API_URL + "gamesHasPlayers/" + gameHasPlayer.gameHasPlayerID;
   //     const response = await axios.delete(URL);
   //     // Ensure that the person was deleted successfully
   //     if (response.status === 204) {

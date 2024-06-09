@@ -2,16 +2,16 @@ const express = require("express");
 const router = express.Router();
 const {
   getGamesHasPlayers,
-  // getPersonByID,
-  // createPerson,
-  // updatePerson,
-  // deletePerson,
+  getGameHasPlayerByID,
+  createGameHasPlayer,
+  // updateGameHasPlayer,
+  // deleteGameHasPlayer
 } = require("../controllers/gamesHasPlayersController");
 
 router.get("/", getGamesHasPlayers);
-// router.get("/:id", getPersonByID);
-// router.post("/", createPerson);
-// router.put("/:id", updatePerson);
-// router.delete("/:id", deletePerson);
+router.get("/:gameHasPlayerID", getGameHasPlayerByID);
+router.post("/", createGameHasPlayer);
+// router.put("/:gameHasPlayerID", updateGameHasPlayer);
+// router.delete("/:gameHasPlayerID", deleteGameHasPlayer);
 
 module.exports = router;
