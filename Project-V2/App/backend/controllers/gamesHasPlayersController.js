@@ -53,10 +53,35 @@ const createGameHasPlayer = async (req, res) => {
   }
 };
 
+const updateGameHasPlayer = async (req, res) => {
+  // make sure this variable name is equal to the parameter name set in
+  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
+  // then use req.params.resourceID to retrieve that parameter
+  const gameHasPlayerID = req.params.gameHasPlayerID;
+  const updatedGameHasPlayer = req.body;
+  try {
+    const [data] = await db.query("SELECT * FROM Games_Has_Players WHERE gameHasPlayerID = ?", [gameHasPlayerID]);
+    const oldGameHasPlayer = data[0];
+    if (!lodash.isEqual(updatedGameHasPlayer, oldGameHasPlayer)) {
+      const query = "UPDATE Games_Has_Players SET gameID = ?, playerID = ? WHERE gameHasPlayerID = ?";
+      await db.query(query, [
+        gameID = updatedGameHasPlayer.gameID == '' ? oldGameHasPlayer.gameID : updatedGameHasPlayer.gameID,
+        playerID = updatedGameHasPlayer.playerID == '' ? oldGameHasPlayer.playerID : updatedGameHasPlayer.playerID,
+        gameHasPlayerID
+      ]);
+      return res.json({ message: "GameHasPlayer update successful." });
+    }
+    res.json(({ message: "Update object identical to database object, no update." }))
+  } catch (error) {
+    console.error("Error updating GameHasPlayer in database:", error);
+    res.status(500).json({ error: `Error updating GameHasPlayer with gameHasPlayerID ${gameHasPlayerID}` });
+  }
+};
+
 module.exports = {
   getGamesHasPlayers,
   getGameHasPlayerByID,
   createGameHasPlayer,
-  // updateGameHasPlayer,
+  updateGameHasPlayer,
   // deleteGameHasPlayer
 };

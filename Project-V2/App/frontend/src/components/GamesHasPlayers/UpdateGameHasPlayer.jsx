@@ -60,36 +60,36 @@ const UpdateGameHasPlayer = () => {
   };
 
   function isUpdate(){
-    // // Check if formData is equal to prevGameHasPlayer
-    // if (JSON.stringify(formData) === JSON.stringify({
-    //   gameID: prevGameHasPlayer.gameID || '',
-    //   playerID: prevGameHasPlayer.playerID || '',
-    // })) {
-    //   alert("No changes made.");
-    //   return false;
-    // }
-    // return true
+    // Check if formData is equal to prevGameHasPlayer
+    if (JSON.stringify(formData) === JSON.stringify({
+      gameID: prevGameHasPlayer.gameID || '',
+      playerID: prevGameHasPlayer.playerID || '',
+    })) {
+      alert("No changes made.");
+      return false;
+    }
+    return true
   }
 
   const handleSubmit = async (event) => {
-    // // Stop default form behavior which is to reload the page
-    // event.preventDefault();
-    // // Check if formData is equal to prevGameHasPlayer
-    // if (isUpdate()){
-    //   try {
-    //     const URL = import.meta.env.VITE_API_URL + "gamesHasPlayers/" + id;
-    //     const response = await axios.put(URL, formData);
-    //     if (response.status !== 200) {
-    //       alert("Error updating gameHasPlayer");
-    //     } else {
-    //       alert(response.data.message);
-    //       // Redirect to people page
-    //       navigate("/people");
-    //     }
-    //   } catch (err) {
-    //     console.log("Error updating GameHasPlayer:", err);
-    //   }
-    // }
+    // Stop default form behavior which is to reload the page
+    event.preventDefault();
+    // Check if formData is equal to prevGameHasPlayer
+    if (isUpdate()){
+      try {
+        const URL = import.meta.env.VITE_API_URL + "gamesHasPlayers/" + gameHasPlayerID;
+        const response = await axios.put(URL, formData);
+        if (response.status !== 200) {
+          alert("Error updating gameHasPlayer");
+        } else {
+          alert(response.data.message);
+          // Redirect to gamesHasPlayers page
+          navigate("/gamesHasPlayers");
+        }
+      } catch (err) {
+        console.log("Error updating GameHasPlayer:", err);
+      }
+    }
   };
 
   return (

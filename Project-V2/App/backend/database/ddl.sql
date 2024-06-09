@@ -45,7 +45,8 @@ create or replace table Games_Has_Players (
   gameID int(12),
   playerID int(12),
   foreign key (gameID) references Games(gameID) ON DELETE CASCADE,
-  foreign key (playerID) references Players(playerID) ON DELETE CASCADE
+  foreign key (playerID) references Players(playerID) ON DELETE CASCADE,
+  -- unique(gameID, playerID)
 );
 
 -- Users Table

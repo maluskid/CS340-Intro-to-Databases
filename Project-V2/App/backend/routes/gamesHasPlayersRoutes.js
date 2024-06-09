@@ -4,14 +4,14 @@ const {
   getGamesHasPlayers,
   getGameHasPlayerByID,
   createGameHasPlayer,
-  // updateGameHasPlayer,
+  updateGameHasPlayer,
   // deleteGameHasPlayer
 } = require("../controllers/gamesHasPlayersController");
 
 router.get("/", getGamesHasPlayers);
 router.get("/:gameHasPlayerID", getGameHasPlayerByID);
 router.post("/", createGameHasPlayer);
-// router.put("/:gameHasPlayerID", updateGameHasPlayer);
+router.put("/:gameHasPlayerID", updateGameHasPlayer);
 // router.delete("/:gameHasPlayerID", deleteGameHasPlayer);
 
 module.exports = router;
