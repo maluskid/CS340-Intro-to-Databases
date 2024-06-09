@@ -11,7 +11,7 @@ const TableRow = ({ player, fetchPlayers }) => {
   const handleEdit = () => {
     // We can access the id (and query the person) with useParams() in the UpdatePerson component
 
-    // navigate("/players/edit/" + player.playerID, { state: { player } });
+    navigate("/players/edit/" + player.playerID, { state: { player } });
   };
 
   // DELETE 

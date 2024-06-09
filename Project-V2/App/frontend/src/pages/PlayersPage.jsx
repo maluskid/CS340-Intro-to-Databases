@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import PlayersTable from "../components/Players/PlayersTable";
 import CreatePlayer from "../components/Players/CreatePlayer";
-// import UpdatePlayer from "../components/Players/UpdatePerson";
+import UpdatePlayer from "../components/Players/UpdatePlayer";
 
 function PlayersPage() {
   return (
@@ -20,7 +20,7 @@ function PlayersPage() {
       <Routes>
         <Route path="/" element={<PlayersTable />} />
         <Route path="/add" element={<CreatePlayer />} />
-        {/* <Route path="/edit/:id" element={<UpdatePlayer />} /> */}
+        <Route path="/edit/:playerID" element={<UpdatePlayer />} />
       </Routes>
     </div>
   );

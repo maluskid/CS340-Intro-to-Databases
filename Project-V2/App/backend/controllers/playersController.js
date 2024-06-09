@@ -66,10 +66,37 @@ const createPlayer = async (req, res) => {
     res.status(201).json(response);
   } catch (error) {
     console.error(`Error adding player ${playerName} to database:`, error);
-    res.status(500).json({ error: "Error creating team." });
+    res.status(500).json({ error: "Error creating player." });
   }
 };
 
+const updatePlayer = async (req, res) => {
+  // make sure this variable name is equal to the parameter name set in
+  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
+  // then use req.params.resourceID to retrieve that parameter
+  const playerID = req.params.playerID;
+  const updatedPlayer = req.body;
+  try {
+    const [data] = await db.query("SELECT * FROM Players WHERE playerID = ?", [playerID]);
+    const oldPlayer = data[0];
+    if (!lodash.isEqual(updatedPlayer, oldPlayer)) {
+      const query = "UPDATE Players SET playerName = ?, teamID = ?, jerseyNumber = ?, height = ?, weight = ? WHERE playerID = ?";
+      await db.query(query, [
+        playerName = updatedPlayer.playerName == '' ? oldPlayer.playerName : updatedPlayer.playerName,
+        teamID = updatedPlayer.teamID == '' ? oldPlayer.teamID : updatedPlayer.teamID,
+        jerseyNumber = updatedPlayer.jerseyNumber == '' ? oldPlayer.jerseyNumber : updatedPlayer.jerseyNumber,
+        height = updatedPlayer.height == '' ? oldPlayer.height : updatedPlayer.height,
+        weight = updatedPlayer.weight == '' ? oldPlayer.weight : updatedPlayer.weight,
+        playerID
+      ]);
+      return res.json({ message: "Player update successful." });
+    }
+    res.json(({ message: "Update object identical to database object, no update." }))
+  } catch (error) {
+    console.error("Error updating player in database:", error);
+    res.status(500).json({ error: `Error updating player with playerID ${playerID}` });
+  }
+};
 
 
 module.exports = {
@@ -77,6 +104,6 @@ module.exports = {
   getPlayerOptions,
   getPlayerByID,
   createPlayer,
-  // updatePlayer,
+  updatePlayer,
   // deletePlayer,
 };
