@@ -10,6 +10,7 @@ const UpdateGame = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const prevGame = location.state.game;
+  console.log(`Prevgame postSeason value: ${prevGame.postSeason}`)
 
   const [formData, setFormData] = useState({
     gameDate: prevGame.gameDate.slice(0, 10) || '',
@@ -40,6 +41,7 @@ const UpdateGame = () => {
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
+    console.log(`Overtime checkbox value: ${checked}`)
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value,
