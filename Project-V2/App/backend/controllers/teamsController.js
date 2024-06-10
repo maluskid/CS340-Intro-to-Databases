@@ -49,6 +49,21 @@ const getTeamOptions = async (req, res) => {
   }
 };
 
+// Used for player list
+const getTeamPlayers = async (req, res) => {
+  res.status(200)
+  try {
+    const teamID = req.params.teamID;
+    const query = "SELECT playerName FROM Players WHERE teamID = ?";
+    const [rows] = await db.query(query, [teamID]);
+    res.status(200).json(rows);
+    console.log("Team player list successful")
+  } catch (error) {
+    console.error("Error fetching team players from the database:", error);
+    res.status(500).json({ error: "Error fetching team player list" });
+  }
+};
+
 const createTeam = async (req, res) => {
   try {
     const { teamName, coach, wins, losses } = req.body;
@@ -116,6 +131,7 @@ const deleteTeam = async (req, res) => {
 module.exports = {
   getTeams,
   getTeamOptions,
+  getTeamPlayers,
   createTeam,
   getTeamByID,
   updateTeam,
