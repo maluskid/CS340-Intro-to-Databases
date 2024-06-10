@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for controller:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 // Load db config
 const db = require("../database/config");
 // Load .env variables
@@ -9,11 +16,8 @@ const lodash = require("lodash");
 const getGames = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "Games" table
     const query = "SELECT * FROM Games";
-    // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
-    // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error fetching games from the database:", error);
@@ -21,6 +25,7 @@ const getGames = async (req, res) => {
   }
 };
 
+// Returns rows of games that match with given gameID
 const getGameByID = async (req, res) => {
   res.status(200)
   try {
@@ -38,7 +43,7 @@ const getGameByID = async (req, res) => {
   }
 };
 
-
+// Use for dropdown, Returns rows of games along with corresponding dates and team names
 const getGameOptions = async (req, res) => {
   res.status(200)
   try {
@@ -55,6 +60,7 @@ const getGameOptions = async (req, res) => {
   }
 };
 
+// Inserts game into database
 const createGame = async (req, res) => {
   try {
     const { gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason } = req.body;
@@ -79,10 +85,8 @@ const createGame = async (req, res) => {
   }
 };
 
+// Updates game that matches given gameID
 const updateGame = async (req, res) => {
-  // make sure this variable name is equal to the parameter name set in
-  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
-  // then use req.params.resourceID to retrieve that parameter
   const gameID = req.params.gameID;
   const updatedGame = req.body;
   try {
@@ -110,6 +114,7 @@ const updateGame = async (req, res) => {
   }
 };
 
+// Deletes game that matches given gameID
 const deleteGame = async (req, res) => {
   const gameID = req.params.gameID;
   console.log("Deleting game with gameID:", gameID);

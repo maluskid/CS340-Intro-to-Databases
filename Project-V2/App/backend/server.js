@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for server:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -5,16 +12,9 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 3131;
 
-
 // Middleware:
-
-// If on FLIP, use cors() middleware to allow cross-origin requests from the frontend with your port number:
-// EX (local): http://localhost:5173 
-// EX (FLIP/classwork) http://flip3.engr.oregonstate.edu:5173
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json());
-
-
 
 // API Routes for backend CRUD:
 app.use("/api/teams", require("./routes/teamsRoutes"));
@@ -24,16 +24,9 @@ app.use("/api/gamesHasPlayers", require("./routes/gamesHasPlayersRoutes"));
 app.use("/api/users", require("./routes/usersRoutes"));
 app.use("/api/ratings", require("./routes/ratingsRoutes"));
 
-
 app.get('/', (req, res) => {
   res.send('Is this working???')
 });
-
-
-// Add your Connect DB Activitiy Code Below:
-// ...
-
-// Match to your database config route
 
 // NOT PROMISE BASED SQL ---------------------------------------------------
 // const pool = require('./database/config.js');
@@ -87,13 +80,9 @@ app.get('/api/diagnostic', async (req, res) => {
   }
 });
 
-
 // ...
 // End Connect DB Activity Code.
 
-
-
 app.listen(PORT, () => {
-  // Change this text to whatever FLIP server you're on
   console.log(`Server running:  http://classwork.engr.oregonstate.edu:${PORT}...`);
 });

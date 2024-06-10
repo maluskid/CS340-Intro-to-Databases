@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for server:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 // reactServer.cjs
 // Uses common javascript to serve the react build folder (/dist)
 
@@ -21,6 +28,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  // Change this text to whatever FLIP server you're on
   console.log(`Server running:  http://classwork.engr.oregonstate.edu:${PORT}...`);
 });

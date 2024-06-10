@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for controller:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 // Load db config
 const db = require("../database/config");
 // Load .env variables
@@ -5,15 +12,12 @@ require("dotenv").config();
 // Util to deep-compare two objects
 const lodash = require("lodash");
 
-// Returns all rows of GamesHasPlayers 
+// Returns all rows of Games_Has_Players 
 const getGamesHasPlayers = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "GamesHasPlayers" table
     const query = "SELECT * FROM Games_Has_Players";
-    // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
-    // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error fetching people from the database:", error);
@@ -21,6 +25,7 @@ const getGamesHasPlayers = async (req, res) => {
   }
 };
 
+// Returns rows of Games_Has_Players that match given gameID
 const getGameHasPlayerByID = async (req, res) => {
   res.status(200)
   try {
@@ -38,6 +43,7 @@ const getGameHasPlayerByID = async (req, res) => {
   }
 };
 
+// Inserts new game into database
 const createGameHasPlayer = async (req, res) => {
   try {
     const { gameID, playerID } = req.body;
@@ -53,10 +59,8 @@ const createGameHasPlayer = async (req, res) => {
   }
 };
 
+// Updates row that matches given gameHasPlayerID
 const updateGameHasPlayer = async (req, res) => {
-  // make sure this variable name is equal to the parameter name set in
-  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
-  // then use req.params.resourceID to retrieve that parameter
   const gameHasPlayerID = req.params.gameHasPlayerID;
   const updatedGameHasPlayer = req.body;
   try {
@@ -78,6 +82,7 @@ const updateGameHasPlayer = async (req, res) => {
   }
 };
 
+// Deletes row that matches gameHasPlayerID
 const deleteGameHasPlayer = async (req, res) => {
   const gameHasPlayerID = req.params.gameHasPlayerID;
   console.log("Deleting GameHasPlayer with gameHasPlayerID:", gameHasPlayerID);

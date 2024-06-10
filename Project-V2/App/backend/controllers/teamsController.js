@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for controller:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 // Load db config
 const db = require("../database/config");
 // Load .env variables
@@ -18,6 +25,7 @@ const getTeams = async (req, res) => {
   }
 };
 
+// Returns rows of teams that matches given teamID
 const getTeamByID = async (req, res) => {
   res.status(200)
   try {
@@ -35,7 +43,7 @@ const getTeamByID = async (req, res) => {
   }
 };
 
-// Use for dropdown
+// Use for dropdown, returns all rows of teams with teamID and teamName
 const getTeamOptions = async (req, res) => {
   res.status(200)
   try {
@@ -49,6 +57,7 @@ const getTeamOptions = async (req, res) => {
   }
 };
 
+// Inserts new team into Teams table
 const createTeam = async (req, res) => {
   try {
     const { teamName, coach, wins, losses } = req.body;
@@ -66,11 +75,8 @@ const createTeam = async (req, res) => {
   }
 };
 
-
+// Updates team that matches given teamID
 const updateTeam = async (req, res) => {
-  // make sure this variable name is equal to the parameter name set in
-  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
-  // then use req.params.resourceID to retrieve that parameter
   const teamID = req.params.teamID;
   const updatedTeam = req.body;
   try {
@@ -94,6 +100,7 @@ const updateTeam = async (req, res) => {
   }
 };
 
+// Deletes team that matches given teamID
 const deleteTeam = async (req, res) => {
   const teamID = req.params.teamID;
   console.log("Deleting team with teamID:", teamID);

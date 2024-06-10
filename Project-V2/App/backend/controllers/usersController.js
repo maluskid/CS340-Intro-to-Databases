@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for controller:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 // Load db config
 const db = require("../database/config");
 // Load .env variables
@@ -9,11 +16,8 @@ const lodash = require("lodash");
 const getUsers = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "Users" table
     const query = "SELECT * FROM Users";
-    // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
-    // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error fetching user from the database:", error);
@@ -21,7 +25,7 @@ const getUsers = async (req, res) => {
   }
 };
 
-// Use for dropdown
+// Use for dropdown, Returns all rows of users with userID and userName
 const getUserOptions = async (req, res) => {
   res.status(200)
   try {
@@ -35,6 +39,7 @@ const getUserOptions = async (req, res) => {
   }
 };
 
+// Returns rows of users that match given userID
 const getUserByID = async (req, res) => {
   res.status(200)
   try {
@@ -52,10 +57,12 @@ const getUserByID = async (req, res) => {
   }
 };
 
+// Inserts new user into Users table
 const createUser = async (req, res) => {
   try {
     const { userName, favoritePlayer, favoriteTeam } = req.body;
     
+    // Insert values as null if empty for favoritePlayer and favoriteTeam
     const favoritePlayerValue = favoritePlayer || null;
     const favoriteTeamValue = favoriteTeam || null;
 
@@ -72,10 +79,8 @@ const createUser = async (req, res) => {
   }
 };
 
+// Updates user that matches given userID
 const updateUser = async (req, res) => {
-  // make sure this variable name is equal to the parameter name set in
-  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
-  // then use req.params.resourceID to retrieve that parameter
   const userID = req.params.userID;
   const updatedUser = req.body;
   try {
@@ -98,6 +103,7 @@ const updateUser = async (req, res) => {
   }
 };
 
+// Deletes user that matches given userID
 const deleteUser = async (req, res) => {
   const userID = req.params.userID;
   console.log("Deleting user with userID:", userID);
@@ -116,7 +122,6 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 module.exports = {
   getUsers,

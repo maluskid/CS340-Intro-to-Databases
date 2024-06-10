@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for controller:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 // Load db config
 const db = require("../database/config");
 // Load .env variables
@@ -9,11 +16,8 @@ const lodash = require("lodash");
 const getRatings = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "Ratings" table
     const query = "SELECT * FROM Ratings";
-    // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
-    // Send back the rows to the client
     res.status(200).json(rows);
   } catch (error) {
     console.error("Error fetching people from the database:", error);
@@ -21,6 +25,7 @@ const getRatings = async (req, res) => {
   }
 };
 
+// Returns rows of ratings that matches given ratingID
 const getRatingByID = async (req, res) => {
   res.status(200)
   try {
@@ -38,6 +43,7 @@ const getRatingByID = async (req, res) => {
   }
 };
 
+// Inserts new rating into Ratings table
 const createRating = async (req, res) => {
   try {
     const { userID, gameID, rating } = req.body;
@@ -54,11 +60,8 @@ const createRating = async (req, res) => {
   }
 };
 
+// Updates rating that matches given ratingID
 const updateRating = async (req, res) => {
-  // make sure this variable name is equal to the parameter name set in
-  // 'TablenamePage.jsx'. If www.somepath.com/path/to/resource/:resourceID
-  // then use req.params.resourceID to retrieve that parameter
-  const ratingID = req.params.ratingID;
   const updatedRating = req.body;
   try {
     const [data] = await db.query("SELECT * FROM Ratings WHERE ratingID = ?", [ratingID]);
@@ -80,6 +83,7 @@ const updateRating = async (req, res) => {
   }
 };
 
+// Deletes rating that matches given ratingID
 const deleteRating = async (req, res) => {
   const ratingID = req.params.ratingID;
   console.log("Deleting rating with ratingID:", ratingID);

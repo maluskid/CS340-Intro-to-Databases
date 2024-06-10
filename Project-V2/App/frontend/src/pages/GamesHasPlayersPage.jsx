@@ -1,3 +1,10 @@
+// Authors: Denyse Tolentino and Dominic Maluski
+// Contents: Film Fiends NBA Database
+// Citation for page:
+// Date: 05/16/2024
+// Adapted from CS340 OSU Course
+// Source URL: https://github.com/osu-cs340-ecampus/react-starter-app
+
 import { Routes, Route, Link } from "react-router-dom";
 import GamesHasPlayersTable from "../components/GamesHasPlayers/GamesHasPlayersTable";
 import CreateGameHasPlayer from "../components/GamesHasPlayers/CreateGameHasPlayer";
