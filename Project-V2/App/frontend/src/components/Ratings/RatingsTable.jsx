@@ -5,14 +5,12 @@ import axios from "axios";
 
 const RatingsTable = () => {
   const [ratings, setRatings] = useState([]);
-  const [userOptions, setUserOptions] = useState([]);
-  const [gameOptions, setGameOptions] = useState([]);
 
   const fetchUserOptions = async () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "users/options";
       const response = await axios.get(URL);
-      setUserOptions(response.data);
+      return response.data;
     } catch (error) {
       alert("Error fetching user options from the server.");
       console.error("Error fetching user options:", error);
@@ -23,12 +21,10 @@ const RatingsTable = () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "games/options";
       const response = await axios.get(URL);
-      const gameOptions = response.data.map(game => ({
+      return response.data.map(game => ({
         gameID: game.gameID,
         gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
       }));
-
-      setGameOptions(gameOptions);
     } catch (error) {
       alert("Error fetching game options from the server.");
       console.error("Error fetching game options:", error);
@@ -36,8 +32,11 @@ const RatingsTable = () => {
   };
 
   const fetchRatings = async () => {
-    console.log(JSON.stringify(gameOptions), JSON.stringify(userOptions))
+
     try {
+      const gameOptions = fetchGameOptions();
+      const userOptions = fetchUserOptions();
+      console.log(`GameOptions and UserOptions: ${JSON.stringify(gameOptions)}\n${JSON.stringify(userOptions)}`);
       const URL = import.meta.env.VITE_API_URL + "ratings";
       const response = await axios.get(URL);
       const ratings = response.data.map((rating) => ({
@@ -57,8 +56,6 @@ const RatingsTable = () => {
   };
 
   useEffect(() => {
-    fetchUserOptions();
-    fetchGameOptions();
     fetchRatings();
   }, []);
 
