@@ -5,31 +5,30 @@ import axios from "axios";
 
 const RatingsTable = () => {
   const [ratings, setRatings] = useState([]);
+  const [userOptions, setUserOptions] = useState([]);
+  const [gameOptions, setGameOptions] = useState([]);
 
-  // Note this function is slightly different than fetchUserOptions in components
   const fetchUserOptions = async () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "users/options";
       const response = await axios.get(URL);
-      return response.data.map(user => ({
-        userID: user.userID,
-        userName: user.userName
-      }));
+      setUserOptions(response.data);
     } catch (error) {
       alert("Error fetching user options from the server.");
       console.error("Error fetching user options:", error);
     }
   };
 
-  // Note this function is slightly different than fetchGameOptions in components
   const fetchGameOptions = async () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "games/options";
       const response = await axios.get(URL);
-      return response.data.map(game => ({
+      const gameOptions = response.data.map(game => ({
         gameID: game.gameID,
         gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
       }));
+
+      setGameOptions(gameOptions);
     } catch (error) {
       alert("Error fetching game options from the server.");
       console.error("Error fetching game options:", error);
@@ -39,15 +38,15 @@ const RatingsTable = () => {
   const fetchRatings = async () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "ratings";
-      const userOptions = await fetchUserOptions();
-      const gameOptions = await fetchGameOptions();
       const response = await axios.get(URL);
-      setRatings(response.data.map(rating => ({
+      const ratings = response.data.map(rating => ({
         ratingID: rating.ratingID,
         rating: rating.rating,
-        user: userOptions[rating.userID].userName,
-        game: gameOptions[rating.gameID].game,
-      })));
+        user: userOptions[rating.userID.toString()].userName,
+        game: gameOptions[rating.gameID.toString()].game,
+      }));
+
+      setRatings(ratings);
     } catch (error) {
       alert("Error fetching ratings from the server.");
       console.error("Error fetching ratings:", error);
@@ -55,6 +54,8 @@ const RatingsTable = () => {
   };
 
   useEffect(() => {
+    fetchUserOptions();
+    fetchGameOptions();
     fetchRatings();
   }, []);
 
