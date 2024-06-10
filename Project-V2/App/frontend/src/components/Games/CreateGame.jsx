@@ -12,8 +12,8 @@ function CreateGame() {
     awayTeam: "",
     homeTeamScore: "",
     awayTeamScore: "",
-    overTime: null,
-    postSeason: null,
+    overTime: false,
+    postSeason: false,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
@@ -67,16 +67,16 @@ function CreateGame() {
       awayTeam: "",
       homeTeamScore: "",
       awayTeamScore: "",
-      overTime: null,
-      postSeason: null,
+      overTime: false,
+      postSeason: false,
     });
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? () => { value === 'on' ? true : false } : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -135,7 +135,7 @@ function CreateGame() {
           type="checkbox"
           name="postSeason"
           onChange={handleInputChange}
-          value={formData.postSeason}
+          checked={formData.postSeason}
         />
         <button type="submit">Create Game</button>
       </form>

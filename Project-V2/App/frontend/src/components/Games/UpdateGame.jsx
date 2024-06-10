@@ -18,8 +18,8 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || null,
-    postSeason: prevGame.postSeason || null,
+    overTime: prevGame.overTime || false,
+    postSeason: prevGame.postSeason || false,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
@@ -40,11 +40,11 @@ const UpdateGame = () => {
   }, []);
 
   const handleInputChange = (event) => {
-    const { name, value, type } = event.target;
+    const { name, value, type, checked } = event.target;
     console.log(`Overtime checkbox value: ${checked}`)
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: type === 'checkbox' ? () => { value === 'on' ? true : false } : value,
+      [name]: type === 'checkbox' ? () => checked : value,
     }));
   };
 
@@ -55,8 +55,8 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || null,
-      postSeason: prevGame.postSeason || null,
+      overTime: prevGame.overTime || false,
+      postSeason: prevGame.postSeason || false,
     })) {
       alert("No changes made.");
       return false;
@@ -156,7 +156,6 @@ const UpdateGame = () => {
             type="checkbox"
             name="postSeason"
             onChange={handleInputChange}
-            value={prevGame.postSeason}
             checked={prevGame.postSeason}
           />
         </div>
