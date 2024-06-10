@@ -127,7 +127,7 @@ function CreateGame() {
         <input
           type="number"
           name="overTime"
-          checked={formData.overTime}
+          value={formData.overTime}
           onChange={handleInputChange}
         />
         <label htmlFor="postSeason">Post Season</label>

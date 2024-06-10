@@ -43,7 +43,6 @@ const UpdateGame = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value,
-      [name]: type === 'number' ? () => { value < 0 ? 0 : value } : value,
     }));
   };
 
@@ -144,6 +143,7 @@ const UpdateGame = () => {
           <input
             type="number"
             name="overTime"
+            min="0"
             onChange={handleInputChange}
             defaultValue={prevGame.overTime}
           />
@@ -154,7 +154,7 @@ const UpdateGame = () => {
             type="checkbox"
             name="postSeason"
             onChange={handleInputChange}
-            checked={prevGame.postSeason}
+            checked={prevGame.postSeason === null ? false : true}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>
