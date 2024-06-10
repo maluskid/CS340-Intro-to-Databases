@@ -25,9 +25,9 @@ create or replace table Games (
   foreign key (homeTeam) references Teams (teamID) ON DELETE CASCADE,
   foreign key (awayTeam) references Teams (teamID) ON DELETE CASCADE,
   -- homeTeam must be different from awayTeam
-  constraint different_teams CHECK (homeTeam != awayTeam)
+  constraint different_teams CHECK (homeTeam != awayTeam),
   -- cannot have negative overTime
-  constraint positive_overtime CHECK (overTime>= 0)
+  constraint positive_overtime CHECK (overTime >= 0)
 );
 
 -- Players Table
@@ -157,8 +157,8 @@ insert into Games (
   homeTeam, 
   awayTeam, 
   homeTeamScore,
-  awayTeamScore
-  overTime,
+  awayTeamScore,
+  overTime
 ) 
 values
 ( "2024-01-20",
@@ -166,7 +166,7 @@ values
   (select teamID from Teams where teamName = "Charlotte Hornets"),
   127,
   131,
-  -1
+  NULL
 );
 
 -- Games Data
