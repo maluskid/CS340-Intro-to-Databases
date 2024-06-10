@@ -39,7 +39,7 @@ const TableRow = ({ game, fetchGames }) => {
       <td>{game.homeTeamScore}</td>
       <td>{game.awayTeamScore}</td>
       <td>{game.overTime}</td>
-      <td>{game.postSeason}</td>
+      <td>{game.postSeason ? "Yes" : ""}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
       </td>

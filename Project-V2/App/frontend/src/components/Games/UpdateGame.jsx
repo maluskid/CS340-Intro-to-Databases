@@ -17,8 +17,8 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || '',
-    postSeason: prevGame.postSeason || '',
+    overTime: prevGame.overTime || false,
+    postSeason: prevGame.postSeason || false,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
@@ -36,16 +36,13 @@ const UpdateGame = () => {
 
   useEffect(() => {
     fetchTeamOptions();
-    // console.log('prevGame.gameDate:', prevGame.gameDate);
-    // console.log('formData.gameDate:', formData.gameDate);
   }, []);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
-      // [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -56,8 +53,8 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || '',
-      postSeason: prevGame.postSeason || '',
+      overTime: prevGame.overTime || false,
+      postSeason: prevGame.postSeason || false,
     })) {
       alert("No changes made.");
       return false;
@@ -107,7 +104,6 @@ const UpdateGame = () => {
             value={formData.homeTeam}
             onChange={handleInputChange}
             required
-            // defaultValue={prevGame.homeTeam}
           />
         </div>
         <div>
@@ -120,7 +116,6 @@ const UpdateGame = () => {
             value={formData.awayTeam}
             onChange={handleInputChange}
             required
-            // defaultValue={prevGame.awayTeam}
           />
         </div>
         <div>
@@ -153,12 +148,12 @@ const UpdateGame = () => {
           />
         </div>
         <div>
-          <label>Postseason:</label>
+          <label>Post Season:</label>
           <input
             type="checkbox"
             name="postSeason"
             onChange={handleInputChange}
-            defaultValue={prevGame.postSeason}
+            checked={prevGame.postSeason}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>

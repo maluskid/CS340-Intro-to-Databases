@@ -63,8 +63,6 @@ const createGame = async (req, res) => {
 
     const query = "INSERT INTO Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    // Need to add logic to overTime and postSeason ??
-
     const response = await db.query(query, [
       gameDate,
       homeTeam,
@@ -100,7 +98,7 @@ const updateGame = async (req, res) => {
         homeTeamScore = updatedGame.homeTeamScore == '' ? oldGame.homeTeamScore : updatedGame.homeTeamScore,
         awayTeamScore = updatedGame.awayTeamScore == '' ? oldGame.awayTeamScore : updatedGame.awayTeamScore,
         overTime = updatedGame.overTime == '' ? oldGame.overTime : updatedGame.overTime,
-        postSeason = updatedGame.postSeason == '' ? oldGame.postSeason : updatedGame.overTime,
+        postSeason = updatedGame.postSeason == '' ? oldGame.postSeason : updatedGame.postSeason,
         gameID
       ]);
       return res.json({ message: "Game update successful." });

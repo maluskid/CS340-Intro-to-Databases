@@ -21,7 +21,7 @@ create or replace table Games (
   homeTeamScore int(3) not null,
   awayTeamScore int(3) not null,
   overTime tinyint(1),
-  postseason boolean,
+  postSeason boolean,
   foreign key (homeTeam) references Teams (teamID) ON DELETE CASCADE,
   foreign key (awayTeam) references Teams (teamID) ON DELETE CASCADE,
   -- homeTeam must be different from awayTeam
