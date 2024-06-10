@@ -132,7 +132,7 @@ const UpdateGame = () => {
             name="homeTeamScore"
             onChange={handleInputChange}
             required
-            defaultValue={prevGame.homeTeamScore}
+            defaultValue={formData.homeTeamScore}
           />
         </div>
         <div>
@@ -142,7 +142,7 @@ const UpdateGame = () => {
             name="awayTeamScore"
             onChange={handleInputChange}
             required
-            defaultValue={prevGame.awayTeamScore}
+            defaultValue={formData.awayTeamScore}
           />
         </div>
         <div>
@@ -151,7 +151,7 @@ const UpdateGame = () => {
             type="number"
             name="overTime"
             onChange={handleInputChange}
-            defaultValue={prevGame.overTime}
+            defaultValue={formData.overTime}
           />
         </div>
         <div>
@@ -160,7 +160,7 @@ const UpdateGame = () => {
             type="checkbox"
             name="postSeason"
             onChange={handleInputChange}
-            checked={prevGame.postSeason}
+            checked={formData.postSeason}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>

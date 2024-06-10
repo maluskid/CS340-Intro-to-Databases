@@ -102,7 +102,8 @@ const updateGame = async (req, res) => {
         homeTeamScore = updatedGame.homeTeamScore == '' ? oldGame.homeTeamScore : updatedGame.homeTeamScore,
         awayTeamScore = updatedGame.awayTeamScore == '' ? oldGame.awayTeamScore : updatedGame.awayTeamScore,
         overTime = updatedGame.overTime == '' ? oldGame.overTime : updatedGame.overTime,
-        postSeason = updatedGame.postSeason == '' ? oldGame.postSeason : updatedGame.postSeason,
+        // postSeason = updatedGame.postSeason == '' ? oldGame.postSeason : updatedGame.postSeason,
+        updatedGame.postSeason,
         gameID
       ]);
       return res.json({ message: "Game update successful." });
