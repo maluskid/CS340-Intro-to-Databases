@@ -47,8 +47,8 @@ const RatingsTable = () => {
     console.log("Fetching ratings...");
     try {
       const URL = import.meta.env.VITE_API_URL + "ratings";
-      const userOptions = fetchUserOptions();
-      const gameOptions = fetchGameOptions();
+      const userOptions = await fetchUserOptions();
+      const gameOptions = await fetchGameOptions();
       const response = await axios.get(URL);
       console.log(`Fetched ratings: ${response}`);
       setRatings(response.data.map(rating => ({
