@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-const TeamPlayersList = () => {
+const TeamPlayersList = async () => {
 
   const { teamID } = useParams();
   const location = useLocation();
@@ -23,7 +23,7 @@ const TeamPlayersList = () => {
     }
   };
 
-  const players = fetchPlayers();
+  const players = await fetchPlayers();
 
   return (
     <div>
