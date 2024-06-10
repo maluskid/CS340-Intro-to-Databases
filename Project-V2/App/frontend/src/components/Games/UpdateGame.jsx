@@ -53,8 +53,8 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || false,
-      postSeason: prevGame.postSeason || false,
+      overTime: prevGame.overTime,
+      postSeason: prevGame.postSeason,
     })) {
       alert("No changes made.");
       return false;
