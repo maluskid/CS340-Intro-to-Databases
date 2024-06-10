@@ -41,10 +41,11 @@ const TeamPlayersList = () => {
             </tr>
           </thead>
           <tbody>
-            {players.forEach((player) => (
+            {players.forEach((player) => {
               <tr>
                 <td>{player}</td>
-              </tr>))}
+              </tr>
+            })}
           </tbody>
         </table>
       )}
