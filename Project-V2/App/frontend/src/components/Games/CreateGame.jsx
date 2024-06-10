@@ -73,10 +73,10 @@ function CreateGame() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'checkbox' ? () => { value === 'on' ? true : false } : value,
     }));
   };
 
@@ -134,7 +134,6 @@ function CreateGame() {
         <input
           type="checkbox"
           name="postSeason"
-          checked={formData.postSeason}
           onChange={handleInputChange}
         />
         <button type="submit">Create Game</button>

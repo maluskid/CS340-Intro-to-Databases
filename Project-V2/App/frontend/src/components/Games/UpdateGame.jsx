@@ -10,6 +10,7 @@ const UpdateGame = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const prevGame = location.state.game;
+  const checkboxDefualt = prevGame.postSeason === 0 ? false : true;
   console.log(`Prevgame postSeason value: ${prevGame.postSeason}`)
 
   const [formData, setFormData] = useState({
@@ -18,8 +19,8 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || false,
-    postSeason: prevGame.postSeason || false,
+    overTime: prevGame.overTime || null,
+    postSeason: prevGame.postSeason || null,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
@@ -40,11 +41,11 @@ const UpdateGame = () => {
   }, []);
 
   const handleInputChange = (event) => {
-    const { name, value, type, checked } = event.target;
+    const { name, value, type } = event.target;
     console.log(`Overtime checkbox value: ${checked}`)
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'checkbox' ? () => { value === 'on' ? true : false } : value,
     }));
   };
 
@@ -55,8 +56,8 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || false,
-      postSeason: prevGame.postSeason || false,
+      overTime: prevGame.overTime || null,
+      postSeason: prevGame.postSeason || null,
     })) {
       alert("No changes made.");
       return false;
@@ -156,7 +157,7 @@ const UpdateGame = () => {
             type="checkbox"
             name="postSeason"
             onChange={handleInputChange}
-            checked={prevGame.postSeason === null ? false : true}
+            checked={checkboxDefualt}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>
