@@ -12,9 +12,11 @@ const TeamPlayersList = () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "teams/playerlist/" + teamID;
       const response = await axios.get(URL);
-      return response.data.map((player) => {
+      const players = response.data.map((player) => {
         player.playerName
       });
+      console.log(`${players}`)
+      return players;
     } catch (error) {
       alert("Error fetching team player list from the server.");
       console.error("Error fetching teams:", error);
