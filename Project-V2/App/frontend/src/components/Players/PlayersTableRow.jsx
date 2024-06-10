@@ -45,7 +45,7 @@ const TableRow = ({ player, fetchPlayers }) => {
       <td>
         <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
       </td>
-    </td>
+    </tr>
   );
 };
 
