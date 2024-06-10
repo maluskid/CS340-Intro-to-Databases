@@ -36,27 +36,17 @@ const RatingsTable = () => {
     }
   };
 
-  const getOption = (optionID, options) => {
-    console.log(`getOption called on ${optionID}, ${JSON.stringify(options)}`);
-    // returns a string with both the ID and the actual value in the same area to save space in the table
-    const option = options[optionID].userName === undefined ? options[optionID].gameName : options[optionID].userName;
-    const output = (JSON.stringify(optionID) + ": " + option);
-    return JSON.parse(output);
-  }
-
   const fetchRatings = async () => {
-    console.log("Fetching ratings...");
     try {
       const URL = import.meta.env.VITE_API_URL + "ratings";
       const userOptions = await fetchUserOptions();
       const gameOptions = await fetchGameOptions();
       const response = await axios.get(URL);
-      console.log(`Fetched ratings: ${response}`);
       setRatings(response.data.map(rating => ({
         ratingID: rating.ratingID,
         rating: rating.rating,
-        user: getOption(rating.userID, userOptions),
-        game: getOption(rating.gameID, gameOptions),
+        user: userOptions[rating.userID].userName,
+        game: gameOptions[rating.gameID].game,
       })));
     } catch (error) {
       alert("Error fetching ratings from the server.");
