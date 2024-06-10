@@ -10,7 +10,6 @@ const UpdateGame = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const prevGame = location.state.game;
-  const checkboxDefualt = prevGame.postSeason === 0 ? false : true;
   console.log(`Prevgame postSeason value: ${prevGame.postSeason}`)
 
   const [formData, setFormData] = useState({
@@ -157,7 +156,8 @@ const UpdateGame = () => {
             type="checkbox"
             name="postSeason"
             onChange={handleInputChange}
-            checked={checkboxDefualt}
+            value={prevGame.postSeason}
+            checked={prevGame.postSeason}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>

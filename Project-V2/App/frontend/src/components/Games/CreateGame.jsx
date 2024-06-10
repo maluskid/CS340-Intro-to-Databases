@@ -135,6 +135,7 @@ function CreateGame() {
           type="checkbox"
           name="postSeason"
           onChange={handleInputChange}
+          value={formData.postSeason}
         />
         <button type="submit">Create Game</button>
       </form>
