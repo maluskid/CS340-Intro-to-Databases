@@ -35,7 +35,7 @@ const UpdateRating = () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "games/options";
       const response = await axios.get(URL);
-      
+
       const gameOptions = response.data.map(game => ({
         gameID: game.gameID,
         gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
@@ -58,7 +58,6 @@ const UpdateRating = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value
-      // [name]: type === 'checkbox' ? checked : value,
     }));
   };
 

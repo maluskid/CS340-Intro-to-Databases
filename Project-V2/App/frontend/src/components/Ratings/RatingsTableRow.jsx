@@ -16,25 +16,25 @@ const TableRow = ({ rating, fetchRatings }) => {
 
   // DELETE 
   const deleteRow = async () => {
-      try {
-        const URL = import.meta.env.VITE_API_URL + "ratings/" + rating.ratingID;
-        const response = await axios.delete(URL);
-        // Ensure that the person was deleted successfully
-        if (response.status === 204) {
-          alert("Rating deleted successfully");
-        }
-      } catch (err) {
-        alert(err.response.data.error || "Error deleting rating");
-        console.log(err);
+    try {
+      const URL = import.meta.env.VITE_API_URL + "ratings/" + rating.ratingID;
+      const response = await axios.delete(URL);
+      // Ensure that the person was deleted successfully
+      if (response.status === 204) {
+        alert("Rating deleted successfully");
       }
+    } catch (err) {
+      alert(err.response.data.error || "Error deleting rating");
+      console.log(err);
+    }
     fetchRatings();
   };
 
   return (
     <tr key={rating.ratingID}>
       <td>{rating.ratingID}</td>
-      <td>{rating.userID}</td>
-      <td>{rating.gameID}</td>
+      <td>{rating.user}</td>
+      <td>{rating.game}</td>
       <td>{rating.rating}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />

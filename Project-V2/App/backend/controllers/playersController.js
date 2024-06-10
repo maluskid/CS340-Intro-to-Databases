@@ -9,7 +9,7 @@ const lodash = require("lodash");
 const getPlayers = async (req, res) => {
   res.status(200)
   try {
-    // Select all rows from the "Players" table
+    // Select all rows from the "Players" table and get teamName from "Teams"
     const query = "SELECT Players.*, Teams.teamName FROM Players join Teams on Players.teamID = Teams.teamID";
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
