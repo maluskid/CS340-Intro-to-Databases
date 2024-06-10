@@ -89,6 +89,7 @@ const updateGame = async (req, res) => {
     const [data] = await db.query("SELECT * FROM Games WHERE gameID = ?", [gameID]);
     const oldGame = data[0];
     if (!lodash.isEqual(updatedGame, oldGame)) {
+      updateGame.overTime = updateGame.overTime == 0 ? null : updatedGame.overTime;
       const query = "UPDATE Games SET gameDate = ?, homeTeam = ?, awayTeam = ?, homeTeamScore = ?," +
         "awayTeamScore = ?, overTime = ?, postSeason = ? WHERE gameID = ?";
       await db.query(query, [
