@@ -155,8 +155,9 @@ const UpdateGame = () => {
           <input
             type="checkbox"
             name="postSeason"
+            defaultChecked={prevGame.postSeason}
+            checked={formData.postSeason}
             onChange={handleInputChange}
-            checked={prevGame.postSeason}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>

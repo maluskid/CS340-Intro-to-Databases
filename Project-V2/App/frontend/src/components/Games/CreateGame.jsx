@@ -127,6 +127,7 @@ function CreateGame() {
         <input
           type="number"
           name="overTime"
+          min="0"
           value={formData.overTime}
           onChange={handleInputChange}
         />
@@ -134,8 +135,8 @@ function CreateGame() {
         <input
           type="checkbox"
           name="postSeason"
-          onChange={handleInputChange}
           checked={formData.postSeason}
+          onChange={handleInputChange}
         />
         <button type="submit">Create Game</button>
       </form>
