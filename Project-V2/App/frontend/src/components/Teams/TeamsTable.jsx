@@ -35,6 +35,7 @@ const TeamsTable = () => {
             <tr>
               <th>Team ID</th>
               <th>Team Name</th>
+              <th>Players</th>
               <th>Coach</th>
               <th>Wins</th>
               <th>Losses</th>

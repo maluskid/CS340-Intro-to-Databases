@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
+import { IoBody } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
@@ -12,6 +13,12 @@ const TableRow = ({ team, fetchTeams }) => {
     // We can access the id (and query the team) with useParams() in the UpdateTeam component
 
     navigate("/teams/edit/" + team.teamID, { state: { team } });
+  };
+
+  // Redirect to player list page
+  const handlePlayers = () => {
+    // Accessing teamID with useParams() again
+    navigate("/teams/playerlist/" + team.teamID, { state: { team } });
   };
 
   // DELETE 
@@ -34,6 +41,9 @@ const TableRow = ({ team, fetchTeams }) => {
     <tr key={team.teamID}>
       <td>{team.teamID}</td>
       <td>{team.teamName}</td>
+      <td>
+        <IoBody onClick={handlePlayers} size={25} style={{ cursor: "pointer" }} />
+      </td>
       <td>{team.coach}</td>
       <td>{team.wins}</td>
       <td>{team.losses}</td>
