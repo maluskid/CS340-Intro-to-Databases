@@ -42,9 +42,9 @@ const RatingsTable = () => {
       const ratings = response.data.map((rating) => ({
         ratingID: rating.ratingID,
         userID: rating.userID,
-        userName: userOptions.find((user) => user.userID === rating.userID),
+        userName: userOptions.find((user) => user.userID === rating.userID).userName,
         gameID: rating.gameID,
-        gameName: gameOptions.find((game) => game.gameID === rating.gameID),
+        gameName: gameOptions.find((game) => game.gameID === rating.gameID).gameName,
         rating: rating.rating
       }));
 
