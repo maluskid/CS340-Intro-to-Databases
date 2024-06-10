@@ -65,6 +65,7 @@ const createGame = async (req, res) => {
   try {
     const { gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason } = req.body;
 
+    const postSeasonValue = postSeason || null;
     const overTimeValue = overTime || null;
 
     const query = "INSERT INTO Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -76,7 +77,7 @@ const createGame = async (req, res) => {
       homeTeamScore,
       awayTeamScore,
       overTimeValue,
-      postSeason,
+      postSeasonValue,
     ]);
     res.status(201).json(response);
   } catch (error) {
@@ -102,7 +103,6 @@ const updateGame = async (req, res) => {
         homeTeamScore = updatedGame.homeTeamScore == '' ? oldGame.homeTeamScore : updatedGame.homeTeamScore,
         awayTeamScore = updatedGame.awayTeamScore == '' ? oldGame.awayTeamScore : updatedGame.awayTeamScore,
         overTime = updatedGame.overTime == '' ? oldGame.overTime : updatedGame.overTime,
-        // postSeason = updatedGame.postSeason == '' ? oldGame.postSeason : updatedGame.postSeason,
         updatedGame.postSeason,
         gameID
       ]);
