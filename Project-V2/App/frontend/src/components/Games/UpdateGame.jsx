@@ -43,6 +43,7 @@ const UpdateGame = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'number' ? () => { value < 0 ? 0 : value } : value,
     }));
   };
 
@@ -53,8 +54,8 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || null,
-      postSeason: prevGame.postSeason || null,
+      overTime: prevGame.overTime || false,
+      postSeason: prevGame.postSeason || false,
     })) {
       alert("No changes made.");
       return false;
