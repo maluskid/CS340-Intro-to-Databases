@@ -23,7 +23,8 @@ const UpdateUser = () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "teams/options";
       const response = await axios.get(URL);
-      setTeamOptions(response.data);
+      // setTeamOptions(response.data);
+      setTeamOptions([{ teamID: '', teamName: 'None' }, ...response.data]);
     } catch (error) {
       alert("Error fetching team options from the server.");
       console.error("Error fetching team options:", error);
@@ -34,7 +35,8 @@ const UpdateUser = () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "players/options";
       const response = await axios.get(URL);
-      setPlayerOptions(response.data);
+      // setPlayerOptions(response.data);
+      setPlayerOptions([{ playerID: '', playerName: 'None' }, ...response.data]);
     } catch (error) {
       alert("Error fetching team options from the server.");
       console.error("Error fetching team options:", error);
@@ -50,7 +52,7 @@ const UpdateUser = () => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: value === "" ? null : value,
     }));
   };
 
