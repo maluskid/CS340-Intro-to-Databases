@@ -17,8 +17,8 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || false,
-    postSeason: prevGame.postSeason || false,
+    overTime: prevGame.overTime || null,
+    postSeason: prevGame.postSeason || null,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
@@ -53,8 +53,8 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime,
-      postSeason: prevGame.postSeason,
+      overTime: prevGame.overTime || null,
+      postSeason: prevGame.postSeason || null,
     })) {
       alert("No changes made.");
       return false;

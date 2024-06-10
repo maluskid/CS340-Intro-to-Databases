@@ -12,8 +12,8 @@ function CreateGame() {
     awayTeam: "",
     homeTeamScore: "",
     awayTeamScore: "",
-    overTime: false,
-    postSeason: false,
+    overTime: null,
+    postSeason: null,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
@@ -67,8 +67,8 @@ function CreateGame() {
       awayTeam: "",
       homeTeamScore: "",
       awayTeamScore: "",
-      overTime: false,
-      postSeason: false,
+      overTime: null,
+      postSeason: null,
     });
   };
 

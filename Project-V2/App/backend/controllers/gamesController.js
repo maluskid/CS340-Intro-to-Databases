@@ -59,7 +59,7 @@ const createGame = async (req, res) => {
   try {
     const { gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason } = req.body;
 
-    const overTimeValue = overTime || null;
+    const overTimeValue = (overTime === 0 ? null : overTime) || null;
 
     const query = "INSERT INTO Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -70,7 +70,7 @@ const createGame = async (req, res) => {
       homeTeamScore,
       awayTeamScore,
       overTimeValue,
-      postSeason,
+      postSeason
     ]);
     res.status(201).json(response);
   } catch (error) {
@@ -97,8 +97,8 @@ const updateGame = async (req, res) => {
         awayTeam = updatedGame.awayTeam == '' ? oldGame.awayTeam : updatedGame.awayTeam,
         homeTeamScore = updatedGame.homeTeamScore == '' ? oldGame.homeTeamScore : updatedGame.homeTeamScore,
         awayTeamScore = updatedGame.awayTeamScore == '' ? oldGame.awayTeamScore : updatedGame.awayTeamScore,
-        overTime = updatedGame.overTime == false ? oldGame.overTime : updatedGame.overTime,
-        postSeason = updatedGame.postSeason == false ? oldGame.postSeason : updatedGame.postSeason,
+        overTime = updatedGame.overTime == null ? oldGame.overTime : updatedGame.overTime,
+        postSeason = updatedGame.postSeason == null ? oldGame.postSeason : updatedGame.postSeason,
         gameID
       ]);
       return res.json({ message: "Game update successful." });
