@@ -46,7 +46,7 @@ const RatingsTable = () => {
         game: gameOptions[rating.gameID.toString()].game,
       }));
 
-      setRatings(ratings);
+      setRatings(response.data);
     } catch (error) {
       alert("Error fetching ratings from the server.");
       console.error("Error fetching ratings:", error);
