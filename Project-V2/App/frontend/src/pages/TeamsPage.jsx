@@ -2,7 +2,6 @@ import { Routes, Route, Link } from "react-router-dom";
 import TeamsTable from "../components/Teams/TeamsTable";
 import CreateTeam from "../components/Teams/CreateTeam";
 import UpdateTeam from "../components/Teams/UpdateTeam";
-import TeamPlayersList from "../components/Teams/TeamPlayersList";
 
 function TeamsPage() {
   return (
@@ -22,7 +21,6 @@ function TeamsPage() {
         <Route path="/" element={<TeamsTable />} />
         <Route path="/add" element={<CreateTeam />} />
         <Route path="/edit/:teamID" element={<UpdateTeam />} />
-        <Route path="/playerlist/:teamID" element={<TeamPlayersList />} />
       </Routes>
     </div>
   );
