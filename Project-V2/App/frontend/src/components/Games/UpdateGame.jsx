@@ -17,8 +17,8 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || null,
-    postSeason: prevGame.postSeason || null,
+    overTime: prevGame.overTime || false,
+    postSeason: prevGame.postSeason || false,
   });
 
   const [teamOptions, setTeamOptions] = useState([]);
