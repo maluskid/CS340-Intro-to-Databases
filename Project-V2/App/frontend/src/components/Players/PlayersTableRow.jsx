@@ -31,20 +31,21 @@ const TableRow = ({ player, fetchPlayers }) => {
   };
 
   return (
-      <tr key={player.playerID}>
-        <td>{player.playerID}</td> 
-        <td>{player.playerName}</td>  
-        <td>{player.teamID}</td>
-        <td>{player.jerseyNumber}</td>
-        <td>{player.height}</td>
-        <td>{player.weight}</td>
-        <td>
-          <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
-        </td>
-        <td>
-          <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
-        </td>
-    </tr>
+    <tr key={player.playerID}>
+      <td>{player.playerID}</td>
+      <td>{player.playerName}</td>
+      <td>{player.teamID}</td>
+      <td>{player.teamName}</td>
+      <td>{player.jerseyNumber}</td>
+      <td>{player.height}</td>
+      <td>{player.weight}</td>
+      <td>
+        <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
+      </td>
+      <td>
+        <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
+      </td>
+    </td>
   );
 };
 

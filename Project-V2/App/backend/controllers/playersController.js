@@ -10,7 +10,7 @@ const getPlayers = async (req, res) => {
   res.status(200)
   try {
     // Select all rows from the "Players" table
-    const query = "SELECT * FROM Players";
+    const query = "SELECT Players.*, Teams.teamName FROM Players join Teams on Players.teamID = Teams.teamID";
     // Execute the query using the "db" object from the configuration file
     const [rows] = await db.query(query);
     // Send back the rows to the client
@@ -57,10 +57,10 @@ const createPlayer = async (req, res) => {
     const { playerName, teamID, jerseyNumber, height, weight } = req.body;
     const query = "INSERT INTO Players (playerName, teamID, jerseyNumber, height, weight) VALUES (?, ?, ?, ?, ?)";
     const response = await db.query(query, [
-      playerName, 
-      teamID, 
-      jerseyNumber, 
-      height, 
+      playerName,
+      teamID,
+      jerseyNumber,
+      height,
       weight
     ]);
     res.status(201).json(response);
