@@ -2,7 +2,6 @@ import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import RatingsPage from "../../pages/RatingsPage";
 
 /* eslint-disable react/prop-types */
 const TableRow = ({ rating, fetchRatings }) => {
@@ -33,8 +32,10 @@ const TableRow = ({ rating, fetchRatings }) => {
   return (
     <tr key={rating.ratingID}>
       <td>{rating.ratingID}</td>
-      <td>{rating.user}</td>
-      <td>{rating.game}</td>
+      <td>{rating.userID}</td>
+      <td>{rating.userName}</td>
+      <td>{rating.gameID}</td>
+      <td>{rating.gameName}</td>
       <td>{rating.rating}</td>
       <td>
         <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />

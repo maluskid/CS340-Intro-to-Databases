@@ -41,12 +41,14 @@ const RatingsTable = () => {
       const response = await axios.get(URL);
       const ratings = response.data.map(rating => ({
         ratingID: rating.ratingID,
-        rating: rating.rating,
-        user: userOptions[rating.userID.toString()].userName,
-        game: gameOptions[rating.gameID.toString()].game,
+        userID: rating.userID,
+        userName: userOptions[rating.userID].userName,
+        gameID: rating.gameID,
+        gameName: gameOptions[rating.gameID].gameName,
+        rating: rating.rating
       }));
 
-      setRatings(response.data);
+      setRatings(ratings);
     } catch (error) {
       alert("Error fetching ratings from the server.");
       console.error("Error fetching ratings:", error);
@@ -62,7 +64,6 @@ const RatingsTable = () => {
   return (
     <div>
       <h2>Ratings Table</h2>
-      <p>Users and Games formatted as [userID: user] [gameID: game]</p>
       {ratings.length === 0 ? (
         <div>
           <RiCreativeCommonsZeroFill size={70} color="#ccc" />
@@ -73,7 +74,9 @@ const RatingsTable = () => {
           <thead>
             <tr>
               <th>Rating ID</th>
-              <th>User</th>
+              <th>User ID</th>
+              <th>User Name</th>
+              <th>Game ID</th>
               <th>Game</th>
               <th>Rating</th>
               <th>Edit</th>
