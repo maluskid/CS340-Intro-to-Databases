@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-const TeamPlayersList = async () => {
-
+const TeamPlayersList = () => {
+  const [players, setPlayers] = useState([]);
   const { teamID } = useParams();
   const location = useLocation();
   const team = location.state.team;
@@ -12,18 +13,16 @@ const TeamPlayersList = async () => {
     try {
       const URL = import.meta.env.VITE_API_URL + "teams/playerlist/" + teamID;
       const response = await axios.get(URL);
-      const players = response.data.map((player) => {
-        player.playerName
-      });
+      const players = response.data.map((player) => player.playerName);
       console.log(`${players}`)
-      return players;
+      setPlayers(players);
     } catch (error) {
       alert("Error fetching team player list from the server.");
       console.error("Error fetching teams:", error);
     }
   };
 
-  const players = await fetchPlayers();
+  fetchPlayers();
 
   return (
     <div>
