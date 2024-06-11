@@ -41,12 +41,13 @@ const GamesTable = () => {
         ...value,
         gameName: gameOptions.find((game) => game.gameID === value.gameID).gameName,
         homeTeam: (() => {
-          value.homeTeam + teamOptions.find((homeTeam) => value.homeTeam === homeTeam.teamID).teamName
+          JSON.stringify(value.homeTeam) + JSON.stringify(teamOptions.find((homeTeam) => value.homeTeam === homeTeam.teamID).teamName)
         }),
         awayTeam: (() => {
-          value.awayTeam + teamOptions.find((awayTeam) => value.awayTeam === awayTeam.teamID).teamName
+          JSON.stringify(value.awayTeam) + JSON.stringify(teamOptions.find((awayTeam) => value.awayTeam === awayTeam.teamID).teamName)
         }),
       }));
+      console.log(`Games: ${games}`);
       setGames(games);
     } catch (error) {
       alert("Error fetching games from the server.");
