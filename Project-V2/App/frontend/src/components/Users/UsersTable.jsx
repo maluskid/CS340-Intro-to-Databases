@@ -32,18 +32,15 @@ const UsersTable = () => {
     try {
       const teamOptions = await fetchTeamOptions();
       const playerOptions = await fetchPlayerOptions();
+      console.log(`teamopts ${teamOptions}\nplayeropts ${playerOptions}`);
       const URL = import.meta.env.VITE_API_URL + "users";
       const response = await axios.get(URL);
       const output = response.data.map((user) => ({
         ...user,
-        favoritePlayer: (
-          user.favoritePlayer === undefined ? undefined :
-            playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName
-        ),
-        favoriteTeam: (
-          user.favoriteTeam === undefined ? undefined :
-            teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName
-        ),
+        // favoritePlayer:
+        //   user.favoritePlayer === undefined ? undefined : playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName,
+        // favoriteTeam:
+        //   user.favoriteTeam === undefined ? undefined : teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName,
       }));
       setUsers(output);
     } catch (error) {
