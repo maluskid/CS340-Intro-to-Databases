@@ -19,7 +19,7 @@ function CreateGame() {
     awayTeam: "",
     homeTeamScore: "",
     awayTeamScore: "",
-    overTime: false,
+    overTime: 0,
     postSeason: false,
   });
 
@@ -74,7 +74,7 @@ function CreateGame() {
       awayTeam: "",
       homeTeamScore: "",
       awayTeamScore: "",
-      overTime: false,
+      overTime: 0,
       postSeason: false,
     });
   };
@@ -134,8 +134,9 @@ function CreateGame() {
         <input
           type="number"
           name="overTime"
-          checked={formData.overTime}
+          min="0"
           onChange={handleInputChange}
+          defaultValue={formData.overTime}
         />
         <label htmlFor="postSeason">Post Season</label>
         <input

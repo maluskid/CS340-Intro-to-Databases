@@ -24,7 +24,7 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || false,
+    overTime: prevGame.overTime || 0,
     postSeason: prevGame.postSeason || false,
   });
 
@@ -60,7 +60,7 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || false,
+      overTime: prevGame.overTime || 0,
       postSeason: prevGame.postSeason || false,
     })) {
       alert("No changes made.");
@@ -150,6 +150,7 @@ const UpdateGame = () => {
           <input
             type="number"
             name="overTime"
+            min="0"
             onChange={handleInputChange}
             defaultValue={formData.overTime}
           />
@@ -159,8 +160,9 @@ const UpdateGame = () => {
           <input
             type="checkbox"
             name="postSeason"
-            onChange={handleInputChange}
+            defaultChecked={formData.postSeason}
             checked={formData.postSeason}
+            onChange={handleInputChange}
           />
         </div>
         <button type="button" onClick={() => navigate("/games")}>

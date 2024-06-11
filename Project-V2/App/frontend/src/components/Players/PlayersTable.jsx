@@ -43,6 +43,7 @@ const PlayersTable = () => {
               <th>Player ID</th>
               <th>Player Name</th>
               <th>Team ID</th>
+              <th>Team Name</th>
               <th>Jersey Number</th>
               <th>Height</th>
               <th>Weight</th>
