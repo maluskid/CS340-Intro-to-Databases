@@ -40,7 +40,6 @@ const TableRow = ({ game, fetchGames }) => {
   return (
     <tr key={game.gameID}>
       <td>{game.gameID}</td>
-      <td>{game.gameName}</td>
       <td>{game.gameDate.slice(0, 10)}</td>
       <td>{game.homeTeam}</td>
       <td>{game.awayTeam}</td>

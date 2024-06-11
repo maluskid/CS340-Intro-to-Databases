@@ -20,8 +20,8 @@ const UpdateGame = () => {
 
   const [formData, setFormData] = useState({
     gameDate: prevGame.gameDate.slice(0, 10) || '',
-    homeTeam: prevGame.homeTeamID || '',
-    awayTeam: prevGame.awayTeamID || '',
+    homeTeam: prevGame.homeTeam || '',
+    awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
     overTime: prevGame.overTime || 0,
