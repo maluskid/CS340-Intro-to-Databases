@@ -36,8 +36,14 @@ const UsersTable = () => {
       const response = await axios.get(URL);
       const output = response.data.map((user) => ({
         ...user,
-        favoritePlayer: playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName || undefined,
-        favoriteTeam: teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName || undefined,
+        favoritePlayer: (
+          user.favoritePlayer === undefined ? undefined :
+            playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName
+        ),
+        favoriteTeam: (
+          user.favoriteTeam === undefined ? undefined :
+            teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName
+        ),
       }));
       setUsers(output);
     } catch (error) {
