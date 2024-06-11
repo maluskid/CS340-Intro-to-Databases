@@ -47,6 +47,8 @@ const GamesTable = () => {
       const output = response.data.map((value) => ({
         ...value,
         gameName: gameOptions.find((game) => game.gameID === value.gameID).gameName,
+        homeTeamID: value.homeTeam,
+        awayTeamID: value.awayTeam,
         homeTeam: teamOptions.find((team) => team.teamID === value.homeTeam).teamName,
         awayTeam: teamOptions.find((team) => team.teamID === value.awayTeam).teamName,
       }));

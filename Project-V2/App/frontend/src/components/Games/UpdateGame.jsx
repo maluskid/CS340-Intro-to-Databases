@@ -20,8 +20,8 @@ const UpdateGame = () => {
 
   const [formData, setFormData] = useState({
     gameDate: prevGame.gameDate.slice(0, 10) || '',
-    homeTeam: prevGame.homeTeam || '',
-    awayTeam: prevGame.awayTeam || '',
+    homeTeam: prevGame.homeTeamID || '',
+    awayTeam: prevGame.awayTeamID || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
     overTime: prevGame.overTime || 0,
@@ -109,7 +109,6 @@ const UpdateGame = () => {
             optionID="teamID"
             optionName="teamName"
             value={formData.homeTeam}
-            defaultValue={formData.homeTeam}
             onChange={handleInputChange}
             required
           />
@@ -122,7 +121,6 @@ const UpdateGame = () => {
             optionID="teamID"
             optionName="teamName"
             value={formData.awayTeam}
-            defaultValue={formData.awayTeam}
             onChange={handleInputChange}
             required
           />
