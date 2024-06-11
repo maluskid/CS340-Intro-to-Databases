@@ -109,6 +109,7 @@ const UpdateGame = () => {
             optionID="teamID"
             optionName="teamName"
             value={formData.homeTeam}
+            defaultValue={formData.homeTeam}
             onChange={handleInputChange}
             required
           />
@@ -121,6 +122,7 @@ const UpdateGame = () => {
             optionID="teamID"
             optionName="teamName"
             value={formData.awayTeam}
+            defaultValue={formData.awayTeam}
             onChange={handleInputChange}
             required
           />
