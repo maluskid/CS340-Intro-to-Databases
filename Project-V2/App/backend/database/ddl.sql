@@ -152,22 +152,22 @@ values
 );
 
 -- Testing CHECK constraint in Games Table
-insert into Games (
-  gameDate,
-  homeTeam, 
-  awayTeam, 
-  homeTeamScore,
-  awayTeamScore,
-  overTime
-) 
-values
-( "2024-01-20",
-  (select teamID from Teams where teamName = "San Antonio Spurs"),
-  (select teamID from Teams where teamName = "Charlotte Hornets"),
-  127,
-  131,
-  NULL
-);
+-- insert into Games (
+--   gameDate,
+--   homeTeam, 
+--   awayTeam, 
+--   homeTeamScore,
+--   awayTeamScore,
+--   overTime
+-- ) 
+-- values
+-- ( "2024-01-20",
+--   (select teamID from Teams where teamName = "San Antonio Spurs"),
+--   (select teamID from Teams where teamName = "Charlotte Hornets"),
+--   127,
+--   131,
+--   NULL
+-- );
 
 -- Games Data
 insert into Games (
