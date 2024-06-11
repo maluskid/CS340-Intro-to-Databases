@@ -47,7 +47,7 @@ const GamesTable = () => {
           JSON.stringify(value.awayTeam) + JSON.stringify(teamOptions.find((awayTeam) => value.awayTeam === awayTeam.teamID).teamName)
         }),
       }));
-      console.log(`Games: ${games}`);
+      console.log(`Games: ${JSON.stringify(games)}`);
       setGames(games);
     } catch (error) {
       alert("Error fetching games from the server.");
