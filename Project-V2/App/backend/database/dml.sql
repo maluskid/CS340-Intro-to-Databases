@@ -41,51 +41,22 @@ join Teams TeamsA on Games.awayTeam = TeamsA.teamID;
 select playerID, playerName from Players;
 
 -- Get team data
-select teamID, teamName, coach, wins, losses from Teams;
+select * from Teams;
 
 -- Get game Data
-select gameID, gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason from Games;
+select * from Games;
 
--- Get player data
-select playerID, playerName, teamID, jerseyNumber, height, weight from Players;
+-- Get player data as well as the name of the team they play for
+select Players.*, Teams.teamName from Players join Teams on Players.teamID = Teams.teamID;
 
 -- Get Games_Has_Players data
-select gameID, playerID from Games_Has_Players;
+select * from Games_Has_Players;
 
 -- Get user data
-select userID, userName, favoritePlayer, favoriteTeam from Users;
+select * from Users;
 
 -- Get ratings data
-select userID, gameID, rating from Ratings;
-
--- Extra views
--- Get list of players on a team
-select Players.playerName, Players.jerseyNumber
-from Players
-inner join Teams on Players.teamID = Teams.teamID
-where Teams.teamName = :teamNameInput;
-
--- Get players associated with specific game
-select Players.playerName
-from Players
-inner join Games_Has_Players on Players.playerID = Games_Has_Players.playerID
-inner join Games on Games_Has_Players.gameID = Games.gameID
-where gameID = :gameIDFromDropdownInput;
-
--- Get all ratings from specific user
-select Users.userName, Ratings.rating, Games.gameDate, Games.homeTeam, Games.awayTeam, Games.homeTeamScore, Games.awayTeamScore 
-from Users 
-inner join Ratings on Users.userID = Ratings.userID
-inner join Games on Ratings.gameID = Games.gameID
-where Users.userName = :Users.userNameInput;
-
--- Get all ratings of a specific game
-select Users.userName, Ratings.rating, Games.gameDate, Games.homeTeam, Games.awayTeam, Games.homeTeamScore, Games.awayTeamScore 
-from Users 
-inner join Ratings on Users.userID = Ratings.userID
-inner join Games on Ratings.gameID = Games.gameID
-where Games.gameID = :Games.gameIDInput;
-
+select * from Ratings;
 
 -- Delete Queries--------------------------------------------------------------
 -- Delete a player
@@ -108,11 +79,9 @@ delete from Ratings where userID = :userIDInput and gameID = :gameIDInput;
 
 
 -- Update Queries--------------------------------------------------------------
--- Update user's favorite player to NULL (set FK value to null)
-update Users set favoritePlayer = NULL where userName = :userNameInput;
 
--- Update user's favorite team to NULL (set FK value to null)
-update Users set favoriteTeam = NULL where userName = :userNameInput;
+-- Update user
+update Users set userName = ?, favoritePlayer = ?, favoriteTeam = ? where userID = ?;
 
 -- Edit player in a game (M-to-M relationship update)
 update Games_Has_Players set gameID = :gameIDFromDropdownInput and playerID = :playerIDFromDropdownInput;
