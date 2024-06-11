@@ -30,9 +30,9 @@ const TableRow = ({ game, fetchGames }) => {
       if (response.status === 204) {
         alert("Game deleted successfully");
       }
-    } catch (err) {
+    } catch (error) {
       alert(err.response.data.error || "Error deleting game");
-      console.log(err);
+      console.log(error);
     }
     fetchGames();
   };
@@ -40,6 +40,7 @@ const TableRow = ({ game, fetchGames }) => {
   return (
     <tr key={game.gameID}>
       <td>{game.gameID}</td>
+      <td>{game.gameName}</td>
       <td>{game.gameDate.slice(0, 10)}</td>
       <td>{game.homeTeam}</td>
       <td>{game.awayTeam}</td>

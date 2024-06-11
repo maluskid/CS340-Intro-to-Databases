@@ -13,11 +13,43 @@ import axios from "axios";
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
 
+  const fetchPlayerOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "players/options";
+      const response = await axios.get(URL);
+      return response.data;
+    } catch (error) {
+      alert(`Error fetching player options for users table`);
+      console.log(error);
+    }
+  };
+
+  const fetchTeamOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
+      const response = await axios.get(URL);
+      return response.data;
+    } catch (error) {
+      alert(`Error fetching team options for game table`);
+      console.log(error);
+    }
+  };
+
   const fetchUsers = async () => {
     try {
+      const teamOptions = await fetchTeamOptions();
+      const playerOptions = await fetchPlayerOptions();
       const URL = import.meta.env.VITE_API_URL + "users";
       const response = await axios.get(URL);
-      setUsers(response.data);
+      console.log(`users ${JSON.stringify(response.data)}`);
+      const output = response.data.map((user) => ({
+        ...user,
+        favoritePlayer:
+          user.favoritePlayer === null ? null : playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName,
+        favoriteTeam:
+          user.favoriteTeam === null ? null : teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName,
+      }));
+      setUsers(output);
     } catch (error) {
       alert("Error fetching users from the server.");
       console.error("Error fetching users:", error);

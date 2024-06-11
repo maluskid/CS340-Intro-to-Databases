@@ -37,17 +37,17 @@ const TableRow = ({ user, fetchUsers }) => {
   };
 
   return (
-      <tr key={user.userID}>
-        <td>{user.userID}</td>  
-        <td>{user.userName}</td>
-        <td>{user.favoritePlayer}</td>
-        <td>{user.favoriteTeam}</td>
-        <td>
-          <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
-        </td>
-        <td>
-          <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
-        </td>
+    <tr key={user.userID}>
+      <td>{user.userID}</td>
+      <td>{user.userName}</td>
+      <td>{user.favoritePlayer}</td>
+      <td>{user.favoriteTeam}</td>
+      <td>
+        <BiEditAlt onClick={handleEdit} size={25} style={{ cursor: "pointer" }} />
+      </td>
+      <td>
+        <BsTrash onClick={deleteRow} size={25} style={{ cursor: "pointer" }} />
+      </td>
     </tr>
   );
 };
