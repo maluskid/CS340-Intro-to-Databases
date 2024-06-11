@@ -32,9 +32,9 @@ const UsersTable = () => {
     try {
       const teamOptions = await fetchTeamOptions();
       const playerOptions = await fetchPlayerOptions();
-      console.log(`teamopts ${teamOptions}\nplayeropts ${playerOptions}`);
       const URL = import.meta.env.VITE_API_URL + "users";
       const response = await axios.get(URL);
+      console.log(`users ${JSON.stringify(response.data)}`);
       const output = response.data.map((user) => ({
         ...user,
         // favoritePlayer:
