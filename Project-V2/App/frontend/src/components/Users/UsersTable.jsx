@@ -37,10 +37,10 @@ const UsersTable = () => {
       console.log(`users ${JSON.stringify(response.data)}`);
       const output = response.data.map((user) => ({
         ...user,
-        // favoritePlayer:
-        //   user.favoritePlayer === undefined ? undefined : playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName,
-        // favoriteTeam:
-        //   user.favoriteTeam === undefined ? undefined : teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName,
+        favoritePlayer:
+          user.favoritePlayer === null ? null : playerOptions.find((player) => player.playerID === user.favoritePlayer).playerName,
+        favoriteTeam:
+          user.favoriteTeam === null ? null : teamOptions.find((team) => team.teamID === user.favoriteTeam).teamName,
       }));
       setUsers(output);
     } catch (error) {
