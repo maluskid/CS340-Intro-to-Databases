@@ -59,7 +59,7 @@ const createGame = async (req, res) => {
   try {
     const { gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason } = req.body;
 
-    const overTimeValue = (overTime === 0 ? null : overTime) || null;
+    const overTimeValue = (overTime === 0 ? undefined : overTime) || undefined;
 
     const query = "INSERT INTO Games (gameDate, homeTeam, awayTeam, homeTeamScore, awayTeamScore, overTime, postSeason) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -89,7 +89,7 @@ const updateGame = async (req, res) => {
     const [data] = await db.query("SELECT * FROM Games WHERE gameID = ?", [gameID]);
     const oldGame = data[0];
     if (!lodash.isEqual(updatedGame, oldGame)) {
-      updatedGame.overTime = updatedGame.overTime === 0 ? null : updatedGame.overTime;
+      updatedGame.overTime = updatedGame.overTime === 0 ? undefined : updatedGame.overTime;
       const query = "UPDATE Games SET gameDate = ?, homeTeam = ?, awayTeam = ?, homeTeamScore = ?," +
         "awayTeamScore = ?, overTime = ?, postSeason = ? WHERE gameID = ?";
       await db.query(query, [
@@ -98,8 +98,8 @@ const updateGame = async (req, res) => {
         awayTeam = updatedGame.awayTeam == '' ? oldGame.awayTeam : updatedGame.awayTeam,
         homeTeamScore = updatedGame.homeTeamScore == '' ? oldGame.homeTeamScore : updatedGame.homeTeamScore,
         awayTeamScore = updatedGame.awayTeamScore == '' ? oldGame.awayTeamScore : updatedGame.awayTeamScore,
-        overTime = updatedGame.overTime == null ? oldGame.overTime : updatedGame.overTime,
-        postSeason = updatedGame.postSeason == null ? oldGame.postSeason : updatedGame.postSeason,
+        overTime = updatedGame.overTime == oldGame.overTime ? oldGame.overTime : updatedGame.overTime,
+        postSeason = updatedGame.postSeason == oldGame.postSeason ? oldGame.postSeason : updatedGame.postSeason,
         gameID
       ]);
       return res.json({ message: "Game update successful." });

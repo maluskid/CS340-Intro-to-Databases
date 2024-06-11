@@ -10,7 +10,6 @@ const UpdateGame = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const prevGame = location.state.game;
-  console.log(`Prevgame postSeason value: ${prevGame.postSeason}`)
 
   const [formData, setFormData] = useState({
     gameDate: prevGame.gameDate.slice(0, 10) || '',
@@ -41,10 +40,10 @@ const UpdateGame = () => {
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-    console.log(`Overtime checkbox value: ${checked}`)
+    console.log(`postSeason checkbox value: ${checked}`)
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: type === 'checkbox' ? () => checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -55,7 +54,7 @@ const UpdateGame = () => {
       awayTeam: prevGame.awayTeam || '',
       homeTeamScore: prevGame.homeTeamScore || '',
       awayTeamScore: prevGame.awayTeamScore || '',
-      overTime: prevGame.overTime || false,
+      overTime: prevGame.overTime || 0,
       postSeason: prevGame.postSeason || false,
     })) {
       alert("No changes made.");
@@ -155,7 +154,7 @@ const UpdateGame = () => {
           <input
             type="checkbox"
             name="postSeason"
-            defaultChecked={prevGame.postSeason}
+            defaultChecked={formData.postSeason}
             checked={formData.postSeason}
             onChange={handleInputChange}
           />
