@@ -40,18 +40,8 @@ const GamesTable = () => {
       const games = response.data.map((value) => ({
         ...value,
         gameName: gameOptions.find((game) => game.gameID === value.gameID).gameName,
-        homeTeam: teamOptions.find((team) => {
-          if (team.teamID === value.homeTeam) {
-            (JSON.stringify(team.teamID) + ": " + JSON.stringify(team.teamName))
-          }
-        }
-        ),
-        awayTeam: teamOptions.find((team) => {
-          if (team.teamID === value.awayTeam) {
-            (JSON.stringify(team.teamID) + ": " + JSON.stringify(team.teamName))
-          }
-        }
-        ),
+        homeTeam: teamOptions.find((team) => team.teamID === value.homeTeam).teamName,
+        awayTeam: teamOptions.find((team) => team.teamID === value.awayTeam).teamName,
       }));
       console.log(`Games: ${JSON.stringify(games)}`);
       setGames(games);
