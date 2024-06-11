@@ -17,7 +17,7 @@ const UpdateGame = () => {
     awayTeam: prevGame.awayTeam || '',
     homeTeamScore: prevGame.homeTeamScore || '',
     awayTeamScore: prevGame.awayTeamScore || '',
-    overTime: prevGame.overTime || false,
+    overTime: prevGame.overTime || 0,
     postSeason: prevGame.postSeason || false,
   });
 
@@ -40,7 +40,6 @@ const UpdateGame = () => {
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-    console.log(`postSeason checkbox value: ${checked}`)
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value,
