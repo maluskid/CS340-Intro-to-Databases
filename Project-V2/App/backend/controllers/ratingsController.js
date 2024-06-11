@@ -62,6 +62,7 @@ const createRating = async (req, res) => {
 
 // Updates rating that matches given ratingID
 const updateRating = async (req, res) => {
+  const ratingID = req.params.ratingID;
   const updatedRating = req.body;
   try {
     const [data] = await db.query("SELECT * FROM Ratings WHERE ratingID = ?", [ratingID]);
