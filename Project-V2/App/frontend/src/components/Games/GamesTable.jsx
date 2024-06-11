@@ -15,7 +15,7 @@ const GamesTable = () => {
       alert(`Error fetching team options for game table`);
       console.log(error);
     }
-  }
+  };
 
   const fetchGameOptions = async () => {
     try {
@@ -37,14 +37,13 @@ const GamesTable = () => {
       const gameOptions = await fetchGameOptions();
       const URL = import.meta.env.VITE_API_URL + "games";
       const response = await axios.get(URL);
-      const games = response.data.map((value) => ({
+      const output = response.data.map((value) => ({
         ...value,
         gameName: gameOptions.find((game) => game.gameID === value.gameID).gameName,
         homeTeam: teamOptions.find((team) => team.teamID === value.homeTeam).teamName,
         awayTeam: teamOptions.find((team) => team.teamID === value.awayTeam).teamName,
       }));
-      console.log(`Games: ${JSON.stringify(games)}`);
-      setGames(games);
+      setGames(output);
     } catch (error) {
       alert("Error fetching games from the server.");
       console.error("Error fetching games:", error);
