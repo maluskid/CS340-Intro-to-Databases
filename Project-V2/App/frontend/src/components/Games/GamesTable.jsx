@@ -6,11 +6,48 @@ import axios from "axios";
 const GamesTable = () => {
   const [games, setGames] = useState([]);
 
+  const fetchTeamOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "teams/options";
+      const response = await axios.get(URL);
+      return response.data;
+    } catch (error) {
+      alert(`Error fetching team options for game table`);
+      console.log(error);
+    }
+  }
+
+  const fetchGameOptions = async () => {
+    try {
+      const URL = import.meta.env.VITE_API_URL + "games/options";
+      const response = await axios.get(URL);
+      return response.data.map(game => ({
+        gameID: game.gameID,
+        gameName: `${game.gameDate.slice(0, 10)}: ${game.homeTeamName} vs ${game.awayTeamName}`
+      }));
+    } catch (error) {
+      alert("Error fetching game options from the server.");
+      console.error("Error fetching game options:", error);
+    }
+  };
+
   const fetchGames = async () => {
     try {
+      const teamOptions = await fetchTeamOptions();
+      const gameOptions = await fetchGameOptions();
       const URL = import.meta.env.VITE_API_URL + "games";
       const response = await axios.get(URL);
-      setGames(response.data);
+      const games = response.data.map((value) => ({
+        ...value,
+        gameName: gameOptions.find((game) => game.gameID === value.gameID).gameName,
+        homeTeam: (() => {
+          value.homeTeam + teamOptions.find((homeTeam) => value.homeTeam === homeTeam.teamID).teamName
+        }),
+        awayTeam: (() => {
+          value.awayTeam + teamOptions.find((awayTeam) => value.awayTeam === awayTeam.teamID).teamName
+        }),
+      }));
+      setGames(games);
     } catch (error) {
       alert("Error fetching games from the server.");
       console.error("Error fetching games:", error);
@@ -34,6 +71,7 @@ const GamesTable = () => {
           <thead>
             <tr>
               <th>Game ID</th>
+              <th>Game</th>
               <th>Date</th>
               <th>Home Team</th>
               <th>Away Team</th>
